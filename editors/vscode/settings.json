@@ -1,0 +1,68 @@
+{
+  // Editor configs
+  "editor.fontFamily": "'Comic Mono'",
+  "editor.fontSize": 11,
+  "editor.fontLigatures": true,
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "editor.mouseWheelZoom": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.minimap.enabled": false,
+  "editor.cursorBlinking": "expand",
+  "editor.linkedEditing": true,
+  "editor.guides.bracketPairs": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+
+  // Workbench configs
+  "workbench.startupEditor": "none",
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.iconTheme": "icons",
+
+  // Terminal configs
+  "terminal.integrated.fontFamily": "'FantasqueSansMono NF'",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.persistentSessionScrollback": 10000,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+
+  // Prettier configs
+  "prettier.endOfLine": "auto",
+  "prettier.singleQuote": true,
+
+  // Java cascadeTerminateToConfigurations
+  "java.jdt.ls.java.home": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-19.0.2+7",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-19",
+      "path": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-19.0.2+7"
+    },
+    {
+      "name": "JavaSE-1.8",
+      "path": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-8.0.322+6"
+    }
+  ],
+
+  // Shell script
+  "[shellscript]": {
+    "editor.defaultFormatter": "shakram02.bash-beautify"
+  },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+
+  // Git config
+  "git.openRepositoryInParentFolders": "always",
+
+  // Breadcrumbs
+  "breadcrumbs.enabled": false
+}
