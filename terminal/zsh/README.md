@@ -9,6 +9,7 @@
     - fzf
     - asdf
     - bat
+      - Catpucchin theme
     - lsd
 - powerlevel10k
 
@@ -52,6 +53,18 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
 
 ```shell
 pacman -S bat
+```
+
+catpucchin theme
+
+```shell
+cd ~
+git clone git@github.com:catppuccin/bat.git
+mkdir -p "$(bat --config-dir)/themes"
+cd bat
+cp *.tmTheme "$(bat --config-dir)/themes"
+bat cache --build
+rm -rf ~/bat
 ```
 
 ###### lsd
