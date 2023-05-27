@@ -1,6 +1,7 @@
 {
   // Editor configs
-  "editor.fontFamily": "'Comic Mono'",
+  "editor.fontFamily": "'DankMono Nerd Font', 'Comic Mono'",
+  "editor.fontWeight": "bold",
   "editor.fontSize": 11,
   "editor.fontLigatures": true,
   "editor.tabSize": 2,
@@ -22,47 +23,189 @@
   "editor.guides.bracketPairs": true,
   "editor.stickyScroll.enabled": true,
   "editor.cursorSmoothCaretAnimation": "on",
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.overviewRulerBorder": false,
+  "editor.scrollbar.vertical": "auto",
+
+  // Breadcrumbs
+  "breadcrumbs.enabled": false,
 
   // Workbench configs
   "workbench.startupEditor": "none",
-  "workbench.colorTheme": "One Dark Pro Darker",
-  "workbench.iconTheme": "icons",
-
-  // Terminal configs
-  "terminal.integrated.fontFamily": "'FantasqueSansMono NF'",
-  "terminal.integrated.fontSize": 13,
-  "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.persistentSessionScrollback": 10000,
-  "terminal.integrated.defaultProfile.linux": "zsh",
-
-  // Prettier configs
-  "prettier.endOfLine": "auto",
-  "prettier.singleQuote": true,
-
-  // Java cascadeTerminateToConfigurations
-  "java.jdt.ls.java.home": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-19.0.2+7",
-  "java.configuration.runtimes": [
-    {
-      "name": "JavaSE-19",
-      "path": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-19.0.2+7"
-    },
-    {
-      "name": "JavaSE-1.8",
-      "path": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-8.0.322+6"
-    }
-  ],
+  "workbench.sideBar.location": "right",
+  "workbench.editor.showTabs": false,
+  "workbench.iconTheme": "emoji-file-icons",
+  "workbench.tree.indent": 20,
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Bluloco Dark Italic",
 
   // Shell script
   "[shellscript]": {
-    "editor.defaultFormatter": "shakram02.bash-beautify"
-  },
-  "[java]": {
-    "editor.defaultFormatter": "redhat.java"
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   },
 
   // Git config
   "git.openRepositoryInParentFolders": "always",
 
-  // Breadcrumbs
-  "breadcrumbs.enabled": false
+  // Terminal configs
+  "terminal.integrated.fontFamily": "'FantasqueSansMono Nerd Font'",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.persistentSessionScrollback": 10000,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh"
+    },
+    "fish": {
+      "path": "fish"
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux"
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    },
+    "JavaSE-1.8": {
+      "overrideName": true,
+      "path": "bash",
+      "args": ["-l"],
+      "env": {
+        "JAVA_HOME": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-8.0.322+6",
+        "PATH": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-8.0.322+6/bin:${env:PATH}"
+      }
+    },
+    "JavaSE-11": {
+      "overrideName": true,
+      "path": "bash",
+      "args": ["-l"],
+      "env": {
+        "JAVA_HOME": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-11.0.14+101",
+        "PATH": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-11.0.14+101/bin:${env:PATH}"
+      }
+    },
+    "JavaSE-17": {
+      "overrideName": true,
+      "path": "bash",
+      "args": ["-l"],
+      "env": {
+        "JAVA_HOME": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17",
+        "PATH": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17/bin:${env:PATH}"
+      }
+    },
+    "JavaSE-19": {
+      "overrideName": true,
+      "path": "bash",
+      "args": ["-l"],
+      "env": {
+        "JAVA_HOME": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-19.0.2+7",
+        "PATH": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-19.0.2+7/bin:${env:PATH}"
+      }
+    },
+    "JavaSE-20": {
+      "overrideName": true,
+      "path": "bash",
+      "args": ["-l"],
+      "env": {
+        "JAVA_HOME": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/20",
+        "PATH": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/20/bin:${env:PATH}"
+      }
+    }
+  },
+  "terminal.integrated.env.linux": {
+    "JAVA_HOME": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17",
+    "PATH": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17/bin:${env:PATH}"
+  },
+
+  // Prettier configs
+  "prettier.endOfLine": "auto",
+  "prettier.singleQuote": true,
+
+  // Window
+  "window.menuBarVisibility": "toggle",
+
+  // Java cascadeTerminateToConfigurations
+  "java.jdt.ls.java.home": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-19.0.2+7",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-8.0.322+6"
+    },
+    {
+      "name": "JavaSE-11",
+      "path": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-11.0.14+101"
+    },
+    {
+      "name": "JavaSE-17",
+      "path": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17",
+      "default": true
+    },
+    {
+      "name": "JavaSE-19",
+      "path": "/home/mrp4sten/.asdf/installs/java/adoptopenjdk-19.0.2+7"
+    },
+    {
+      "name": "JavaSE-20",
+      "path": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/20"
+    }
+  ],
+  "java.import.gradle.java.home": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17",
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "rsp-ui.rsp.java.home": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17",
+
+  // Spring Boot
+  "boot-java.rewrite.reconcile": true,
+  "spring-boot.ls.java.home": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17",
+
+  // Maven
+  "maven.executable.path": "/home/mrp4sten/.asdf/installs/maven/3.9.2/bin/mvn",
+  "maven.terminal.customEnv": [
+    {
+      "environmentVariable": "JAVA_HOME",
+      "value": "/home/mrp4sten/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
+    }
+  ],
+  "java.debug.settings.hotCodeReplace": "auto",
+  "java.sources.organizeImports.staticStarThreshold": 1,
+  "editor.rulers": [
+    {
+      "column": 80,
+      "color": "#00FF0010"
+    },
+    {
+      "column": 100,
+      "color": "#BDB76B15"
+    },
+    {
+      "column": 120,
+      "color": "#FA807219"
+    }
+  ],
+  "editor.unicodeHighlight.includeComments": true,
+  "workbench.colorCustomizations": {
+    "[Visual Studio Dark][Default Dark+]": {
+      "tab.activeBorder": "#0F0"
+    },
+    "editor.wordHighlightStrongBorder": "#FF6347",
+    "editor.wordHighlightBorder": "#FFD700",
+    "editor.selectionHighlightBorder": "#A9A9A9"
+  },
+  "cSpell.diagnosticLevel": "Hint",
+  "trailing-spaces.includeEmptyLines": false,
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "workbench.statusBar.visible": false,
+  "explorer.confirmDragAndDrop": false
 }
