@@ -10,3 +10,6 @@ alias cat="bat --paging=never --theme="Catppuccin-mocha""
 
 # update packages
 alias update="paru -Syyuu"
+
+# clean cache
+alias clean="sudo paccache -r"

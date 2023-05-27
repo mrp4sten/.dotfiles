@@ -26,9 +26,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Loading aliases, exports and functions
-source $ZSH_CONFIG_PATH/_aliases
-source $ZSH_CONFIG_PATH/_exports
-source $ZSH_CONFIG_PATH/_functions
+source $ZSH_CONFIG_PATH/_aliases/utils.sh
+source $ZSH_CONFIG_PATH/_exports/exports.sh
+source $ZSH_CONFIG_PATH/_functions/functions.sh
 
 # Load asdf
 . "$HOME/.asdf/asdf.sh"
