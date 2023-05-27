@@ -42,11 +42,15 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
   ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 ```
 
+###### asdf
+
+Follow the Installation here <https://asdf-vm.com/>
+
 ###### fzf
 
 ```shell
-# Official Download
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 ```
 
 ###### bat
