@@ -64,7 +64,6 @@ mkdir -p "$(bat --config-dir)/themes"
 cd bat
 cp *.tmTheme "$(bat --config-dir)/themes"
 bat cache --build
-rm -rf ~/bat
 ```
 
 ###### lsd
