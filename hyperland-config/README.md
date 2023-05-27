@@ -19,8 +19,7 @@ paru -S hyprland-git
 - Base set-ups
 
 ```shell
-paru -S waybar-hyprland waybar-git rofi dunst kitty swaybg mugshot swaylock-effects-git\
-swayidle pamixer light light-git brillo grimblast-git pavucontrol
+paru -S waybar-hyprland-git rofi dunst kitty swaybg mugshot swaylock-effects-git swayidle pamixer light light-git brillo grimblast-git pavucontrol bluez bluez-utils lxappearance thunar google-chrome
 ```
 
 - Installing Fonts
@@ -39,9 +38,32 @@ sudo wget https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoj
 sudo wget https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf
 cd
 
+# and also
+
+mkdir ~/.fonts
+cd ~/.fonts
+sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip
+sudo unzip JetBrainsMono.zip
+sudo rm JetBrainsMono.zip
+
+sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Iosevka.zip
+sudo unzip Iosevka.zip
+sudo rm Iosevka.zip
+
+sudo wget https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf
+sudo wget https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf
+cd
+
 paru -S ttf-font-awesome
 
 fc-cache -fv
+```
+
+- Install correct xdg-desktop-portal
+
+```shell
+paru -Ss xdg-desktop-portal
+paru -S xdg-desktop-portal-hyprland-git
 ```
 
 - Copy files 📁

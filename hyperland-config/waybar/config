@@ -8,11 +8,11 @@
   "spacing": 5,
   "modules-left": [
     "custom/launcher",
-    "wlr/workspaces",
+    "memory",
     "custom/weather"
   ],
   "modules-center": [
-    "custom/spotify"
+    "wlr/workspaces"
   ],
   "modules-right": [
     "tray",
@@ -25,6 +25,12 @@
     "clock",
     "custom/power-menu"
   ],
+  "memory": {
+    "interval": 30,
+    "format": " {}%",
+    "format-alt": " {used:0.1f}G",
+    "max-length": 10
+  },
   "wlr/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
