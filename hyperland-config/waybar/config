@@ -35,14 +35,9 @@
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "urgent": "",
-      "active": "",
-      "default": ""
+      "urgent": "󰃤",
+      "active": "",
+      "default": ""
     }
   },
   "hyprland/window": {
@@ -139,5 +134,17 @@
   "custom/launcher": {
     "format": " <span color='#6a92d7'> </span>",
     "on-click": "rofi -show drun"
+  },
+  "disk": {
+    "interval": 30,
+    "format": "Only {percentage_free}% remaining on {path}",
+    "path": "/"
+  },
+  "user": {
+    "format": "{user}",
+    "interval": 60,
+    "height": 30,
+    "width": 30,
+    "icon": true
   }
 }
