@@ -81,3 +81,18 @@ pacman -S lsd
 ```shell
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
+
+###### tmux
+
+```shell
+pacman -S bat
+```
+
+###### oh-my-tmux
+
+```shell
+cd
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+```
