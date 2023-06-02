@@ -19,7 +19,7 @@ paru -S hyprland-git
 - Base set-ups
 
 ```shell
-paru -S waybar-hyprland-git rofi dunst kitty swaybg mugshot swaylock-effects-git swayidle pamixer light light-git brillo grimblast-git pavucontrol bluez bluez-utils lxappearance thunar google-chrome
+paru -S waybar-hyprland-git rofi dunst kitty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar firefox cava hyprland neo-matrix
 ```
 
 - Installing Fonts
