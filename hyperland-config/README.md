@@ -13,13 +13,13 @@
 - Install Hyprland
 
 ```shell
-paru -S hyprland-git
+paru -S hyprland
 ```
 
 - Base set-ups
 
 ```shell
-paru -S waybar-hyprland-git rofi dunst kitty swaybg mugshot swaylock-effects swayidle pamixer light-git brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar firefox cava hyprland neo-matrix
+paru -S waybar-hyprland-git rofi dunst kitty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar firefox cava neo-matrix
 ```
 
 - Installing Fonts
