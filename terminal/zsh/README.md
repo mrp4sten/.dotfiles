@@ -12,6 +12,7 @@
       - Catpucchin theme
     - lsd
 - powerlevel10k
+- ranger
 
 ### oh-my-zsh installation
 
@@ -82,17 +83,30 @@ pacman -S lsd
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-###### tmux
+###### bat
 
 ```shell
 pacman -S bat
 ```
 
-###### oh-my-tmux
+###### ranger
 
 ```shell
-cd
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
+paru -S ranger
+```
+
+##### ranger_devicons
+
+```shell
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
+```
+
+##### ranger img preview
+
+```shell
+paru -S ueberzugpp 
+
+echo "set preview_images true" >> $HOME/.config/ranger/rc.conf
+echo "set preview_images_method ueberzug" >> $HOME/.config/ranger/rc.conf
 ```
