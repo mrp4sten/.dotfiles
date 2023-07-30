@@ -5,15 +5,15 @@
 - tmux
 - tpm
 
-### Installation 
+### Installation
 
 #### tmux installation
 
-> Show guide here: https://github.com/tmux/tmux/wiki/Installing
+> Show guide here: <https://github.com/tmux/tmux/wiki/Installing>
 
 #### tpm installation
 
-> Show guide here: https://github.com/tmux-plugins/tpm
+> Show guide here: <https://github.com/tmux-plugins/tpm>
 
 #### Setting my custom config
 
