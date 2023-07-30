@@ -21,7 +21,7 @@ window#waybar.hidden {
 
 #workspaces button {
   padding: 0px 6px 0px 2px;
-  color: #DAFFFB;
+  color: #dafffb;
   background-color: transparent;
   /* Use box-shadow instead of border so the text isn't offset */
   box-shadow: inset 0 -3px transparent;
@@ -31,11 +31,11 @@ window#waybar.hidden {
 }
 
 #workspaces button.focused {
-  color: #2B2E4A;
+  color: #2b2e4a;
 }
 
 #workspaces button.active {
-  color: #E84545;
+  color: #ff433d;
 }
 
 #workspaces button.urgent {
@@ -98,7 +98,7 @@ window#waybar.hidden {
 }
 
 #memory {
-  color: #ebcb8b;
+  color: #dbb705;
   background-color: #1f2530;
 }
 
@@ -111,7 +111,6 @@ window#waybar.hidden {
 
 #custom-launcher {
   background-color: #1f2530;
-  color: #E84545;
   border-radius: 7.5px;
   padding: 0px 10px 0px 1px;
 }
@@ -158,28 +157,28 @@ window#waybar.hidden {
 }
 
 #pulseaudio {
-  color: #F07B3F;
+  color: #d8fefd;
 }
 
 #backlight {
   /* color: #EBCB8B; */
-  color: #FFD460;
+  color: #db1f26;
 }
 
 #clock {
-  color: #EA5455;
+  color: #3366ff;
   /* background-color: #14141e; */
 }
 
 #battery {
-  color: #DAFFFB;
+  color: #dafffb;
   /* background-color: #90b1b1; */
 }
 
 #battery.charging,
 #battery.full,
 #battery.plugged {
-  color: #9AE66E;
+  color: #9ae66e;
   /* background-color: #26a65b; */
 }
 
@@ -191,7 +190,7 @@ window#waybar.hidden {
 }
 
 #battery.critical:not(.charging) {
-  color: #E59934;
+  color: #e59934;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -208,7 +207,7 @@ label:focus {
 }
 
 #bluetooth {
-  color: #176B87;
+  color: #83f8e8;
 }
 
 #bluetooth.disconnected {
@@ -216,11 +215,11 @@ label:focus {
 }
 
 #network {
-  color: #753188;
+  color: #3eb5f9;
 }
 
 #network.disconnected {
-  color: #E59934;
+  color: #e59934;
 }
 
 #custom-media {

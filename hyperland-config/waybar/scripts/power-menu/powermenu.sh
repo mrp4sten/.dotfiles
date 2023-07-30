@@ -79,7 +79,7 @@ $reboot)
 	;;
 $lock)
 	swaylock \
-		--image ~/.config/hypr/wallpapers/eva-02.jpg \
+		--image ~/.config/hypr/wallpapers/eva-01.jpg \
 		--clock \
 		--indicator \
 		--indicator-radius 100 \
