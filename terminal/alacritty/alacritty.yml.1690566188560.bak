@@ -1,0 +1,26 @@
+window:
+  opacity: 0.7
+  padding:
+    x: 10
+    y: 10
+
+import:
+  - ~/.config/alacritty/themes/challenger_deep.yml
+
+font:
+  bold:
+    family: FantasqueSansMono NF
+  italic:
+    family: FantasqueSansMono NF
+  normal:
+    family: FantasqueSansMono NF
+    style: Regular
+  size: 10
+
+cursor:
+  style:
+    shape: Beam
+    blinking: Always
+
+shell:
+  program: /bin/zsh
