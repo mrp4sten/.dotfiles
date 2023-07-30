@@ -22,6 +22,12 @@ paru -S hyprland
 paru -S waybar-hyprland-git rofi dunst kitty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar firefox cava neo-matrix
 ```
 
+- rofi-emoji
+
+```shell
+paru -S rofi-emoji
+```
+
 - Installing Fonts
 
 ```shell
