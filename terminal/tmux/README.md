@@ -5,21 +5,19 @@
 - tmux
 - tpm
 
-### Install tmux
+### Installation 
+
+#### tmux installation
+
+> Show guide here: https://github.com/tmux/tmux/wiki/Installing
+
+#### tpm installation
+
+> Show guide here: https://github.com/tmux-plugins/tpm
+
+#### Setting my custom config
 
 ```bash
-sudo pacman -Sy tmux
-```
-
-### Install tpm
-
-```bash
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
-#### Set configurations
-
-```bash
-cp -r .dotfiles/terminal/tmux .config/tmux
-ln -s -f .config/tmux/.tmux.conf .
+cp -r .dotfiles/terminal/tmux ~/.config
+ln -s -f .config/tmux/.tmux.conf ~/
 ```
