@@ -105,8 +105,35 @@ echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
 ##### ranger img preview
 
 ```shell
-paru -S ueberzugpp 
+paru -S ueberzugpp
 
 echo "set preview_images true" >> $HOME/.config/ranger/rc.conf
 echo "set preview_images_method ueberzug" >> $HOME/.config/ranger/rc.conf
+```
+
+##### pass
+
+I like `pass` is a simple terminal password manager and this is a little manual to your config
+
+```shell
+paru -S pass
+
+gpg --gen-key
+gpg --edit-key [example_gpg_id]
+
+# Om gpg menu insert the follow:
+#  - expire
+#  - 0
+#  - save
+
+pass init [example_gpg_id]
+pass git init
+pass generate example
+pass show example
+pass git remote add origin [github-repo]
+pass git push origin master
+
+gpg --list-secret-keys --keyid-format=long  to list gpg keys
+gpg --output public.pgp --armor --export [example_gpg_id]
+gpg --output private.pgp --armor --export-secret-key [example_gpg_id]
 ```
