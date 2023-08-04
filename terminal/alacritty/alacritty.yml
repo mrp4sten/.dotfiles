@@ -19,7 +19,7 @@ font:
 
 cursor:
   style:
-    shape: Beam
+    shape: Block
     blinking: Always
 
 shell:
@@ -50,4 +50,6 @@ colors:
     magenta: '#ad7fa8'
     cyan: '#34e2e2'
     white: '#eeeeec'
+
 theme: Tango
+live_config_reload: true
