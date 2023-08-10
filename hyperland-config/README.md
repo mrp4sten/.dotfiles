@@ -10,25 +10,13 @@
 
 ### Dependencies
 
-- Install Hyprland
+- Installations
 
 ```shell
-paru -S hyprland
+paru -S hyprland waybar-hyprland-git rofi rofi-emoji dunst kitty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar firefox cava neo-matrix sddm-git xdg-desktop-portal
 ```
 
-- Base set-ups
-
-```shell
-paru -S waybar-hyprland-git rofi dunst kitty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar firefox cava neo-matrix
-```
-
-- rofi-emoji
-
-```shell
-paru -S rofi-emoji
-```
-
-- Installing Fonts
+- Fonts
 
 ```shell
 cd /usr/share/fonts
@@ -65,14 +53,7 @@ paru -S ttf-font-awesome
 fc-cache -fv
 ```
 
-- Install correct xdg-desktop-portal
-
-```shell
-paru -Ss xdg-desktop-portal
-paru -S xdg-desktop-portal-hyprland-git
-```
-
-- Copy files 📁
+- Config files 📁
 
 ```shell
 cp -r dunst hypr rofi waybar ~/.config/
