@@ -9,9 +9,14 @@
 
 #### Alacritty Terminal Installation
 
-> Show guide here: https://github.com/alacritty/alacritty/blob/master/INSTALL.md
+> Show guide here: <https://github.com/alacritty/alacritty/blob/master/INSTALL.md>
 
 #### alacritty-themes
 
-> Show guide here: https://github.com/rajasegar/alacritty-themes
+> Show guide here: <https://github.com/rajasegar/alacritty-themes>
 
+##### Copying config files
+
+```shell
+cp -r themes alacrity.yml ~/.config/alacritty
+```

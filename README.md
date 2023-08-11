@@ -20,12 +20,17 @@ How can you have my dotfiles?
 
 Im using ArchLinux Distribution so try to Install AUR Helper
 
+- Manually
+
 ```shell
 sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd
 ```
 
+Instead you can run the script `install_aur_helper.sh`
+
 ### Preview
+
 ![Preview Desktop](.img/desktop.png)
 ![Preview tmux](.img/tmux.png)
 ![Preview Hyperland Config](.img/hyprland.png)
