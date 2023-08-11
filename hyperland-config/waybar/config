@@ -9,20 +9,18 @@
   "modules-left": [
     "custom/launcher",
     "memory",
-    "custom/weather"
+    "wlr/workspaces",
+    "tray"
   ],
   "modules-center": [
-    "wlr/workspaces"
+    "clock"
   ],
   "modules-right": [
-    "tray",
     "pulseaudio",
     "backlight",
     "bluetooth",
     "network",
-    "custom/vpn",
     "battery",
-    "clock",
     "custom/power-menu"
   ],
   "memory": {
@@ -71,7 +69,7 @@
     "format-wifi": "直 {signalStrength}%",
     "format-ethernet": "󰈀 wired",
     "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh",
-    "format-disconnected": "Disconnected  "
+    "format-disconnected": "404  "
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
