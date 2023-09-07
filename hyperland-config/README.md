@@ -15,7 +15,14 @@ You can use the script `hyprland_install.sh` or you can do all manually
 - Installations
 
 ```shell
-paru -S hyprland waybar-hyprland-git rofi rofi-emoji dunst alacritty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar brave-bin cava neo-matrix sddm-git xdg-desktop-portal
+# Hyprland and some tools
+paru -S hyprland rofi rofi-emoji dunst alacritty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar brave-bin cava neo-matrix sddm-git xdg-desktop-portal
+
+# Waybar
+paru -S spdlog                                                                                                                                                                   ✔
+paru -Rd fmt --nodeps
+paru -S fmt
+paru -S waybar-git
 ```
 
 - Fonts
