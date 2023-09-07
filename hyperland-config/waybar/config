@@ -1,15 +1,15 @@
 {
   "height": 30,
   "layer": "top",
-  "margin-top": 6,
-  "margin-left": 10,
-  "margin-bottom": 0,
-  "margin-right": 10,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-bottom": 2,
+  "margin-right": 0,
   "spacing": 5,
   "modules-left": [
     "custom/launcher",
     "memory",
-    "wlr/workspaces",
+    "hyprland/workspaces",
     "tray"
   ],
   "modules-center": [
@@ -29,7 +29,7 @@
     "format-alt": " {used:0.1f}G",
     "max-length": 10
   },
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
