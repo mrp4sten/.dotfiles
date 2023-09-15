@@ -18,6 +18,15 @@ You can use the script `hyprland_install.sh` or you can do all manually
 # Hyprland and some tools
 paru -S hyprland rofi rofi-emoji dunst alacritty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar brave-bin cava neo-matrix sddm-git xdg-desktop-portal
 
+# sddm
+sudo systemctl enable sddm.service
+sudo systemctl start sddm.service
+
+# bluetooth
+paru -S bluetooth-support
+sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service
+
 # Waybar
 paru -S spdlog                                                                                                                                                                   ✔
 paru -Rd fmt --nodeps
