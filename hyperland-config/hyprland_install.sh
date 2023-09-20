@@ -2,7 +2,16 @@
 # author: Mauricio Pasten (mrp4sten)
 
 # Installations
-paru -Sy hyprland waybar-hyprland-git rofi rofi-emoji dunst alacritty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar brave-bin cava neo-matrix sddm-git xdg-desktop-portal
+paru -S hyprland rofi rofi-emoji dunst alacritty swaybg mugshot swaylock-effects swayidle pamixer light brillo grimblast pavucontrol bluez bluez-utils lxappearance thunar brave-bin cava neo-matrix sddm-git xdg-desktop-portal
+sudo systemctl enable sddm.service
+sudo systemctl start sddm.service
+paru -S bluetooth-support
+sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service
+paru -S spdlog
+paru -Rd fmt --nodeps
+paru -S fmt
+paru -S waybar-git
 
 # Installing fonts
 cd /usr/share/fonts

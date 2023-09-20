@@ -28,7 +28,7 @@ sudo systemctl enable bluetooth.service
 sudo systemctl start bluetooth.service
 
 # Waybar
-paru -S spdlog                                                                                                                                                                   ✔
+paru -S spdlog
 paru -Rd fmt --nodeps
 paru -S fmt
 paru -S waybar-git

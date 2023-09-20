@@ -18,5 +18,5 @@
 ##### Copying config files
 
 ```shell
-cp -r themes alacrity.yml ~/.config/alacritty
+cp -r themes alacritty ~/.config/alacritty
 ```
