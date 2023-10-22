@@ -1,6 +1,6 @@
 {
   // Editor configs
-  "editor.fontFamily": "'DankMono Nerd Font', 'Comic Mono'",
+  "editor.fontFamily": "'DankMono Nerd Font', 'Comic Mono', 'FantasqueSansMono'",
   "editor.fontWeight": "bold",
   "editor.fontSize": 11,
   "editor.fontLigatures": true,
@@ -37,7 +37,7 @@
   "workbench.iconTheme": "emoji-file-icons",
   "workbench.tree.indent": 20,
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Bluloco Dark Italic",
+  "workbench.colorTheme": "Neon Lights",
 
   // Shell script
   "[shellscript]": {

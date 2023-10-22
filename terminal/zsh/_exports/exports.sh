@@ -1,0 +1,1 @@
+export GOOGLE_APPLICATION_CREDENTIALS="/home/mrp4sten/Desktop/nicheaim-labs-c7ce73ed880d.json"
