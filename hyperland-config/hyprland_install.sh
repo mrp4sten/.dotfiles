@@ -27,6 +27,8 @@ sudo wget https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoj
 sudo wget https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf
 cd
 
+# and also
+
 mkdir ~/.fonts
 cd ~/.fonts
 sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip
