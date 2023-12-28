@@ -4,10 +4,10 @@
 # +-+-+-+-+-+
 # |U|T|I|L|S|
 # +-+-+-+-+-+
-sudo pacman -S gum figlet cowsay lolcat git nano tldr wget curl
+sudo pacman -S gum figlet cowsay lolcat git nano tldr wget curl shfmt
 
 # +-+-+-+ +-+-+-+-+-+-+
 # |A|U|R| |H|E|L|P|E|R|
 # +-+-+-+ +-+-+-+-+-+-+
 sudo pacman -S --needed base-devel cargo
-git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd
+git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd || exit
