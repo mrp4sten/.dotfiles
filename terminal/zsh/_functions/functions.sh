@@ -8,3 +8,8 @@ clean() {
   sudo pacman -Scc
   bash $paccache
 }
+
+add-config-files() {
+  script=~/.dotfiles/terminal/zsh/scripts/initial-config-files/initial-config-files.sh
+  bash $script
+}
