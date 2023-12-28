@@ -14,14 +14,20 @@ copy_config_file() {
     "gitignore-javascript")
         cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.gitignore .
         ;;
-    "prettierrc-javascript")
-        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.prettierrc .
-        ;;
     "gitignore-webpack")
         cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/webpack-project-settings/.gitignore .
         ;;
+    "prettierrc-javascript")
+        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.prettierrc .
+        ;;
     "prettierrc-webpack")
         cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.prettierrc .
+        ;;
+    "htmlhintrc-javascript")
+        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.htmlhintrc .
+        ;;
+    "htmlhintrc-webpack")
+        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.htmlhintrc .
         ;;
     *)
         echo "Please select a correct option"
