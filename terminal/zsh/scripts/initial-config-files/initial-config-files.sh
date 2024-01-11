@@ -8,26 +8,41 @@ PROJECT_TYPE_OPTIONS=~/.dotfiles/terminal/zsh/scripts/initial-config-files/optio
 CONFIG_FILE_OPTIONS=~/.dotfiles/terminal/zsh/scripts/initial-config-files/options/config-files-options.txt
 PROJECT_TYPE_SELECTED=''
 
+PROJECT_TYPE_CONFIGS_DIR=~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type
+
+# Project settings dir
+JS_PROJECT_SETTINGS_DIR=${PROJECT_TYPE_CONFIGS_DIR}/js-project-settings
+WEBPACK_PROJECT_SETTINGS_DIR=${PROJECT_TYPE_CONFIGS_DIR}/webpack-project-settings
+
 copy_config_file() {
     CONFIG_FILE_TYPES=$(/bin/cat $CONFIG_FILE_OPTIONS | gum filter --placeholder "Select a config file" --limit 1)
     case "$CONFIG_FILE_TYPES-$PROJECT_TYPE_SELECTED" in
     "gitignore-javascript")
-        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.gitignore .
+        cp ${JS_PROJECT_SETTINGS_DIR}/.gitignore .
         ;;
     "gitignore-webpack")
-        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/webpack-project-settings/.gitignore .
+        cp ${WEBPACK_PROJECT_SETTINGS_DIR}/.gitignore .
         ;;
     "prettierrc-javascript")
-        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.prettierrc .
+        cp ${JS_PROJECT_SETTINGS_DIR}/.prettierrc .
         ;;
     "prettierrc-webpack")
-        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.prettierrc .
+        cp ${JS_PROJECT_SETTINGS_DIR}/.prettierrc .
         ;;
     "htmlhintrc-javascript")
-        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.htmlhintrc .
+        cp ${JS_PROJECT_SETTINGS_DIR}/.htmlhintrc .
         ;;
     "htmlhintrc-webpack")
-        cp ~/.dotfiles/terminal/zsh/scripts/initial-config-files/project-type/js-project-settings/.htmlhintrc .
+        cp ${JS_PROJECT_SETTINGS_DIR}/.htmlhintrc .
+        ;;
+    "stylelintrc-javascript")
+        cp ${JS_PROJECT_SETTINGS_DIR}/.stylelintrc.json .
+        ;;
+    "stylelintrc-webpack")
+        cp ${JS_PROJECT_SETTINGS_DIR}/.stylelintrc.json .
+        ;;
+    "webpackconfig-webpack")
+        cp ${WEBPACK_PROJECT_SETTINGS_DIR}/webpack.config.js .
         ;;
     *)
         echo "Please select a correct option"
