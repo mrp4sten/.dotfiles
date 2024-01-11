@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # lsd
 alias ls='lsd --group-dirs=first'
 alias l='ls -l --group-dirs=first'
