@@ -7,7 +7,7 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-export OSH='/home/mrp4sten/.oh-my-bash'
+export OSH='/home/b4lr0g/.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -56,11 +56,3 @@ alias tree='exa -T'
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/mrp4sten/NicheAimWorkspace/projects/google-cloud-sdk/path.bash.inc' ]; then . '/home/mrp4sten/NicheAimWorkspace/projects/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/mrp4sten/NicheAimWorkspace/projects/google-cloud-sdk/completion.bash.inc' ]; then . '/home/mrp4sten/NicheAimWorkspace/projects/google-cloud-sdk/completion.bash.inc'; fi
-
-# OCP exports
-source ~/ocp_exports/nj/ocp_dev.sh

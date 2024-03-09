@@ -9,7 +9,7 @@ alias lt='ls --tree --group-dirs=first'
 alias vi='nvim'
 
 # bat
-alias cat="bat --paging=never --theme="Catppuccin-mocha""
+alias cat='bat --paging=never --theme="Catppuccin Mocha"'
 
 # update packages
-alias update="paru -Syyuu"
+alias update="yay -Syyuu"

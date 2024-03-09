@@ -9,7 +9,7 @@ clean() {
   bash $paccache
 }
 
-add-config-files() {
+add_dot_files() {
   script=~/.dotfiles/terminal/zsh/scripts/initial-config-files/initial-config-files.sh
   bash $script
 }

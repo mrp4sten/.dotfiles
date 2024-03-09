@@ -45,7 +45,16 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
 
 ###### asdf
 
-Follow the Installation here <https://asdf-vm.com/>
+```shell
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+```
+
+##### sdkman
+
+```shell
+curl -s "https://get.sdkman.io" | bash
+```
+
 
 ###### fzf
 
@@ -57,24 +66,24 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ###### bat
 
 ```shell
-pacman -S bat
+sudo pacman -S bat
 ```
 
 catpucchin theme
 
 ```shell
-cd ~
-git clone git@github.com:catppuccin/bat.git
 mkdir -p "$(bat --config-dir)/themes"
-cd bat
-cp *.tmTheme "$(bat --config-dir)/themes"
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
 bat cache --build
 ```
 
 ###### lsd
 
 ```shell
-pacman -S lsd
+sudo pacman -S lsd
 ```
 
 ### powerlevel10k installation
@@ -86,7 +95,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 #### ranger
 
 ```shell
-paru -S ranger
+yay -S ranger
 ```
 
 ##### ranger_devicons
@@ -99,7 +108,10 @@ echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
 ##### ranger img preview
 
 ```shell
-paru -S ueberzugpp
+# Dependencies
+yay -Sy cmake libvips libsixel chafa openssl tbb nlohmann-json cli11 spdlog fmt  opencv xcb-util-image turbo-base64 wayland wayland-protocols exta-cmake-module pkg pkg-config
+
+yay -S ueberzugpp
 
 echo "set preview_images true" >> $HOME/.config/ranger/rc.conf
 echo "set preview_images_method ueberzug" >> $HOME/.config/ranger/rc.conf
@@ -110,7 +122,7 @@ echo "set preview_images_method ueberzug" >> $HOME/.config/ranger/rc.conf
 I like `pass` is a simple terminal password manager and this is a little manual to your config
 
 ```shell
-paru -S pass
+yay -S pass
 
 gpg --gen-key
 gpg --edit-key [example_gpg_id]
@@ -130,4 +142,11 @@ pass git push origin master
 gpg --list-secret-keys --keyid-format=long  to list gpg keys
 gpg --output public.pgp --armor --export [example_gpg_id]
 gpg --output private.pgp --armor --export-secret-key [example_gpg_id]
+```
+### Copy file settings
+
+```shell
+cd ~/
+cp ~/.dotfiles/terminal/zsh/.zshrc ~/
+cp ~/.dotfiles/terminal/zsh/.p10k.zsh ~/
 ```

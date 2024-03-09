@@ -33,6 +33,9 @@ source $ZSH_CONFIG_PATH/_functions/functions.sh
 # Load asdf
 . "$HOME/.asdf/asdf.sh"
 
+# Load sdkman
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # Prompt
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
