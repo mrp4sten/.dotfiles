@@ -28,3 +28,9 @@ git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd
 Instead you can run the script `install_aur_helper.sh`
 
 ### Preview
+
+![](.img/neofetch.png)
+![](.img/bash-zsh-lsd-bat-exa.png)
+![](.img/ranger.png)
+![](.img/fzh-history.png)
+![](.img/fzf-find-files.png)
