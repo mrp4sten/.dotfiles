@@ -57,7 +57,7 @@
       "path": "zsh"
     },
     "bash": {
-      "path": "bash",
+      "path": "bash"
     },
     "JavaSE-1.8": {
       "overrideName": true,
