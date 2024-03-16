@@ -9,7 +9,6 @@ This dotfiles include the follow config types:
   - tmux
   - zsh
 
-
 This setup is used actually on Arch Linux (Manjaro) but you try to use in another linux distro
 How can you have my dotfiles?
 
@@ -29,8 +28,52 @@ Instead you can run the script `install_aur_helper.sh`
 
 ### Preview
 
-![](.img/neofetch.png)
-![](.img/bash-zsh-lsd-bat-exa.png)
-![](.img/ranger.png)
-![](.img/fzh-history.png)
-![](.img/fzf-find-files.png)
+!["neofetch"](.img/neofetch.png)
+!["some terminal utils"](.img/bash-zsh-lsd-bat-exa.png)
+!["ranger"](.img/ranger.png)
+!["fzf history"](.img/fzh-history.png)
+!["fzf find files"](.img/fzf-find-files.png)
+
+#### List of my favorite applications and terminal utilities
+
+##### Applications
+
+- Google Chrome
+- Kitty Terminal
+- VisualStudioCode
+- YouTube Music
+- Bruno
+- Postman
+- Notepadqq
+- Bitwarden
+- Stacer
+- Libreoffice
+- Discord
+- OBS
+- Kdenlive
+- JasperSoft Studio
+- Thunderbird
+- Timeshift
+
+##### Terminal (zsh) Applications
+
+- yay (aur package manager for Arch Linux)
+- pass
+- task (Taskwarrior)
+- bpytop
+- gcloud cli
+- sdkman
+- asdf
+- tmux
+- git
+- bat
+- lsd
+- fsf
+- ranger
+- ncdu
+- figlet
+- cowsay
+- lolcat
+- timeshift
+- timetrap
+- (Other dev tools like jdk, npm, yarn, etc.)
