@@ -12,6 +12,7 @@
       - Catpucchin theme
     - lsd
 - powerlevel10k
+- spaceship-prompt
 - ranger
 
 ### oh-my-zsh installation
@@ -55,7 +56,6 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 curl -s "https://get.sdkman.io" | bash
 ```
 
-
 ###### fzf
 
 ```shell
@@ -91,6 +91,17 @@ sudo pacman -S lsd
 ```shell
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
+
+Set `ZSH_THEME="powerlevel10k/powerlevel10k"` on `~/.zshrc`
+
+### spaceship-prompt installation
+
+```shell
+git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+```
+
+Set `ZSH_THEME="spaceship"` on `~/.zshrc`
 
 #### ranger
 
@@ -143,6 +154,7 @@ gpg --list-secret-keys --keyid-format=long  to list gpg keys
 gpg --output public.pgp --armor --export [example_gpg_id]
 gpg --output private.pgp --armor --export-secret-key [example_gpg_id]
 ```
+
 ### Copy file settings
 
 ```shell

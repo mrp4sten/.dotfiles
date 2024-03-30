@@ -9,7 +9,7 @@ export DOTFILES_PATH=$HOME/.dotfiles
 export ZSH_CONFIG_PATH=$DOTFILES_PATH/terminal/zsh
 
 # Theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="spaceship"
 
 # Plugins
 plugins=(
