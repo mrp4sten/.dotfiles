@@ -13,6 +13,7 @@
     - lsd
 - powerlevel10k
 - spaceship-prompt
+- starship
 - ranger
 
 ### oh-my-zsh installation
@@ -102,6 +103,17 @@ ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/the
 ```
 
 Set `ZSH_THEME="spaceship"` on `~/.zshrc`
+
+### starship installation
+
+```shell
+curl -sS https://starship.rs/install.sh | sh
+
+# Copy config file
+cp ~/.dotfiles/terminal/zsh/starship.toml ~/.config/
+```
+
+Set `eval "$(starship init zsh)"` on `~/.zshrc`
 
 #### ranger
 
