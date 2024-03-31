@@ -33,4 +33,4 @@ yay -Sy google-chrome-stable \
   cowsay \
   lolcat \
   timeshift \
-  timetrap \
+  timetrap
