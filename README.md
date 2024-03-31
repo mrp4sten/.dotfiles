@@ -54,6 +54,7 @@ Instead you can run the script `install_aur_helper.sh`
 - JasperSoft Studio
 - Thunderbird
 - Timeshift
+- Ulauncher
 
 ##### Terminal (zsh) Applications
 

@@ -1,13 +1,36 @@
 #!/bin/bash
 # author: Mauricio Pasten (mrp4sten)
 
-# +-+-+-+-+-+
-# |U|T|I|L|S|
-# +-+-+-+-+-+
-sudo pacman -S gum figlet cowsay lolcat git nano tldr wget curl shfmt
+# Utilities
+sudo pacman -S git nano tldr wget curl shfmt
 
-# +-+-+-+ +-+-+-+-+-+-+
-# |A|U|R| |H|E|L|P|E|R|
-# +-+-+-+ +-+-+-+-+-+-+
+# AUR helper
 sudo pacman -S --needed base-devel cargo
 git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd || exit
+
+# AUR packages
+
+yay -Sy google-chrome-stable \
+  kitty \
+  visual-studio-code-bin \
+  bruno-bin \
+  postman-bin \
+  notepadqq \
+  bitwarden \
+  stacer-bin \
+  libreoffice \
+  discord \
+  flatpak \
+  snapd \
+  kdenlive \
+  thunderbird \
+  timeshift \
+  ulauncher \
+  pass \
+  task \
+  bpytop \
+  figlet \
+  cowsay \
+  lolcat \
+  timeshift \
+  timetrap \
