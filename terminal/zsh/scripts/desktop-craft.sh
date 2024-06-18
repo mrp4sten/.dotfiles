@@ -1,7 +1,7 @@
 #!/bin/bash
 # author: Mauricio Pasten (mrp4sten)
 
-DESKTOP_NAME=$(gum input --placeholder "Enter name desktop entry")
+DESKTOP_NAME=$(gum input --placeholder "Enter name desktop entry file")
 DISYPLAY_NAME=$(gum input --placeholder "Enter display for application")
 DESCRIPTION=$(gum input --placeholder "Enter description from application")
 VERSION=$(gum input --placeholder "Enter application version")
