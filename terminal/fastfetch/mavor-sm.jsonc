@@ -1,0 +1,49 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "source": "/home/mavor/Pictures/profile/mavor.jpg",
+        "width": 18
+    },
+    "display": {
+        "key": {
+            "type": "both"
+        }
+    },
+    "modules": [
+        {
+            "key": "OS",
+            "keyColor": "38;5;210",
+            "type": "os"
+        },
+        {
+            "key": "Kernel",
+            "keyColor": "38;5;84",
+            "type": "kernel"
+        },
+        {
+            "key": "Shell",
+            "keyColor": "38;5;147",
+            "type": "shell"
+        },
+        {
+            "key": "Packages",
+            "keyColor": "38;5;200",
+            "type": "packages"
+        },
+        {
+            "key": "CPU",
+            "keyColor": "38;5;75",
+            "type": "cpu"
+        },
+        {
+            "key": "GPU",
+            "keyColor": "38;5;75",
+            "type": "gpu"
+        },
+        {
+            "key": "Memory",
+            "keyColor": "38;5;123",
+            "type": "memory"
+        }
+    ]
+}

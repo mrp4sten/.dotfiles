@@ -13,3 +13,8 @@ alias cat='bat --paging=never --theme="Catppuccin Mocha"'
 
 # update packages
 alias update="yay -Syyuu"
+
+# fastfetch
+alias fastfetchsm='fastfetch --config ~/.config/fastfetch/mavor-sm.jsonc'
+alias fastfetchmd='fastfetch --config ~/.config/fastfetch/mavor-md.jsonc'
+alias fastfetchlg='fastfetch --config ~/.config/fastfetch/mavor-lg.jsonc'

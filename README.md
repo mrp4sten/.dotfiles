@@ -14,7 +14,15 @@ How can you have my dotfiles?
 
 > Just [R.T.F.M](https://en.wikipedia.org/wiki/RTFM) in each directory
 
-## First Step
+## First Steps
+
+Download my custom files
+
+```shell
+cd ~/
+git clone https://github.com/mrp4sten/.dotfiles.git .dotfiles
+```
+
 
 Im using ArchLinux Distribution so try to Install AUR Helper
 
