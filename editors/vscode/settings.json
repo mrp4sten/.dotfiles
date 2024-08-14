@@ -1,6 +1,6 @@
 {
   // Editor configs
-  "editor.fontFamily": "'DankMono Nerd Font', 'Comic Mono', 'Fantasque Sans Mono'",
+  "editor.fontFamily": "'DankMono Nerd Font', 'Fantasque Sans Mono', 'Comic Mono', 'JetBrainsMono Nerd Font', 'CaskaydiaCove Nerd Font'",
   "editor.fontWeight": "bold",
   "editor.fontSize": 15,
   "editor.fontLigatures": true,
@@ -30,8 +30,8 @@
   "workbench.sideBar.location": "right",
   "workbench.editor.showTabs": "multiple",
   "workbench.tree.indent": 20,
-  "workbench.activityBar.location": "side",
-  "workbench.colorTheme": "Catppuccin Frappé",
+  "workbench.activityBar.location": "default",
+  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "catppuccin-frappe",
   // Shell script
   "[shellscript]": {
@@ -62,45 +62,45 @@
     "JavaSE-1.8": {
       "overrideName": true,
       "env": {
-        "JAVA_HOME": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/8"
+        "JAVA_HOME": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/8"
       },
       "path": "bash",
       "args": [
         "--rcfile",
-        "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
+        "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
       ]
     },
     "JavaSE-11": {
       "overrideName": true,
       "env": {
-        "JAVA_HOME": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/11"
+        "JAVA_HOME": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/11"
       },
       "path": "bash",
       "args": [
         "--rcfile",
-        "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
+        "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
       ]
     },
     "JavaSE-17": {
       "overrideName": true,
       "env": {
-        "JAVA_HOME": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
+        "JAVA_HOME": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
       },
       "path": "bash",
       "args": [
         "--rcfile",
-        "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
+        "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
       ]
     },
     "JavaSE-21": {
       "overrideName": true,
       "env": {
-        "JAVA_HOME": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
+        "JAVA_HOME": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
       },
       "path": "bash",
       "args": [
         "--rcfile",
-        "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
+        "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
       ]
     }
   },
@@ -150,14 +150,14 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   // Gradle
-  "java.import.gradle.home": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/gradle/latest",
-  "java.import.gradle.java.home": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
+  "java.import.gradle.home": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/gradle/latest",
+  "java.import.gradle.java.home": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
   // Maven
-  "maven.executable.path": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/maven/latest/bin/mvn",
+  "maven.executable.path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/maven/latest/bin/mvn",
   "maven.terminal.customEnv": [
     {
       "environmentVariable": "JAVA_HOME",
-      "value": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
+      "value": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
     }
   ],
   "[markdown]": {
@@ -166,22 +166,71 @@
   "java.configuration.runtimes": [
     {
       "name": "JavaSE-1.8",
-      "path": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/8"
+      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/8"
     },
     {
       "name": "JavaSE-11",
-      "path": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/11"
+      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/11"
     },
     {
       "name": "JavaSE-17",
-      "path": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
+      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
     },
     {
       "name": "JavaSE-21",
-      "path": "/home/b4lr0g/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
+      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
       "default": true
     }
   ],
+  "terminal.integrated.profiles.windows": {
+    "JavaSE-1.8 LTS": {
+      "overrideName": true,
+      "env": {
+        "PATH": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\8\\bin;${env:PATH}",
+        "JAVA_HOME": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\8"
+      },
+      "path": "cmd"
+    },
+    "JavaSE-11 LTS": {
+      "overrideName": true,
+      "env": {
+        "PATH": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\11\\bin;${env:PATH}",
+        "JAVA_HOME": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\11"
+      },
+      "path": "cmd"
+    },
+    "JavaSE-17 LTS": {
+      "overrideName": true,
+      "env": {
+        "PATH": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\17\\bin;${env:PATH}",
+        "JAVA_HOME": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\17"
+      },
+      "path": "cmd"
+    }
+  },
+  // "java.configuration.runtimes": [ // Windows
+  //   {
+  //     "name": "JavaSE-1.8",
+  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\8"
+  //   },
+  //   {
+  //     "name": "JavaSE-11",
+  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\11"
+  //   },
+  //   {
+  //     "name": "JavaSE-17",
+  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\17"
+  //   },
+  //   {
+  //     "name": "JavaSE-21",
+  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\21"
+  //   },
+  //   {
+  //     "name": "JavaSE-22",
+  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\latest",
+  //     "default": true
+  //   }
+  // ],
   "cSpell.userWords": [
     "Caskaydia",
     "catppuccin",
@@ -189,6 +238,7 @@
     "Fantasque",
     "Freemarker",
     "Lilleby",
+    "mavor",
     "mkhl",
     "rcfile",
     "runtimes",
@@ -196,5 +246,6 @@
     "shfmt",
     "stylelint",
     "yzhang"
-  ]
+  ],
+  "window.customTitleBarVisibility": "auto"
 }
