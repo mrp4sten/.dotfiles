@@ -2,7 +2,7 @@
   // Editor configs
   "editor.fontFamily": "'DankMono Nerd Font', 'Fantasque Sans Mono', 'Comic Mono', 'JetBrainsMono Nerd Font', 'CaskaydiaCove Nerd Font'",
   "editor.fontWeight": "bold",
-  "editor.fontSize": 15,
+  "editor.fontSize": 16,
   "editor.fontLigatures": true,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
@@ -32,7 +32,7 @@
   "workbench.tree.indent": 20,
   "workbench.activityBar.location": "default",
   "workbench.colorTheme": "Catppuccin Mocha",
-  "workbench.iconTheme": "catppuccin-frappe",
+  "workbench.iconTheme": "eq-material-theme-icons-light",
   // Shell script
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt"
@@ -149,11 +149,6 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-  // Gradle
-  "java.import.gradle.home": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/gradle/latest",
-  "java.import.gradle.java.home": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
-  // Maven
-  "maven.executable.path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/maven/latest/bin/mvn",
   "maven.terminal.customEnv": [
     {
       "environmentVariable": "JAVA_HOME",
@@ -163,25 +158,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "java.configuration.runtimes": [
-    {
-      "name": "JavaSE-1.8",
-      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/8"
-    },
-    {
-      "name": "JavaSE-11",
-      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/11"
-    },
-    {
-      "name": "JavaSE-17",
-      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
-    },
-    {
-      "name": "JavaSE-21",
-      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
-      "default": true
-    }
-  ],
   "terminal.integrated.profiles.windows": {
     "JavaSE-1.8 LTS": {
       "overrideName": true,
@@ -247,5 +223,29 @@
     "stylelint",
     "yzhang"
   ],
-  "window.customTitleBarVisibility": "auto"
+  "window.customTitleBarVisibility": "auto",
+  "terminal.integrated.env.linux": {},
+  "maven.executable.path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/maven/latest/bin/mvn",
+  "java.import.gradle.home": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/gradle/latest",
+  "java.import.gradle.java.home": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/8"
+    },
+    {
+      "name": "JavaSE-11",
+      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/11"
+    },
+    {
+      "name": "JavaSE-17",
+      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
+    },
+    {
+      "name": "JavaSE-21",
+      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
+      "default": true
+    }
+  ],
+  "terminal.integrated.env.windows": {},
 }
