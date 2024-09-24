@@ -1,0 +1,372 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>dwm - dynamic window manager | suckless.org software that sucks less</title>
+	<link rel="stylesheet" type="text/css" href="//suckless.org/pub/style.css"/>
+</head>
+
+<div id="header">
+	<a href="//suckless.org/"><img src="//suckless.org/logo.svg" alt=""/></a>&nbsp;
+	<a id="headerLink" href="//suckless.org/">suckless.org</a>
+	<span class="hidden"> - </span>
+	<span id="headerSubtitle">dwm - dynamic window manager</span>
+</div>
+<hr class="hidden"/>
+<div id="menu">
+	<a href="//suckless.org/">home</a>
+	<a href="//dwm.suckless.org/"><b>dwm</b></a>
+	<a href="//st.suckless.org/">st</a>
+	<a href="//core.suckless.org/">core</a>
+	<a href="//surf.suckless.org/">surf</a>
+	<a href="//tools.suckless.org/">tools</a>
+	<a href="//libs.suckless.org/">libs</a>
+	<a href="//ev.suckless.org/">e.V.</a>
+	<span class="right">
+		<a href="//dl.suckless.org">download</a>
+		<a href="//git.suckless.org">source</a>
+	</span>
+</div>
+<hr class="hidden"/>
+<div id="content">
+<div id="nav">
+	<ul>
+	<li><a href="/">about</a></li>
+	<li><a href="//dwm.suckless.org/customisation/">customisation/</a></li>
+	<li><a href="//dwm.suckless.org/dynamic_window_management/">dynamic window management/</a></li>
+	<li><a href="//dwm.suckless.org/faq/">faq/</a></li>
+	<li><a href="//dwm.suckless.org/multi-monitor/">multi monitor/</a></li>
+	<li><a href="//dwm.suckless.org/multi-pointer/">multi pointer/</a></li>
+	<li><a href="//dwm.suckless.org/patches/"><b>patches/</b></a>
+		<ul>
+		<li><a href="//dwm.suckless.org/patches/accessnthmonitor/">accessnthmonitor/</a></li>
+		<li><a href="//dwm.suckless.org/patches/activemonitor/">activemonitor/</a></li>
+		<li><a href="//dwm.suckless.org/patches/activetagindicatorbar/">activetagindicatorbar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/actualfullscreen/">actualfullscreen/</a></li>
+		<li><a href="//dwm.suckless.org/patches/adjacenttag/">adjacenttag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/allowkillrule/">allowkillrule/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alpha/">alpha/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alt-tab/">alt tab/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alt-tab-class/">alt tab class/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alternativetags/">alternativetags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alttab2/">alttab2/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alttagsdecoration/">alttagsdecoration/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alwayscenter/">alwayscenter/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alwaysfullscreen/">alwaysfullscreen/</a></li>
+		<li><a href="//dwm.suckless.org/patches/alwaysontop/">alwaysontop/</a></li>
+		<li><a href="//dwm.suckless.org/patches/anybar/">anybar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/aspectresize/">aspectresize/</a></li>
+		<li><a href="//dwm.suckless.org/patches/attachabove/">attachabove/</a></li>
+		<li><a href="//dwm.suckless.org/patches/attachaside/">attachaside/</a></li>
+		<li><a href="//dwm.suckless.org/patches/attachasideandbelow/">attachasideandbelow/</a></li>
+		<li><a href="//dwm.suckless.org/patches/attachbelow/">attachbelow/</a></li>
+		<li><a href="//dwm.suckless.org/patches/attachbottom/">attachbottom/</a></li>
+		<li><a href="//dwm.suckless.org/patches/attachdirection/">attachdirection/</a></li>
+		<li><a href="//dwm.suckless.org/patches/attachtop/">attachtop/</a></li>
+		<li><a href="//dwm.suckless.org/patches/autodarkmode/">autodarkmode/</a></li>
+		<li><a href="//dwm.suckless.org/patches/autoresize/">autoresize/</a></li>
+		<li><a href="//dwm.suckless.org/patches/autostart/">autostart/</a></li>
+		<li><a href="//dwm.suckless.org/patches/autostarttags/">autostarttags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/awesomebar/">awesomebar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/azerty/">azerty/</a></li>
+		<li><a href="//dwm.suckless.org/patches/bar_height/">bar height/</a></li>
+		<li><a href="//dwm.suckless.org/patches/barconfig/">barconfig/</a></li>
+		<li><a href="//dwm.suckless.org/patches/barpadding/">barpadding/</a></li>
+		<li><a href="//dwm.suckless.org/patches/bartabgroups/">bartabgroups/</a></li>
+		<li><a href="//dwm.suckless.org/patches/bartoggle/">bartoggle/</a></li>
+		<li><a href="//dwm.suckless.org/patches/bidi/">bidi/</a></li>
+		<li><a href="//dwm.suckless.org/patches/blanktags/">blanktags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/borderrule/">borderrule/</a></li>
+		<li><a href="//dwm.suckless.org/patches/bottomstack/">bottomstack/</a></li>
+		<li><a href="//dwm.suckless.org/patches/bulkill/">bulkill/</a></li>
+		<li><a href="//dwm.suckless.org/patches/canfocusfloating/">canfocusfloating/</a></li>
+		<li><a href="//dwm.suckless.org/patches/canfocusrule/">canfocusrule/</a></li>
+		<li><a href="//dwm.suckless.org/patches/center/">center/</a></li>
+		<li><a href="//dwm.suckless.org/patches/center_first_window/">center first window/</a></li>
+		<li><a href="//dwm.suckless.org/patches/centeredmaster/">centeredmaster/</a></li>
+		<li><a href="//dwm.suckless.org/patches/centeredwindowname/">centeredwindowname/</a></li>
+		<li><a href="//dwm.suckless.org/patches/centretitle/">centretitle/</a></li>
+		<li><a href="//dwm.suckless.org/patches/cfacts/">cfacts/</a></li>
+		<li><a href="//dwm.suckless.org/patches/clientindicators/">clientindicators/</a></li>
+		<li><a href="//dwm.suckless.org/patches/clientmonoclesymbol/">clientmonoclesymbol/</a></li>
+		<li><a href="//dwm.suckless.org/patches/clientopacity/">clientopacity/</a></li>
+		<li><a href="//dwm.suckless.org/patches/clientspertag/">clientspertag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/cmdcustomize/">cmdcustomize/</a></li>
+		<li><a href="//dwm.suckless.org/patches/colemak_keys/">colemak keys/</a></li>
+		<li><a href="//dwm.suckless.org/patches/colorbar/">colorbar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/colorschemes/">colorschemes/</a></li>
+		<li><a href="//dwm.suckless.org/patches/columngaps/">columngaps/</a></li>
+		<li><a href="//dwm.suckless.org/patches/columns/"><b>columns/</b></a></li>
+		<li><a href="//dwm.suckless.org/patches/combo/">combo/</a></li>
+		<li><a href="//dwm.suckless.org/patches/cool_autostart/">cool autostart/</a></li>
+		<li><a href="//dwm.suckless.org/patches/cropwindows/">cropwindows/</a></li>
+		<li><a href="//dwm.suckless.org/patches/current_desktop/">current desktop/</a></li>
+		<li><a href="//dwm.suckless.org/patches/cursorwarp/">cursorwarp/</a></li>
+		<li><a href="//dwm.suckless.org/patches/cyclelayouts/">cyclelayouts/</a></li>
+		<li><a href="//dwm.suckless.org/patches/cyclewindows/">cyclewindows/</a></li>
+		<li><a href="//dwm.suckless.org/patches/dash_above_activeWindow/">dash above activeWindow/</a></li>
+		<li><a href="//dwm.suckless.org/patches/deck/">deck/</a></li>
+		<li><a href="//dwm.suckless.org/patches/decoration_hints/">decoration hints/</a></li>
+		<li><a href="//dwm.suckless.org/patches/default_tag_apps/">default tag apps/</a></li>
+		<li><a href="//dwm.suckless.org/patches/defaultlayoutpermonitor/">defaultlayoutpermonitor/</a></li>
+		<li><a href="//dwm.suckless.org/patches/defaulttransparency/">defaulttransparency/</a></li>
+		<li><a href="//dwm.suckless.org/patches/desktoponly/">desktoponly/</a></li>
+		<li><a href="//dwm.suckless.org/patches/destroyfocus/">destroyfocus/</a></li>
+		<li><a href="//dwm.suckless.org/patches/dmenumatchtop/">dmenumatchtop/</a></li>
+		<li><a href="//dwm.suckless.org/patches/doublepressquit/">doublepressquit/</a></li>
+		<li><a href="//dwm.suckless.org/patches/dragmfact/">dragmfact/</a></li>
+		<li><a href="//dwm.suckless.org/patches/dualstatus/">dualstatus/</a></li>
+		<li><a href="//dwm.suckless.org/patches/dwmc/">dwmc/</a></li>
+		<li><a href="//dwm.suckless.org/patches/dwmfifo/">dwmfifo/</a></li>
+		<li><a href="//dwm.suckless.org/patches/dynamicscratchpads/">dynamicscratchpads/</a></li>
+		<li><a href="//dwm.suckless.org/patches/dynamicswallow/">dynamicswallow/</a></li>
+		<li><a href="//dwm.suckless.org/patches/emptyview/">emptyview/</a></li>
+		<li><a href="//dwm.suckless.org/patches/environmentvars/">environmentvars/</a></li>
+		<li><a href="//dwm.suckless.org/patches/ewmhtags/">ewmhtags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/exitmenu/">exitmenu/</a></li>
+		<li><a href="//dwm.suckless.org/patches/exresize/">exresize/</a></li>
+		<li><a href="//dwm.suckless.org/patches/extrabar/">extrabar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/fadeinactive/">fadeinactive/</a></li>
+		<li><a href="//dwm.suckless.org/patches/fakefullscreen/">fakefullscreen/</a></li>
+		<li><a href="//dwm.suckless.org/patches/fancybar/">fancybar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/fibonacci/">fibonacci/</a></li>
+		<li><a href="//dwm.suckless.org/patches/fixmultimon/">fixmultimon/</a></li>
+		<li><a href="//dwm.suckless.org/patches/flextile/">flextile/</a></li>
+		<li><a href="//dwm.suckless.org/patches/float_border_color/">float border color/</a></li>
+		<li><a href="//dwm.suckless.org/patches/floatborderwidth/">floatborderwidth/</a></li>
+		<li><a href="//dwm.suckless.org/patches/floatrules/">floatrules/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusadjacenttag/">focusadjacenttag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusbynum/">focusbynum/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusfullscreen/">focusfullscreen/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusmaster/">focusmaster/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusmonmouse/">focusmonmouse/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusonclick/">focusonclick/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusonnetactive/">focusonnetactive/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusurgent/">focusurgent/</a></li>
+		<li><a href="//dwm.suckless.org/patches/focusvisibletagstacks/">focusvisibletagstacks/</a></li>
+		<li><a href="//dwm.suckless.org/patches/foreground/">foreground/</a></li>
+		<li><a href="//dwm.suckless.org/patches/freespace/">freespace/</a></li>
+		<li><a href="//dwm.suckless.org/patches/fsignal/">fsignal/</a></li>
+		<li><a href="//dwm.suckless.org/patches/fullgaps/">fullgaps/</a></li>
+		<li><a href="//dwm.suckless.org/patches/fullscreen/">fullscreen/</a></li>
+		<li><a href="//dwm.suckless.org/patches/functionalgaps/">functionalgaps/</a></li>
+		<li><a href="//dwm.suckless.org/patches/gaplessgrid/">gaplessgrid/</a></li>
+		<li><a href="//dwm.suckless.org/patches/gaps/">gaps/</a></li>
+		<li><a href="//dwm.suckless.org/patches/gestures/">gestures/</a></li>
+		<li><a href="//dwm.suckless.org/patches/goatcmd/">goatcmd/</a></li>
+		<li><a href="//dwm.suckless.org/patches/goback/">goback/</a></li>
+		<li><a href="//dwm.suckless.org/patches/graballkeycodes/">graballkeycodes/</a></li>
+		<li><a href="//dwm.suckless.org/patches/gridmode/">gridmode/</a></li>
+		<li><a href="//dwm.suckless.org/patches/hide_vacant_tags/">hide vacant tags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/hideborder/">hideborder/</a></li>
+		<li><a href="//dwm.suckless.org/patches/historical/">historical/</a></li>
+		<li><a href="//dwm.suckless.org/patches/holdbar/">holdbar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/horizgrid/">horizgrid/</a></li>
+		<li><a href="//dwm.suckless.org/patches/horizontal/">horizontal/</a></li>
+		<li><a href="//dwm.suckless.org/patches/horizontal-vertical-i3/">horizontal vertical i3/</a></li>
+		<li><a href="//dwm.suckless.org/patches/ignore_transient_windows/">ignore transient windows/</a></li>
+		<li><a href="//dwm.suckless.org/patches/inplacerotate/">inplacerotate/</a></li>
+		<li><a href="//dwm.suckless.org/patches/insets/">insets/</a></li>
+		<li><a href="//dwm.suckless.org/patches/integrated-status-text/">integrated status text/</a></li>
+		<li><a href="//dwm.suckless.org/patches/ipc/">ipc/</a></li>
+		<li><a href="//dwm.suckless.org/patches/ispermanent/">ispermanent/</a></li>
+		<li><a href="//dwm.suckless.org/patches/keybindings/">keybindings/</a></li>
+		<li><a href="//dwm.suckless.org/patches/keychain/">keychain/</a></li>
+		<li><a href="//dwm.suckless.org/patches/keychord/">keychord/</a></li>
+		<li><a href="//dwm.suckless.org/patches/keycodes/">keycodes/</a></li>
+		<li><a href="//dwm.suckless.org/patches/keymodes/">keymodes/</a></li>
+		<li><a href="//dwm.suckless.org/patches/keypressrelease/">keypressrelease/</a></li>
+		<li><a href="//dwm.suckless.org/patches/killfocusnext/">killfocusnext/</a></li>
+		<li><a href="//dwm.suckless.org/patches/killunsel/">killunsel/</a></li>
+		<li><a href="//dwm.suckless.org/patches/launcher/">launcher/</a></li>
+		<li><a href="//dwm.suckless.org/patches/launcher-colors/">launcher colors/</a></li>
+		<li><a href="//dwm.suckless.org/patches/layoutmenu/">layoutmenu/</a></li>
+		<li><a href="//dwm.suckless.org/patches/layoutmonitorrules/">layoutmonitorrules/</a></li>
+		<li><a href="//dwm.suckless.org/patches/layoutscroll/">layoutscroll/</a></li>
+		<li><a href="//dwm.suckless.org/patches/leftlayout/">leftlayout/</a></li>
+		<li><a href="//dwm.suckless.org/patches/leftstack/">leftstack/</a></li>
+		<li><a href="//dwm.suckless.org/patches/locktagsfor/">locktagsfor/</a></li>
+		<li><a href="//dwm.suckless.org/patches/mainmon/">mainmon/</a></li>
+		<li><a href="//dwm.suckless.org/patches/mark/">mark/</a></li>
+		<li><a href="//dwm.suckless.org/patches/maximize/">maximize/</a></li>
+		<li><a href="//dwm.suckless.org/patches/monocle_count/">monocle count/</a></li>
+		<li><a href="//dwm.suckless.org/patches/monoclesymbol/">monoclesymbol/</a></li>
+		<li><a href="//dwm.suckless.org/patches/movecenter/">movecenter/</a></li>
+		<li><a href="//dwm.suckless.org/patches/movekeyboard/">movekeyboard/</a></li>
+		<li><a href="//dwm.suckless.org/patches/moveontagmon/">moveontagmon/</a></li>
+		<li><a href="//dwm.suckless.org/patches/moveplace/">moveplace/</a></li>
+		<li><a href="//dwm.suckless.org/patches/moveresize/">moveresize/</a></li>
+		<li><a href="//dwm.suckless.org/patches/movestack/">movestack/</a></li>
+		<li><a href="//dwm.suckless.org/patches/movethrow/">movethrow/</a></li>
+		<li><a href="//dwm.suckless.org/patches/movetoedge/">movetoedge/</a></li>
+		<li><a href="//dwm.suckless.org/patches/mpdcontrol/">mpdcontrol/</a></li>
+		<li><a href="//dwm.suckless.org/patches/multikey/">multikey/</a></li>
+		<li><a href="//dwm.suckless.org/patches/multimon/">multimon/</a></li>
+		<li><a href="//dwm.suckless.org/patches/multimonitorscratchpads/">multimonitorscratchpads/</a></li>
+		<li><a href="//dwm.suckless.org/patches/multipledynamicscratchpads/">multipledynamicscratchpads/</a></li>
+		<li><a href="//dwm.suckless.org/patches/namedscratchpads/">namedscratchpads/</a></li>
+		<li><a href="//dwm.suckless.org/patches/nametag/">nametag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/nextprev/">nextprev/</a></li>
+		<li><a href="//dwm.suckless.org/patches/nmaster/">nmaster/</a></li>
+		<li><a href="//dwm.suckless.org/patches/nmaxmaster/">nmaxmaster/</a></li>
+		<li><a href="//dwm.suckless.org/patches/noborder/">noborder/</a></li>
+		<li><a href="//dwm.suckless.org/patches/noborderflicker/">noborderflicker/</a></li>
+		<li><a href="//dwm.suckless.org/patches/notallowed/">notallowed/</a></li>
+		<li><a href="//dwm.suckless.org/patches/notitle/">notitle/</a></li>
+		<li><a href="//dwm.suckless.org/patches/nrowgrid/">nrowgrid/</a></li>
+		<li><a href="//dwm.suckless.org/patches/onlyquitonempty/">onlyquitonempty/</a></li>
+		<li><a href="//dwm.suckless.org/patches/pango/">pango/</a></li>
+		<li><a href="//dwm.suckless.org/patches/pertag/">pertag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/preserveonrestart/">preserveonrestart/</a></li>
+		<li><a href="//dwm.suckless.org/patches/preview-all-win/">preview all win/</a></li>
+		<li><a href="//dwm.suckless.org/patches/push/">push/</a></li>
+		<li><a href="//dwm.suckless.org/patches/pwkl/">pwkl/</a></li>
+		<li><a href="//dwm.suckless.org/patches/qubesdecorations/">qubesdecorations/</a></li>
+		<li><a href="//dwm.suckless.org/patches/qubesrules/">qubesrules/</a></li>
+		<li><a href="//dwm.suckless.org/patches/quitprompt/">quitprompt/</a></li>
+		<li><a href="//dwm.suckless.org/patches/rainbowtags/">rainbowtags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/ratiofullscreen/">ratiofullscreen/</a></li>
+		<li><a href="//dwm.suckless.org/patches/rearrangebar/">rearrangebar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/rebootcmd/">rebootcmd/</a></li>
+		<li><a href="//dwm.suckless.org/patches/refreshrate/">refreshrate/</a></li>
+		<li><a href="//dwm.suckless.org/patches/removeborder/">removeborder/</a></li>
+		<li><a href="//dwm.suckless.org/patches/reorganizetags/">reorganizetags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/resetlayout/">resetlayout/</a></li>
+		<li><a href="//dwm.suckless.org/patches/resetnmaster/">resetnmaster/</a></li>
+		<li><a href="//dwm.suckless.org/patches/resizecorners/">resizecorners/</a></li>
+		<li><a href="//dwm.suckless.org/patches/resizehere/">resizehere/</a></li>
+		<li><a href="//dwm.suckless.org/patches/restartsig/">restartsig/</a></li>
+		<li><a href="//dwm.suckless.org/patches/restoreafterrestart/">restoreafterrestart/</a></li>
+		<li><a href="//dwm.suckless.org/patches/rmaster/">rmaster/</a></li>
+		<li><a href="//dwm.suckless.org/patches/rotatestack/">rotatestack/</a></li>
+		<li><a href="//dwm.suckless.org/patches/rotatetags/">rotatetags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/rulerefresher/">rulerefresher/</a></li>
+		<li><a href="//dwm.suckless.org/patches/save_floats/">save floats/</a></li>
+		<li><a href="//dwm.suckless.org/patches/scheme_switch/">scheme switch/</a></li>
+		<li><a href="//dwm.suckless.org/patches/scratchpad/">scratchpad/</a></li>
+		<li><a href="//dwm.suckless.org/patches/scratchpads/">scratchpads/</a></li>
+		<li><a href="//dwm.suckless.org/patches/script_tags/">script tags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/selectivefakefullscreen/">selectivefakefullscreen/</a></li>
+		<li><a href="//dwm.suckless.org/patches/selfrestart/">selfrestart/</a></li>
+		<li><a href="//dwm.suckless.org/patches/sendmoncenter/">sendmoncenter/</a></li>
+		<li><a href="//dwm.suckless.org/patches/setborderpx/">setborderpx/</a></li>
+		<li><a href="//dwm.suckless.org/patches/setstatus/">setstatus/</a></li>
+		<li><a href="//dwm.suckless.org/patches/setxkbgroup/">setxkbgroup/</a></li>
+		<li><a href="//dwm.suckless.org/patches/sgrstatus/">sgrstatus/</a></li>
+		<li><a href="//dwm.suckless.org/patches/shift-tools/">shift tools/</a></li>
+		<li><a href="//dwm.suckless.org/patches/showselmon/">showselmon/</a></li>
+		<li><a href="//dwm.suckless.org/patches/shutdowncmd/">shutdowncmd/</a></li>
+		<li><a href="//dwm.suckless.org/patches/single_tagset/">single tagset/</a></li>
+		<li><a href="//dwm.suckless.org/patches/singularborders/">singularborders/</a></li>
+		<li><a href="//dwm.suckless.org/patches/sizehints/">sizehints/</a></li>
+		<li><a href="//dwm.suckless.org/patches/smartborders/">smartborders/</a></li>
+		<li><a href="//dwm.suckless.org/patches/spawn_cwd/">spawn cwd/</a></li>
+		<li><a href="//dwm.suckless.org/patches/spawnprograms/">spawnprograms/</a></li>
+		<li><a href="//dwm.suckless.org/patches/spawntag/">spawntag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/splitstatus/">splitstatus/</a></li>
+		<li><a href="//dwm.suckless.org/patches/sshawarespawn/">sshawarespawn/</a></li>
+		<li><a href="//dwm.suckless.org/patches/stacker/">stacker/</a></li>
+		<li><a href="//dwm.suckless.org/patches/stackmfact/">stackmfact/</a></li>
+		<li><a href="//dwm.suckless.org/patches/stairs/">stairs/</a></li>
+		<li><a href="//dwm.suckless.org/patches/staticstatus/">staticstatus/</a></li>
+		<li><a href="//dwm.suckless.org/patches/status2d/">status2d/</a></li>
+		<li><a href="//dwm.suckless.org/patches/statusallmons/">statusallmons/</a></li>
+		<li><a href="//dwm.suckless.org/patches/statusbarfont/">statusbarfont/</a></li>
+		<li><a href="//dwm.suckless.org/patches/statusbutton/">statusbutton/</a></li>
+		<li><a href="//dwm.suckless.org/patches/statuscmd/">statuscmd/</a></li>
+		<li><a href="//dwm.suckless.org/patches/statuscolors/">statuscolors/</a></li>
+		<li><a href="//dwm.suckless.org/patches/statuspadding/">statuspadding/</a></li>
+		<li><a href="//dwm.suckless.org/patches/stdin/">stdin/</a></li>
+		<li><a href="//dwm.suckless.org/patches/steam/">steam/</a></li>
+		<li><a href="//dwm.suckless.org/patches/sticky/">sticky/</a></li>
+		<li><a href="//dwm.suckless.org/patches/stickyindicator/">stickyindicator/</a></li>
+		<li><a href="//dwm.suckless.org/patches/swallow/">swallow/</a></li>
+		<li><a href="//dwm.suckless.org/patches/swapfocus/">swapfocus/</a></li>
+		<li><a href="//dwm.suckless.org/patches/swaptags/">swaptags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/switch_all_monitor_tags/">switch all monitor tags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/switchcol/">switchcol/</a></li>
+		<li><a href="//dwm.suckless.org/patches/switchtotag/">switchtotag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/systray/">systray/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tab/">tab/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tag-previews/">tag previews/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tagall/">tagall/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tagcolorscheme/">tagcolorscheme/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tagfun/">tagfun/</a></li>
+		<li><a href="//dwm.suckless.org/patches/taggrid/">taggrid/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tagintostack/">tagintostack/</a></li>
+		<li><a href="//dwm.suckless.org/patches/taglabels/">taglabels/</a></li>
+		<li><a href="//dwm.suckless.org/patches/taglayouts/">taglayouts/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tagothermonitor/">tagothermonitor/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tagshift/">tagshift/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tagspawn/">tagspawn/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tapresize/">tapresize/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tatami/">tatami/</a></li>
+		<li><a href="//dwm.suckless.org/patches/three-column/">three column/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tiledmove/">tiledmove/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tilegap/">tilegap/</a></li>
+		<li><a href="//dwm.suckless.org/patches/tilewide/">tilewide/</a></li>
+		<li><a href="//dwm.suckless.org/patches/titlecolor/">titlecolor/</a></li>
+		<li><a href="//dwm.suckless.org/patches/toggleallmons/">toggleallmons/</a></li>
+		<li><a href="//dwm.suckless.org/patches/togglebartag/">togglebartag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/toggleborder/">toggleborder/</a></li>
+		<li><a href="//dwm.suckless.org/patches/togglefloatingcenter/">togglefloatingcenter/</a></li>
+		<li><a href="//dwm.suckless.org/patches/toggletopbar/">toggletopbar/</a></li>
+		<li><a href="//dwm.suckless.org/patches/transfer/">transfer/</a></li>
+		<li><a href="//dwm.suckless.org/patches/truecenteredtitle/">truecenteredtitle/</a></li>
+		<li><a href="//dwm.suckless.org/patches/two_monitor_setup/">two monitor setup/</a></li>
+		<li><a href="//dwm.suckless.org/patches/underlinetags/">underlinetags/</a></li>
+		<li><a href="//dwm.suckless.org/patches/unfloatvisible/">unfloatvisible/</a></li>
+		<li><a href="//dwm.suckless.org/patches/unicode-ellipsis/">unicode ellipsis/</a></li>
+		<li><a href="//dwm.suckless.org/patches/urgentborder/">urgentborder/</a></li>
+		<li><a href="//dwm.suckless.org/patches/uselessgap/">uselessgap/</a></li>
+		<li><a href="//dwm.suckless.org/patches/vanitygaps/">vanitygaps/</a></li>
+		<li><a href="//dwm.suckless.org/patches/viewonrulestag/">viewonrulestag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/viewontag/">viewontag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/vtcolors/">vtcolors/</a></li>
+		<li><a href="//dwm.suckless.org/patches/warp/">warp/</a></li>
+		<li><a href="//dwm.suckless.org/patches/win31theme/">win31theme/</a></li>
+		<li><a href="//dwm.suckless.org/patches/windowfollow/">windowfollow/</a></li>
+		<li><a href="//dwm.suckless.org/patches/windowmap/">windowmap/</a></li>
+		<li><a href="//dwm.suckless.org/patches/winicon/">winicon/</a></li>
+		<li><a href="//dwm.suckless.org/patches/winview/">winview/</a></li>
+		<li><a href="//dwm.suckless.org/patches/xfce4-panel/">xfce4 panel/</a></li>
+		<li><a href="//dwm.suckless.org/patches/xkb/">xkb/</a></li>
+		<li><a href="//dwm.suckless.org/patches/xrdb/">xrdb/</a></li>
+		<li><a href="//dwm.suckless.org/patches/xresources/">xresources/</a></li>
+		<li><a href="//dwm.suckless.org/patches/xtheme/">xtheme/</a></li>
+		<li><a href="//dwm.suckless.org/patches/xtile/">xtile/</a></li>
+		<li><a href="//dwm.suckless.org/patches/zeroastag/">zeroastag/</a></li>
+		<li><a href="//dwm.suckless.org/patches/zoomswap/">zoomswap/</a></li>
+		</ul>
+	</li>
+	<li><a href="//dwm.suckless.org/screenshots/">screenshots/</a></li>
+	<li><a href="//dwm.suckless.org/status_monitor/">status monitor/</a></li>
+	<li><a href="//dwm.suckless.org/tutorial/">tutorial/</a></li>
+	</ul>
+</div>
+<hr class="hidden"/>
+<div id="main">
+
+<h1>columns</h1>
+<h2>Description</h2>
+<p>This patch adds an extra layout to dwm called <code>col</code> in which the windows in the
+master area are arranged in colums of equal size. The number of columns is
+always nmaster + 1, and the last column is a stack of leftover windows just
+like the normal tile layout. It effectively acts like the default tiling mode,
+except provides for vertical instead of horizontal master windows.</p>
+<h2>Download</h2>
+<ul>
+<li><a href="dwm-columns-6.0.diff">dwm-columns-6.0.diff</a></li>
+<li><a href="dwm-columns-6.2.diff">dwm-columns-6.2.diff</a></li>
+</ul>
+<h2>Author</h2>
+<ul>
+<li>Evan Gates (emg)<a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#101;&#118;&#97;&#110;&#46;&#103;&#97;&#116;&#101;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#101;&#118;&#97;&#110;&#46;&#103;&#97;&#116;&#101;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+<li>Noah Rosser <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#110;&#111;&#97;&#104;&#46;&#114;&#111;&#115;&#115;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#110;&#111;&#97;&#104;&#46;&#114;&#111;&#115;&#115;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+<li>Louis Bettens <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#108;&#111;&#117;&#105;&#115;&#64;&#98;&#101;&#116;&#116;&#101;&#110;&#115;&#46;&#105;&#110;&#102;&#111;">&#108;&#111;&#117;&#105;&#115;&#64;&#98;&#101;&#116;&#116;&#101;&#110;&#115;&#46;&#105;&#110;&#102;&#111;</a> (6.2 port)</li>
+</ul>
+</div>
+
+</div>
+
+</html>
