@@ -50,16 +50,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-
-# ingore for dwm
-config.def.h 
-dwm.1
-dwm.c
-config.def.h.orig
-config.def.h.rej
-dwm.c.orig
-dwm.c.reg
-layouts.c
-selfrestart.c
-
