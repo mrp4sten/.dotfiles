@@ -1,0 +1,22 @@
+[
+    {
+        "command": "cc -c -std=c99 -pedantic -Wall -Os -I/usr/X11R6/include -I/usr/include/freetype2 -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE=200809L -DVERSION=\\\"5.3\\\" -DXINERAMA dmenu.c",
+        "directory": "/home/mavor/.dotfiles/wm/suckless/dmenu",
+        "file": "/home/mavor/.dotfiles/wm/suckless/dmenu/dmenu.c"
+    },
+    {
+        "command": "cc -c -std=c99 -pedantic -Wall -Os -I/usr/X11R6/include -I/usr/include/freetype2 -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE=200809L -DVERSION=\\\"5.3\\\" -DXINERAMA drw.c",
+        "directory": "/home/mavor/.dotfiles/wm/suckless/dmenu",
+        "file": "/home/mavor/.dotfiles/wm/suckless/dmenu/drw.c"
+    },
+    {
+        "command": "cc -c -std=c99 -pedantic -Wall -Os -I/usr/X11R6/include -I/usr/include/freetype2 -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE=200809L -DVERSION=\\\"5.3\\\" -DXINERAMA util.c",
+        "directory": "/home/mavor/.dotfiles/wm/suckless/dmenu",
+        "file": "/home/mavor/.dotfiles/wm/suckless/dmenu/util.c"
+    },
+    {
+        "command": "cc -c -std=c99 -pedantic -Wall -Os -I/usr/X11R6/include -I/usr/include/freetype2 -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE=200809L -DVERSION=\\\"5.3\\\" -DXINERAMA stest.c",
+        "directory": "/home/mavor/.dotfiles/wm/suckless/dmenu",
+        "file": "/home/mavor/.dotfiles/wm/suckless/dmenu/stest.c"
+    }
+]
