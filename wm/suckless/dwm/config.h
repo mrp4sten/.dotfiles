@@ -100,12 +100,16 @@ static const char *termcmd[] = {"kitty", NULL};
 static const char *lowervolumecmd[] = {"pw-volume", "change", "-5%", NULL};
 static const char *raisevolumecmd[] = {"pw-volume", "change", "+5%", NULL};
 static const char *mutevolumecmd[] = {"pw-volume", "mute", "toggle", NULL};
+static const char *lowerbrightnesscmd[] = {"brightnessctl", "set", "10%-", NULL};
+static const char *risebrightnesscmd[] = {"brightnessctl", "set", "+10%", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     {0, XF86XK_AudioLowerVolume, spawn, {.v = lowervolumecmd}},
     {0, XF86XK_AudioRaiseVolume, spawn, {.v = raisevolumecmd}},
     {0, XF86XK_AudioMute, spawn, {.v = mutevolumecmd}},
+    {0, XF86XK_MonBrightnessDown, spawn, {.v = lowerbrightnesscmd}},
+    {0, XF86XK_MonBrightnessUp, spawn, {.v = risebrightnesscmd}},
     {MODKEY, XK_p, spawn, {.v = dmenucmd}},
     {MODKEY | ShiftMask, XK_Return, spawn, {.v = termcmd}},
     {MODKEY, XK_b, togglebar, {0}},
