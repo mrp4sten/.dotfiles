@@ -8,15 +8,15 @@ static const char *prompt =
     NULL; /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
     /*     fg         bg       */
-    [SchemeNorm] = {"#bbbbbb", "#222222"},
-    [SchemeSel] = {"#eeeeee", "#005577"},
+    [SchemeNorm] = {"#839496", "#002b36"},
+    [SchemeSel] = {"#839496", "#073642"},
     [SchemeOut] = {"#000000", "#00ffff"},
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines = 0;
 /* -h option; minimum height of a menu line */
-static unsigned int lineheight = 0;
-static unsigned int min_lineheight = 8;
+static unsigned int lineheight = 50;
+static unsigned int min_lineheight = 50;
 static unsigned int maxhist = 64;
 static int histnodup = 1; /* if 0, record repeated histories */
 
