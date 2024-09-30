@@ -11,11 +11,11 @@ static const unsigned int systraypinning =
     0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
           X */
 static const unsigned int systrayonleft =
-    0;                                        /* 0: systray in the right corner, >0: systray on left of status text */
+    0; /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2; /* systray spacing */
 static const int systraypinningfailfirst =
-    1;                                                /* 1: if pinning fails, display systray on the first monitor, False:
-                                                         display systray on the last monitor*/
+    1; /* 1: if pinning fails, display systray on the first monitor, False:
+          display systray on the last monitor*/
 static const int showsystray = 1;                     /* 0 means no systray */
 static const int showbar = 1;                         /* 0 means no bar */
 static const int topbar = 1; /* 0 means bottom bar */ /* 0 means bottom bar */
@@ -46,7 +46,7 @@ static const char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = {"", "", "", "", "",
+static const char *tags[] = {"",  "",  "", "", "",
                              "󰀴", "󰂓", "", ""};
 
 static const Rule rules[] = {
@@ -71,36 +71,35 @@ static const Layout layouts[] = {
     /* symbol     arrange function */
     {"[]=", tile}, /* first entry is default */
     {"><>", NULL}, /* no layout function means floating behavior */
-    {"[M]", monocle},
-    {"|||", col},
-    {"HHH", grid},
+    {"[M]", monocle}, {"|||", col}, {"HHH", grid},
 };
 
 /* key definitions */
 #define MODKEY Mod4Mask
-#define TAGKEYS(KEY, TAG)                                          \
-    {MODKEY, KEY, view, {.ui = 1 << TAG}},                         \
-        {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}}, \
-        {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},          \
-        {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
+#define TAGKEYS(KEY, TAG)                                                      \
+  {MODKEY, KEY, view, {.ui = 1 << TAG}},                                       \
+      {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},               \
+      {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                        \
+      {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd)                                           \
-    {                                                        \
-        .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL } \
-    }
+#define SHCMD(cmd)                                                             \
+  {                                                                            \
+    .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL }                       \
+  }
 
 /* commands */
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {
-    "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
-    "-nf", col_gray3, "-sb", s_base02, "-sf", col_gray4, NULL};
+    "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
+    "-nf",       col_gray3, "-sb",    s_base02, "-sf",     col_gray4, NULL};
 static const char *termcmd[] = {"kitty", NULL};
 static const char *lowervolumecmd[] = {"pw-volume", "change", "-5%", NULL};
 static const char *raisevolumecmd[] = {"pw-volume", "change", "+5%", NULL};
 static const char *mutevolumecmd[] = {"pw-volume", "mute", "toggle", NULL};
-static const char *lowerbrightnesscmd[] = {"brightnessctl", "set", "10%-", NULL};
+static const char *lowerbrightnesscmd[] = {"brightnessctl", "set", "10%-",
+                                           NULL};
 static const char *risebrightnesscmd[] = {"brightnessctl", "set", "+10%", NULL};
 static const char *lockscreen[] = {"betterlockscreen", "--lock", "blur", NULL};
 
