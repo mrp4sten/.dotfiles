@@ -27,20 +27,18 @@ static const char col_gray3[] = "#bbbbbb";
 static const char col_gray4[] = "#eeeeee";
 static const char col_cyan[] = "#005577";
 /* red dark custom theme */
-static const char s_base03[] = "#360006";
-static const char s_base02[] = "#420707";
-static const char s_base01[] = "#755858";
-static const char s_base00[] = "#836565";
-static const char s_base0[] = "#968383";
-static const char s_base1[] = "#a19393";
-static const char s_base2[] = "#eed5d5";
-static const char s_base3[] = "#fde3e3";
+static const char ivory[] = "#F6F7EB";
+static const char chill_red[] = "#E73D23";
+static const char onyx[] = "#393E41";
+static const char steel_blue[] = "#3F88C5";
+static const char keepel[] = "#44BBA4";
+
 static const char *colors[][3] = {
     /*               fg         bg         border   */
-    {s_base0, s_base03, s_base2},      /* SchemeNorm dark */
-    {s_base0, s_base02, s_base2},      /* SchemeSel dark */
-    {s_base00, s_base3, s_base02},     /* SchemeNorm light */
-    {s_base00, s_base2, s_base02},     /* SchemeSel light */
+    {ivory, onyx, chill_red},      /* SchemeNorm dark */
+    {ivory, chill_red, steel_blue},      /* SchemeSel dark */
+    {ivory, steel_blue, keepel},     /* SchemeNorm light */
+    {ivory, keepel, steel_blue},     /* SchemeSel light */
     {col_gray3, col_gray1, col_gray2}, /* SchemeNorm orig */
     {col_gray4, col_cyan, col_cyan},   /* SchemeSel orig */
 };
@@ -92,7 +90,7 @@ static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {
     "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
-    "-nf",       col_gray3, "-sb",    s_base02, "-sf",     col_gray4, NULL};
+    "-nf",       onyx, "-sb",    steel_blue, "-sf",     col_gray4, NULL};
 static const char *termcmd[] = {"kitty", NULL};
 static const char *lowervolumecmd[] = {"pw-volume", "change", "-5%", NULL};
 static const char *raisevolumecmd[] = {"pw-volume", "change", "+5%", NULL};
