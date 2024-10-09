@@ -4,3 +4,4 @@
 feh --bg-fill ~/.dotfiles/wm/suckless/dwm/wallpapers/red_1.jpg
 dwm &
 dwmblocks &
+picom &
