@@ -1,7 +1,7 @@
 #!/bin/bash
 # Mauricio Pasten (mavor)
 # mauricio.pasten.martinez@gmail.com
-feh --bg-center ~/.dotfiles/wm/suckless/dwm/wallpapers/red_4.jpg
+feh --bg-fill ~/.dotfiles/wm/suckless/dwm/wallpapers/yone_1.jpg
 dwm &
 dwmblocks &
-picom &
+picom --config ~/.dotfiles/wm/suckless/picom/picom.conf &
