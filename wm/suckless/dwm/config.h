@@ -33,14 +33,23 @@ static const char onyx[] = "#393E41";
 static const char steel_blue[] = "#3F88C5";
 static const char keepel[] = "#44BBA4";
 
+/* Tokyo Night-inspired theme */
+static const char fg[]          = "#c0caf5";  // Foreground (light blue)
+static const char bg[]          = "#1a1b26";  // Background (very dark blue)
+static const char dark_bg[]     = "#15161e";  // Darker background (for contrast)
+static const char cyan[]        = "#7dcfff";  // Cyan
+static const char blue[]        = "#7aa2f7";  // Blue
+static const char green[]       = "#9ece6a";  // Green
+static const char magenta[]     = "#bb9af7";  // Magenta
+static const char red[]         = "#f7768e";  // Red
+static const char yellow[]      = "#e0af68";  // Yellow
+
 static const char *colors[][3] = {
     /*               fg         bg         border   */
-    {ivory, onyx, chill_red},      /* SchemeNorm dark */
-    {ivory, chill_red, steel_blue},      /* SchemeSel dark */
-    {ivory, steel_blue, keepel},     /* SchemeNorm light */
-    {ivory, keepel, steel_blue},     /* SchemeSel light */
-    {col_gray3, col_gray1, col_gray2}, /* SchemeNorm orig */
-    {col_gray4, col_cyan, col_cyan},   /* SchemeSel orig */
+    { fg, bg, dark_bg },      /* SchemeNorm dark */
+    { fg, blue, blue },       /* SchemeSel dark */
+    { fg, dark_bg, cyan },    /* SchemeNorm light */
+    { fg, cyan, blue },       /* SchemeSel light */
 };
 
 /* tagging */
