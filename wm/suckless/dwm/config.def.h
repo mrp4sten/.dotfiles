@@ -2,6 +2,7 @@
 #include "layouts.c"
 #include "selfrestart.c"
 #include <X11/XF86keysym.h>
+#include "exitdwm.c"
 
 /* appearance */
 static const unsigned int borderpx = 1; /* border pixel of windows */
@@ -11,11 +12,11 @@ static const unsigned int systraypinning =
     0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
           X */
 static const unsigned int systrayonleft =
-    0; /* 0: systray in the right corner, >0: systray on left of status text */
+    0;                                        /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2; /* systray spacing */
 static const int systraypinningfailfirst =
-    1; /* 1: if pinning fails, display systray on the first monitor, False:
-          display systray on the last monitor*/
+    1;                                                /* 1: if pinning fails, display systray on the first monitor, False:
+                                                         display systray on the last monitor*/
 static const int showsystray = 1;                     /* 0 means no systray */
 static const int showbar = 1;                         /* 0 means no bar */
 static const int topbar = 1; /* 0 means bottom bar */ /* 0 means bottom bar */
@@ -34,26 +35,26 @@ static const char steel_blue[] = "#3F88C5";
 static const char keepel[] = "#44BBA4";
 
 /* Tokyo Night-inspired theme */
-static const char fg[]          = "#c0caf5";  // Foreground (light blue)
-static const char bg[]          = "#1a1b26";  // Background (very dark blue)
-static const char dark_bg[]     = "#15161e";  // Darker background (for contrast)
-static const char cyan[]        = "#7dcfff";  // Cyan
-static const char blue[]        = "#7aa2f7";  // Blue
-static const char green[]       = "#9ece6a";  // Green
-static const char magenta[]     = "#bb9af7";  // Magenta
-static const char red[]         = "#f7768e";  // Red
-static const char yellow[]      = "#e0af68";  // Yellow
+static const char fg[] = "#c0caf5";      // Foreground (light blue)
+static const char bg[] = "#1a1b26";      // Background (very dark blue)
+static const char dark_bg[] = "#15161e"; // Darker background (for contrast)
+static const char cyan[] = "#7dcfff";    // Cyan
+static const char blue[] = "#7aa2f7";    // Blue
+static const char green[] = "#9ece6a";   // Green
+static const char magenta[] = "#bb9af7"; // Magenta
+static const char red[] = "#f7768e";     // Red
+static const char yellow[] = "#e0af68";  // Yellow
 
 static const char *colors[][3] = {
     /*               fg         bg         border   */
-    { fg, bg, dark_bg },      /* SchemeNorm dark */
-    { fg, blue, blue },       /* SchemeSel dark */
-    { fg, dark_bg, cyan },    /* SchemeNorm light */
-    { fg, cyan, blue },       /* SchemeSel light */
+    {fg, bg, dark_bg},   /* SchemeNorm dark */
+    {fg, blue, blue},    /* SchemeSel dark */
+    {fg, dark_bg, cyan}, /* SchemeNorm light */
+    {fg, cyan, blue},    /* SchemeSel light */
 };
 
 /* tagging */
-static const char *tags[] = {"",  "",  "",  "",  "",  "",  "",  "",  ""};
+static const char *tags[] = {"", "", "", "", "", "", "", "", ""};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -77,29 +78,31 @@ static const Layout layouts[] = {
     /* symbol     arrange function */
     {"[]=", tile}, /* first entry is default */
     {"><>", NULL}, /* no layout function means floating behavior */
-    {"[M]", monocle}, {"|||", col}, {"HHH", grid},
+    {"[M]", monocle},
+    {"|||", col},
+    {"HHH", grid},
 };
 
 /* key definitions */
 #define MODKEY Mod4Mask
-#define TAGKEYS(KEY, TAG)                                                      \
-  {MODKEY, KEY, view, {.ui = 1 << TAG}},                                       \
-      {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},               \
-      {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                        \
-      {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
+#define TAGKEYS(KEY, TAG)                                          \
+    {MODKEY, KEY, view, {.ui = 1 << TAG}},                         \
+        {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}}, \
+        {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},          \
+        {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd)                                                             \
-  {                                                                            \
-    .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL }                       \
-  }
+#define SHCMD(cmd)                                           \
+    {                                                        \
+        .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL } \
+    }
 
 /* commands */
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {
-    "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
-    "-nf",       onyx, "-sb",    steel_blue, "-sf",     col_gray4, NULL};
+    "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
+    "-nf", onyx, "-sb", steel_blue, "-sf", col_gray4, NULL};
 static const char *termcmd[] = {"kitty", NULL};
 static const char *lowervolumecmd[] = {"pw-volume", "change", "-5%", NULL};
 static const char *raisevolumecmd[] = {"pw-volume", "change", "+5%", NULL};
@@ -151,10 +154,13 @@ static const Key keys[] = {
     {MODKEY, XK_equal, setgaps, {.i = +1}},
     {MODKEY | ShiftMask, XK_equal, setgaps, {.i = 0}},
     {MODKEY, XK_c, setlayout, {.v = &layouts[3]}},
+    {MODKEY | ShiftMask, XK_q, quit, {0}},
+    {MODKEY | ShiftMask, XK_r, self_restart, {0}},
+    {MODKEY | ShiftMask, XK_e, exitdwm, {0}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
-            TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
-    {MODKEY | ShiftMask, XK_r, self_restart, {0}},
+            TAGKEYS(XK_9, 8)
+
 };
 
 /* button definitions */
