@@ -3,6 +3,7 @@
 #include "selfrestart.c"
 #include <X11/XF86keysym.h>
 #include "exitdwm.c"
+#include "fibonacci.c"
 
 /* appearance */
 static const unsigned int borderpx = 1; /* border pixel of windows */
@@ -81,10 +82,13 @@ static const Layout layouts[] = {
     {"[M]", monocle},
     {"|||", col},
     {"HHH", grid},
+    {"[@]", spiral},
+    {"[\\]", dwindle},
 };
 
 /* key definitions */
 #define MODKEY Mod4Mask
+#define AltMask Mod1Mask
 #define TAGKEYS(KEY, TAG)                                          \
     {MODKEY, KEY, view, {.ui = 1 << TAG}},                         \
         {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}}, \
@@ -134,13 +138,15 @@ static const Key keys[] = {
     {MODKEY, XK_Return, zoom, {0}},
     {MODKEY, XK_Tab, view, {0}},
     {MODKEY | ShiftMask, XK_c, killclient, {0}},
-    {MODKEY, XK_t, setlayout, {.v = &layouts[0]}},
-    {MODKEY, XK_f, setlayout, {.v = &layouts[1]}},
-    {MODKEY, XK_m, setlayout, {.v = &layouts[2]}},
-    {MODKEY, XK_g, setlayout, {.v = &layouts[3]}},
+    {MODKEY | AltMask, XK_1, setlayout, {.v = &layouts[0]}},
+    {MODKEY | AltMask, XK_2, setlayout, {.v = &layouts[1]}},
+    {MODKEY | AltMask, XK_3, setlayout, {.v = &layouts[2]}},
+    {MODKEY | AltMask, XK_4, setlayout, {.v = &layouts[3]}},
+    {MODKEY | AltMask, XK_5, setlayout, {.v = &layouts[4]}},
+    {MODKEY | AltMask, XK_6, setlayout, {.v = &layouts[5]}},
+    {MODKEY | AltMask, XK_7, setlayout, {.v = &layouts[6]}},
     {MODKEY | ControlMask, XK_comma, cyclelayout, {.i = -1}},
     {MODKEY | ControlMask, XK_period, cyclelayout, {.i = +1}},
-    {MODKEY, XK_space, setlayout, {0}},
     {MODKEY | ShiftMask, XK_space, togglefloating, {0}},
     {MODKEY, XK_0, view, {.ui = ~0}},
     {MODKEY | ShiftMask, XK_0, tag, {.ui = ~0}},
@@ -153,7 +159,6 @@ static const Key keys[] = {
     {MODKEY, XK_minus, setgaps, {.i = -1}},
     {MODKEY, XK_equal, setgaps, {.i = +1}},
     {MODKEY | ShiftMask, XK_equal, setgaps, {.i = 0}},
-    {MODKEY, XK_c, setlayout, {.v = &layouts[3]}},
     {MODKEY | ShiftMask, XK_q, quit, {0}},
     {MODKEY | ShiftMask, XK_r, self_restart, {0}},
     {MODKEY | ShiftMask, XK_e, exitdwm, {0}},
