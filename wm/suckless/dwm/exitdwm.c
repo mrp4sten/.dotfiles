@@ -37,7 +37,7 @@ void exitdwm()
 #define S_FORMAT_CLEAR "sed 's/^..//'"
 
 	FILE *exit_menu = popen(
-			"echo \"" S_FORMAT(LOCK) "\n" S_FORMAT(RESTART_DWM) "\n" S_FORMAT(OFFSCREEN) "\n" S_FORMAT(EXIT) "\n" S_FORMAT(REBOOT) "\n" S_FORMAT(SHUTDOWN) "\" | dmenu -p exit: | " S_FORMAT_CLEAR,
+			"echo \"" S_FORMAT(LOCK) "\n" S_FORMAT(RESTART_DWM) "\n" S_FORMAT(OFFSCREEN) "\n" S_FORMAT(EXIT) "\n" S_FORMAT(REBOOT) "\n" S_FORMAT(SHUTDOWN) "\" | dmenu -fn 'Hack Nerd Font Mono:size=18' -nb '#1a1b26' -nf '#7aa2f7' -sb '#c0caf5' -sf '#15161e' -p exit: | " S_FORMAT_CLEAR,
 			"r");
 
 	char exit_action[16];
