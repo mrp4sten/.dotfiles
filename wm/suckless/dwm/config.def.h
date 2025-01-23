@@ -105,8 +105,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {
-    "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
-    "-nf", onyx, "-sb", steel_blue, "-sf", col_gray4, NULL};
+    "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", bg,
+    "-nf", blue, "-sb", fg, "-sf", dark_bg, NULL};
 static const char *termcmd[] = {"kitty", NULL};
 static const char *lowervolumecmd[] = {"pw-volume", "change", "-5%", NULL};
 static const char *raisevolumecmd[] = {"pw-volume", "change", "+5%", NULL};
