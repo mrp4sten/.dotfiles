@@ -14,6 +14,10 @@ sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Fanta
 sudo unzip FantasqueSansMono.zip
 sudo rm FantasqueSansMono.zip
 
+sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip
+sudo unzip Hack.zip
+sudo rm Hack.zip
+
 sudo wget https://dtinth.github.io/comic-mono-font/ComicMono.ttf
 sudo wget https://dtinth.github.io/comic-mono-font/ComicMono-Bold.ttf
 
