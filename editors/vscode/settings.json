@@ -1,7 +1,8 @@
 {
   // Editor configs
-  "editor.fontFamily": "'DankMono Nerd Font', 'Fantasque Sans Mono', 'Comic Mono', 'JetBrainsMono Nerd Font', 'CaskaydiaCove Nerd Font'",
-  "editor.fontWeight": "bold",
+  "security.workspace.trust.enabled": true,
+  "editor.fontFamily": "'Hack Nerd Font Mono'",
+  "editor.fontWeight": "normal",
   "editor.fontSize": 16,
   "editor.fontLigatures": true,
   "editor.tabSize": 2,
@@ -31,84 +32,24 @@
   "workbench.editor.showTabs": "multiple",
   "workbench.tree.indent": 20,
   "workbench.activityBar.location": "default",
-  "workbench.colorTheme": "Catppuccin Mocha",
-  "workbench.iconTheme": "eq-material-theme-icons-light",
+  "workbench.colorTheme": "Tokyo Night",
+  "workbench.iconTheme": "mosmmy-icons-vscode",
   // Shell script
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt"
   },
-  // Git config
-  "git.openRepositoryInParentFolders": "always",
   // Terminal configs
-  "terminal.integrated.fontFamily": "CaskaydiaCove Nerd Font",
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.persistentSessionScrollback": 10000,
   "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.profiles.linux": {
-    "fish": {
-      "path": "fish"
-    },
-    "tmux": {
-      "path": "tmux",
-      "icon": "terminal-tmux"
-    },
-    "zsh": {
-      "path": "zsh"
-    },
-    "bash": {
-      "path": "bash"
-    },
-    "JavaSE-1.8": {
-      "overrideName": true,
-      "env": {
-        "JAVA_HOME": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/8"
-      },
-      "path": "bash",
-      "args": [
-        "--rcfile",
-        "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
-      ]
-    },
-    "JavaSE-11": {
-      "overrideName": true,
-      "env": {
-        "JAVA_HOME": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/11"
-      },
-      "path": "bash",
-      "args": [
-        "--rcfile",
-        "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
-      ]
-    },
-    "JavaSE-17": {
-      "overrideName": true,
-      "env": {
-        "JAVA_HOME": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
-      },
-      "path": "bash",
-      "args": [
-        "--rcfile",
-        "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
-      ]
-    },
-    "JavaSE-21": {
-      "overrideName": true,
-      "env": {
-        "JAVA_HOME": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
-      },
-      "path": "bash",
-      "args": [
-        "--rcfile",
-        "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/.bashrc"
-      ]
-    }
-  },
   // Prettier configs
   "prettier.endOfLine": "auto",
   "prettier.singleQuote": true,
   // Window
   "window.menuBarVisibility": "toggle",
+  "window.customTitleBarVisibility": "auto",
   // Javascript
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "[javascript]": {
@@ -118,6 +59,29 @@
   "[java]": {
     "editor.defaultFormatter": "redhat.java"
   },
+  "java.import.gradle.home": "$HOME/.sdkman/candidates/gradle/8.14.2/bin",
+  "java.import.gradle.java.home": "$HOME/.sdkman/candidates/java/current/bin/java",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "$HOME/.sdkman/candidates/java/8.0.452-tem/bin/java"
+    },
+    {
+      "name": "JavaSE-17",
+      "path": "$HOME/.sdkman/candidates/java/17.0.15-tem/bin/java"
+    },
+    {
+      "name": "JavaSE-21",
+      "path": "$HOME/.sdkman/candidates/java/21.0.7-tem/bin/java"
+    }
+  ],
+  "maven.executable.path": "$HOME/.sdkman/candidates/maven/3.9.8/bin/mvn",
+  "maven.terminal.customEnv": [
+    {
+      "environmentVariable": "JAVA_HOME",
+      "value": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
+    }
+  ],
   // Freemarker
   "[ftl]": {
     "editor.defaultFormatter": "AntonLilleby.xp-freemarker-formatter"
@@ -149,103 +113,7 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-  "maven.terminal.customEnv": [
-    {
-      "environmentVariable": "JAVA_HOME",
-      "value": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
-    }
-  ],
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "terminal.integrated.profiles.windows": {
-    "JavaSE-1.8 LTS": {
-      "overrideName": true,
-      "env": {
-        "PATH": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\8\\bin;${env:PATH}",
-        "JAVA_HOME": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\8"
-      },
-      "path": "cmd"
-    },
-    "JavaSE-11 LTS": {
-      "overrideName": true,
-      "env": {
-        "PATH": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\11\\bin;${env:PATH}",
-        "JAVA_HOME": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\11"
-      },
-      "path": "cmd"
-    },
-    "JavaSE-17 LTS": {
-      "overrideName": true,
-      "env": {
-        "PATH": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\17\\bin;${env:PATH}",
-        "JAVA_HOME": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\17"
-      },
-      "path": "cmd"
-    }
-  },
-  // "java.configuration.runtimes": [ // Windows
-  //   {
-  //     "name": "JavaSE-1.8",
-  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\8"
-  //   },
-  //   {
-  //     "name": "JavaSE-11",
-  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\11"
-  //   },
-  //   {
-  //     "name": "JavaSE-17",
-  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\17"
-  //   },
-  //   {
-  //     "name": "JavaSE-21",
-  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\21"
-  //   },
-  //   {
-  //     "name": "JavaSE-22",
-  //     "path": "C:\\Users\\mavor\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\latest",
-  //     "default": true
-  //   }
-  // ],
-  "cSpell.userWords": [
-    "Caskaydia",
-    "catppuccin",
-    "esbenp",
-    "Fantasque",
-    "Freemarker",
-    "Lilleby",
-    "mavor",
-    "mkhl",
-    "rcfile",
-    "runtimes",
-    "Scrollback",
-    "shfmt",
-    "stylelint",
-    "yzhang"
-  ],
-  "window.customTitleBarVisibility": "auto",
-  "terminal.integrated.env.linux": {},
-  "maven.executable.path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/maven/latest/bin/mvn",
-  "java.import.gradle.home": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/gradle/latest",
-  "java.import.gradle.java.home": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
-  "java.configuration.runtimes": [
-    {
-      "name": "JavaSE-1.8",
-      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/8"
-    },
-    {
-      "name": "JavaSE-11",
-      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/11"
-    },
-    {
-      "name": "JavaSE-17",
-      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/17"
-    },
-    {
-      "name": "JavaSE-21",
-      "path": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21",
-      "default": true
-    }
-  ],
-  "terminal.integrated.env.windows": {},
 }
