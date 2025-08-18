@@ -1,9 +1,0 @@
-#!/bin/bash
-
-vol=`pamixer --get-volume`
-
-if [[ `pamixer --get-mute` == "true" ]]; then
-    echo -n "󰖁 $vol% "
-else
-    echo -n "$(percentage $vol   󰖀  󰖀  󰕾 ) $vol% "
-fi

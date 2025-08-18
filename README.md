@@ -23,20 +23,9 @@ cd ~/
 git clone https://github.com/mrp4sten/.dotfiles.git .dotfiles
 ```
 
-
-Im using ArchLinux Distribution so try to Install AUR Helper
-
-- Manually
-
-```shell
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd
-```
-
-Instead you can run the script `install_aur_helper.sh`
-
 ### Preview
 
-!["neofetch"](.img/neofetch.png)
+!["fastfetch"](.img/fastfetch.png)
 !["some terminal utils"](.img/bash-zsh-lsd-bat-exa.png)
 !["ranger"](.img/ranger.png)
 !["fzf history"](.img/fzh-history.png)
@@ -66,23 +55,12 @@ Instead you can run the script `install_aur_helper.sh`
 
 ##### Terminal (zsh) Applications
 
-- yay (aur package manager for Arch Linux)
 - pass
-- task (Taskwarrior)
 - bpytop
-- gcloud cli
 - sdkman
 - asdf
 - tmux
-- git
-- bat
-- lsd
-- fsf
 - ranger
 - ncdu
-- figlet
-- cowsay
-- lolcat
 - timeshift
-- timetrap
 - (Other dev tools like jdk, npm, yarn, etc.)

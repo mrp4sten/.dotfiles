@@ -27,6 +27,13 @@ aliases=(
 plugins=(
   git
   bashmarks
+  asdf
+  gcloud
+  sdkman
+  npm
+  pyenv
+  sudo
+  battery
 )
 
 source "$OSH"/oh-my-bash.sh
@@ -34,7 +41,9 @@ source "$OSH"/oh-my-bash.sh
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PATH=~/.console-ninja/.bin:$PATH
+PATH=$HOME/.cargo/bin:$PATH
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # === Manual Configuration ===
 

@@ -16,6 +16,12 @@
 - starship
 - ranger
 
+### zsh installation
+```shell
+sudo dnf install zsh
+sudo chsh -s /bin/zsh $USER
+```
+
 ### oh-my-zsh installation
 
 #### Installation with cURL
@@ -48,7 +54,11 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
 ###### asdf
 
 ```shell
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+cd Downloads
+wget https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-386.tar.gz
+tar -xf asdf-v0.18.0-linux-386.tar.gz
+sudo mv asdf /bin
+rm asdf
 ```
 
 ##### sdkman
@@ -67,7 +77,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ###### bat
 
 ```shell
-sudo pacman -S bat
+sudo dnf install bat
 ```
 
 catpucchin theme
@@ -84,7 +94,7 @@ bat cache --build
 ###### lsd
 
 ```shell
-sudo pacman -S lsd
+sudo dnf install lsd
 ```
 
 ### powerlevel10k installation
@@ -118,7 +128,7 @@ Set `eval "$(starship init zsh)"` on `~/.zshrc`
 #### ranger
 
 ```shell
-yay -S ranger
+sudo dnf install ranger
 ```
 
 ##### ranger_devicons
@@ -132,12 +142,8 @@ echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
 
 ```shell
 # Dependencies
-yay -Sy cmake libvips libsixel chafa openssl tbb nlohmann-json cli11 spdlog fmt  opencv xcb-util-image turbo-base64 wayland wayland-protocols exta-cmake-module pkg pkg-config
-
-yay -S ueberzugpp
-
 echo "set preview_images true" >> $HOME/.config/ranger/rc.conf
-echo "set preview_images_method ueberzug" >> $HOME/.config/ranger/rc.conf
+echo "set preview_images_method kitty" >> $HOME/.config/ranger/rc.conf
 ```
 
 ##### pass

@@ -10,7 +10,7 @@
 #### tmux installation
 
 ```shell
-yay -Sy tmux
+sudo dnf install tmux
 ```
 
 #### tpm installation
@@ -26,7 +26,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp -r .dotfiles/terminal/tmux ~/.config
 ln -s -f .config/tmux/.tmux.conf ~/
 ```
-
 
 #### Load plugins and settings
 ```shell

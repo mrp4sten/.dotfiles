@@ -9,7 +9,7 @@ alias lt='ls --tree --group-dirs=first'
 alias vi='nvim'
 
 # bat
-if wich bat &> /dev/null; then
+if which bat &> /dev/null; then
         alias cat='/bin/bat --paging=never --theme="Catppuccin Mocha"'
 else
         alias cat='/bin/batcat --paging=never --theme="Catppuccin Mocha"'
