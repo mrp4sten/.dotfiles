@@ -16,7 +16,7 @@ else
 fi
 
 # update packages
-alias update="yay -Syyuu"
+alias update="sudo dnf update && sudo dnf upgrade"
 
 # fastfetch
 alias fastfetchsm='fastfetch --config ~/.config/fastfetch/mavor-sm.jsonc'

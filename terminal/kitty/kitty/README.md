@@ -29,7 +29,7 @@ fc-cache -fv
 ## Installation
 
 ```shell
-yay -Sy kitty
+sudo dnf install kitty
 ```
 
 ### Kitty Config

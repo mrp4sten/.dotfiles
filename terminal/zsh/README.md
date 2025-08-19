@@ -151,7 +151,7 @@ echo "set preview_images_method kitty" >> $HOME/.config/ranger/rc.conf
 I like `pass` is a simple terminal password manager and this is a little manual to your config
 
 ```shell
-yay -S pass
+sudo dnf install pass
 
 gpg --gen-key
 gpg --edit-key [example_gpg_id]
