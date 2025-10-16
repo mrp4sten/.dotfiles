@@ -3,7 +3,7 @@
 
 # Clean the cache of pacman and aur packages on Arch linux OS
 clean() {
-  sudo dnf clean
+  sudo dnf clean all
 }
 
 # Create config developer files (.gitignore, .prettierrc, .htmlhintrc, .stylelintrc, webpack.config.js, etc.)

@@ -1,127 +1,157 @@
 {
-  // Editor configs
-  "security.workspace.trust.enabled": true,
-  "editor.fontFamily": "'Dank Mono', 'Hack Nerd Font Mono'",
-  "editor.fontWeight": "normal",
-  "editor.fontSize": 16,
-  "editor.fontLigatures": true,
-  "editor.tabSize": 2,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "always",
-    "source.organizeImports": "always"
+  "[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
   },
-  "editor.mouseWheelZoom": true,
-  "editor.formatOnSave": false,
-  "editor.quickSuggestions": {
-    "other": true,
-    "comments": true,
-    "strings": true
-  },
-  "editor.minimap.enabled": false,
-  "editor.cursorBlinking": "expand",
-  "editor.linkedEditing": true,
-  "editor.guides.bracketPairs": true,
-  "editor.stickyScroll.enabled": true,
-  "editor.cursorSmoothCaretAnimation": "on",
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.overviewRulerBorder": false,
-  "editor.scrollbar.vertical": "auto",
-  // Workbench configs
-  "workbench.startupEditor": "none",
-  "workbench.sideBar.location": "left",
-  "workbench.editor.showTabs": "multiple",
-  "workbench.tree.indent": 20,
-  "workbench.activityBar.location": "default",
-  // Shell script
-  "[shellscript]": {
-    "editor.defaultFormatter": "mkhl.shfmt"
-  },
-  // Terminal configs
-  "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.persistentSessionScrollback": 10000,
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  // Prettier configs
-  "prettier.endOfLine": "auto",
-  "prettier.singleQuote": true,
-  // Window
-  "window.menuBarVisibility": "toggle",
-  "window.customTitleBarVisibility": "auto",
-  // Javascript
-  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  // Java
-  "[java]": {
-    "editor.defaultFormatter": "redhat.java"
-  },
-  "java.import.gradle.home": "~/.sdkman/candidates/gradle/8.11.1",
-  "java.configuration.runtimes": [
-    {
-      "name": "JavaSE-1.8",
-      "path": "~/.sdkman/candidates/java/8.0.422-tem"
-    },
-    {
-      "name": "JavaSE-11",
-      "path": "~/.sdkman/candidates/java/11.0.24-tem"
-    },
-    {
-      "name": "JavaSE-17",
-      "path": "~/.sdkman/candidates/java/17.0.12-tem"
-    }
-  ],
-  "maven.executable.path": "~/.sdkman/candidates/maven/3.9.9/bin/mvn",
-  "maven.terminal.customEnv": [
-    {
-      "environmentVariable": "JAVA_HOME",
-      "value": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
-    }
-  ],
-  // Freemarker
   "[ftl]": {
     "editor.defaultFormatter": "AntonLilleby.xp-freemarker-formatter"
   },
-  // JSON
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  // XML
-  "[xml]": {
-    "editor.defaultFormatter": "redhat.vscode-xml"
-  },
-  // Markdown
-  "markdownlint.config": {
-    "MD033": false // Allow inline HTML
-  },
-  // SCSS
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  // CSS
-  "[css]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
-  },
-  // HTML
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "database-client.autoSync": true,
-  "redhat.telemetry.enabled": true,
-  "security.allowedUNCHosts": [
-    "wsl.localhost"
-  ],
-  "security.workspace.trust.untrustedFiles": "newWindow",
-  "[javascriptreact]": {
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "Dark+ with Italics",
+  "[shellscript]": {
+    "editor.defaultFormatter": "mkhl.shfmt"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.pylance": "always",
+    "source.organizeImports": "always",
+    "source.sort.json": "always",
+    "source.unusedImports": "always"
+  },
+  "editor.cursorBlinking": "expand",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.fontFamily": "'Dank Mono', 'Hack Nerd Font Mono'",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.fontWeight": "normal",
+  "editor.formatOnSave": false,
+  "editor.guides.bracketPairs": true,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
+  "editor.mouseWheelZoom": true,
+  "editor.overviewRulerBorder": false,
+  "editor.quickSuggestions": {
+    "comments": true,
+    "other": true,
+    "strings": true
+  },
+  "editor.scrollbar.vertical": "auto",
+  "editor.stickyScroll.enabled": true,
+  "editor.tabSize": 2,
+  "git.autofetch": true,
+  "git.openRepositoryInParentFolders": "always",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "~/.sdkman/candidates/java/8.0.462-tem"
+    },
+    {
+      "name": "JavaSE-11",
+      "path": "~/.sdkman/candidates/java/11.0.28-tem"
+    },
+    {
+      "name": "JavaSE-17",
+      "path": "~/.sdkman/candidates/java/17.0.16-tem"
+    },
+    {
+      "name": "JavaSE-21",
+      "path": "~/.sdkman/candidates/java/21.0.8-tem"
+    }
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.debug.settings.onBuildFailureProceed": true,
+  "java.import.gradle.home": "~/.sdkman/candidates/gradle/8.11.1",
+  // Testing
+  "java.test.config": {
+    "vmArgs": [
+      "-ea",
+      "-Xmx1G"
+    ],
+  },
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "markdownlint.config": {
+    "MD033": false // Allow inline HTML
+  },
+  "maven.executable.path": "~/.sdkman/candidates/maven/current/bin/mvn",
+  "maven.terminal.customEnv": [
+    {
+      "environmentVariable": "JAVA_HOME",
+      "value": "$HOME/.config/Code/User/globalStorage/pleiades.java-extension-pack-jdk/java/21"
+    }
+  ],
+  "prettier.endOfLine": "auto",
+  "prettier.singleQuote": true,
+  "python.createEnvironment.trigger": "off",
+  "redhat.telemetry.enabled": true,
+  "security.workspace.trust.enabled": true,
+  "security.workspace.trust.untrustedFiles": "newWindow",
+  "terminal.integrated.automationProfile.linux": null,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.fontFamily": "'Dank Mono', 'Hack Nerd Font Mono'",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.persistentSessionScrollback": 10000,
+  "window.customTitleBarVisibility": "auto",
+  "window.menuBarVisibility": "toggle",
+  "workbench.activityBar.location": "default",
+  "workbench.colorTheme": "Andromeda Italic",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "none",
+  "workbench.tree.indent": 20,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "sonarlint.focusOnNewCode": true,
+  "sonarlint.rules": {
+    "secrets:S6702": {
+      "level": "off"
+    }
+  },
+  "sonarlint.automaticAnalysis": true
 }

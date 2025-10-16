@@ -10,9 +10,9 @@ alias vi='nvim'
 
 # bat
 if which bat &> /dev/null; then
-        alias cat='/bin/bat --paging=never --theme="Catppuccin Mocha"'
+        alias cat='/bin/bat --paging=never --theme="gruvbox-dark"'
 else
-        alias cat='/bin/batcat --paging=never --theme="Catppuccin Mocha"'
+        alias cat='/bin/batcat --paging=never --theme="gruvbox-dark"'
 fi
 
 # update packages
