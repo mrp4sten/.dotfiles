@@ -46,7 +46,6 @@ cd Downloads
 wget https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-386.tar.gz
 tar -xf asdf-v0.18.0-linux-386.tar.gz
 sudo mv asdf /bin
-rm asdf
 ```
 
 ## bash settings

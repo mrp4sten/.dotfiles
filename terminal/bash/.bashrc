@@ -43,8 +43,6 @@ source "$OSH"/oh-my-bash.sh
 
 PATH=$HOME/.cargo/bin:$PATH
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 # === Manual Configuration ===
 
 # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
