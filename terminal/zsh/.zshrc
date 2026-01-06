@@ -9,6 +9,8 @@ ZSH_THEME=""
 # Plugins
 plugins=(
     git
+    git-auto-fetch
+    git-commit
     zsh-autosuggestions
     fast-syntax-highlighting
     colored-man-pages
@@ -16,6 +18,26 @@ plugins=(
     sudo
     jsontools
     asdf
+    gcloud
+    docker
+    docker-compose
+    dotenv
+    spring
+    python
+    pyenv
+    pylint
+    node
+    yarn
+    npm
+    nodenv
+    emoji
+    emoji-clock
+    kubectl
+    kubectx
+    kube-ps1
+    svcat
+    minikube
+    zsh_codex
 )
 
 source $ZSH/oh-my-zsh.sh

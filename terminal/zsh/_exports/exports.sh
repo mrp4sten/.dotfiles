@@ -7,6 +7,9 @@ export KUBE_PS1_CLUSTER_FUNCTION=""
 export KUBE_PS1_NS_ENABLE=false
 
 # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# codex
+export ZSH_CODEX_PYTHON="$HOME/miniconda3/bin/python"
