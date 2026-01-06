@@ -9,10 +9,12 @@ alias lt='ls --tree --group-dirs=first'
 alias vi='nvim'
 
 # bat
-if which bat &> /dev/null; then
-        alias cat='/bin/bat --paging=never --theme="gruvbox-dark"'
+if which bat &>/dev/null; then
+  alias cat='/bin/bat --paging=never --theme="gruvbox-dark"'
+  alias less='/bin/bat --theme="gruvbox-dark"'
 else
-        alias cat='/bin/batcat --paging=never --theme="gruvbox-dark"'
+  alias cat='/bin/batcat --paging=never --theme="gruvbox-dark"'
+  alias less'/bin/batcat --theme="gruvbox-dark"'
 fi
 
 # update packages
