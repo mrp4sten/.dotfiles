@@ -1,0 +1,6 @@
+[submodule "themes/icons"]
+	path = themes/icons
+	url = git@github.com:nestoris/Win98SE.git
+[submodule "themes/GTK/external/Chicago95"]
+	path = themes/GTK/external/Chicago95
+	url = git@github.com:grassmunk/Chicago95.git
