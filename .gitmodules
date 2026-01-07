@@ -4,3 +4,6 @@
 [submodule "themes/GTK/external/Chicago95"]
 	path = themes/GTK/external/Chicago95
 	url = git@github.com:grassmunk/Chicago95.git
+[submodule "themes/GTK/external/aerothemeplasma"]
+	path = themes/GTK/external/aerothemeplasma
+	url = https://gitgud.io/wackyideas/aerothemeplasma.git
