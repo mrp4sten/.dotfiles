@@ -1,9 +1,15 @@
 #!/bin/bash
 #author: mrp4sten
 
-# Clean the cache of pacman and aur packages on Arch linux OS
+# Clean everything (packages and metadata), and update the metadata
 clean() {
   sudo dnf clean all
+  sudo dnf makecache
+}
+
+# Clean the old kernels installed in Fedora43
+clean_knls() {
+  sudo dnf remove $(dnf repoquery --installonly --latest-limit=-2 -q)
 }
 
 # Create config developer files (.gitignore, .prettierrc, .htmlhintrc, .stylelintrc, webpack.config.js, etc.)
