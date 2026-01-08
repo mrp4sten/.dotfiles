@@ -48,7 +48,11 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
 ###### asdf
 
 ```shell
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+cd Downloads
+wget https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-386.tar.gz
+tar -xf asdf-v0.18.0-linux-386.tar.gz
+sudo mv asdf /bin
+rm asdf
 ```
 
 ##### sdkman
@@ -67,24 +71,24 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ###### bat
 
 ```shell
-sudo pacman -S bat
+sudo nala install bat
 ```
 
 catpucchin theme
 
 ```shell
-mkdir -p "$(bat --config-dir)/themes"
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
-bat cache --build
+mkdir -p "$(batcat --config-dir)/themes"
+wget -P "$(batcat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+wget -P "$(batcat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+wget -P "$(batcat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+wget -P "$(batcat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+batcat cache --build
 ```
 
 ###### lsd
 
 ```shell
-sudo pacman -S lsd
+sudo nala install lsd
 ```
 
 ### powerlevel10k installation
@@ -128,24 +132,12 @@ git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger
 echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
 ```
 
-##### ranger img preview
-
-```shell
-# Dependencies
-yay -Sy cmake libvips libsixel chafa openssl tbb nlohmann-json cli11 spdlog fmt  opencv xcb-util-image turbo-base64 wayland wayland-protocols exta-cmake-module pkg pkg-config
-
-yay -S ueberzugpp
-
-echo "set preview_images true" >> $HOME/.config/ranger/rc.conf
-echo "set preview_images_method ueberzug" >> $HOME/.config/ranger/rc.conf
-```
-
 ##### pass
 
 I like `pass` is a simple terminal password manager and this is a little manual to your config
 
 ```shell
-yay -S pass
+sudo nala install pass
 
 gpg --gen-key
 gpg --edit-key [example_gpg_id]

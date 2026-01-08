@@ -21,68 +21,15 @@ Download my custom files
 ```shell
 cd ~/
 git clone https://github.com/mrp4sten/.dotfiles.git .dotfiles
+
+# Install nala
+sudo apt-get install nala
 ```
-
-
-Im using ArchLinux Distribution so try to Install AUR Helper
-
-- Manually
-
-```shell
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd
-```
-
-Instead you can run the script `install_aur_helper.sh`
 
 ### Preview
-
+<!-- TODO: Update the preview images for Debian -->
 !["neofetch"](.img/neofetch.png)
 !["some terminal utils"](.img/bash-zsh-lsd-bat-exa.png)
 !["ranger"](.img/ranger.png)
 !["fzf history"](.img/fzh-history.png)
 !["fzf find files"](.img/fzf-find-files.png)
-
-#### List of my favorite applications and terminal utilities
-
-##### Applications
-
-- Google Chrome
-- Kitty Terminal
-- VisualStudioCode
-- YouTube Music
-- Bruno
-- Postman
-- Notepadqq
-- Bitwarden
-- Stacer
-- Libreoffice
-- Discord
-- OBS
-- Kdenlive
-- JasperSoft Studio
-- Thunderbird
-- Timeshift
-- Ulauncher
-
-##### Terminal (zsh) Applications
-
-- yay (aur package manager for Arch Linux)
-- pass
-- task (Taskwarrior)
-- bpytop
-- gcloud cli
-- sdkman
-- asdf
-- tmux
-- git
-- bat
-- lsd
-- fsf
-- ranger
-- ncdu
-- figlet
-- cowsay
-- lolcat
-- timeshift
-- timetrap
-- (Other dev tools like jdk, npm, yarn, etc.)

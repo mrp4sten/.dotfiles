@@ -10,7 +10,7 @@
 #### tmux installation
 
 ```shell
-yay -Sy tmux
+sudo nala install tmux
 ```
 
 #### tpm installation

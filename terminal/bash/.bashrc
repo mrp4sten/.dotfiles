@@ -34,7 +34,7 @@ source "$OSH"/oh-my-bash.sh
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PATH=~/.console-ninja/.bin:$PATH
+PATH=~/.cargo/bin:$PATH
 
 # === Manual Configuration ===
 

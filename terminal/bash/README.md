@@ -22,13 +22,14 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/mast
 ### exa
 
 ```shell
-sudo pacman -Sy exa
+sudo nala install cargo
+cargo install exa
 ```
 
 ### bat
 
 ```shell
-sudo pacman -Sy bat
+sudo nala install bat
 ```
 
 ### fzf
@@ -41,7 +42,11 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ### asdf
 
 ```shell
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+cd Downloads
+wget https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-386.tar.gz
+tar -xf asdf-v0.18.0-linux-386.tar.gz
+sudo mv asdf /bin
+rm asdf
 ```
 
 ## bash settings
