@@ -9,7 +9,20 @@ clean() {
 
 # Clean the old kernels installed in Fedora43
 clean_knls() {
-  sudo dnf remove $(dnf repoquery --installonly --latest-limit=-2 -q)
+  local keep_count="$1"
+  local packages
+
+  packages=$(sudo dnf repoquery --installonly --latest-limit=-"$keep_count" -q 2>/dev/null)
+
+  if [[ -z "$packages" ]]; then
+    echo "No old kernels to remove (keeping $keep_count most recent)"
+    return 0
+  fi
+
+  echo "Removing old kernels (keeping $keep_count most recent):"
+  echo "$packages"
+
+  sudo dnf remove $packages
 }
 
 # Create config developer files (.gitignore, .prettierrc, .htmlhintrc, .stylelintrc, webpack.config.js, etc.)
