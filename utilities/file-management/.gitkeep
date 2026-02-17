@@ -1,0 +1,13 @@
+# File Management Utilities
+
+This directory will contain configurations for file management tools such as:
+- Ranger file manager
+- lsd (ls deluxe) configurations
+- fzf (fuzzy finder) settings
+- File navigation utilities
+
+## Future additions:
+- `ranger/` - Ranger file manager configuration
+- `lsd/` - lsd configuration files
+- `fzf/` - Fuzzy finder settings
+- `fd/` - fd file finder configurations

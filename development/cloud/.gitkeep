@@ -1,0 +1,13 @@
+# Cloud Tools Configuration
+
+This directory will contain cloud platform configurations such as:
+- Google Cloud SDK settings
+- AWS CLI configuration
+- Kubernetes configs
+- Terraform configurations
+
+## Future additions:
+- `gcloud/` - Google Cloud configurations
+- `aws/` - AWS CLI settings
+- `kubectl/` - Kubernetes configurations
+- `terraform/` - Terraform modules and configs

@@ -1,0 +1,13 @@
+# Desktop Environment Configurations
+
+This directory will contain desktop environment specific configurations such as:
+- KDE Plasma settings
+- GNOME configurations
+- Desktop themes and customizations
+- Window manager settings
+
+## Future additions:
+- `kde/` - KDE Plasma configurations
+- `gnome/` - GNOME desktop settings
+- `i3/` - i3 window manager configs
+- `sway/` - Sway compositor settings

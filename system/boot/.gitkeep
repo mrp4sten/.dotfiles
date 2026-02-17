@@ -1,0 +1,13 @@
+# Boot Configuration
+
+This directory will contain boot-related configurations such as:
+- GRUB bootloader themes
+- Kernel parameters
+- Plymouth boot splash themes
+- Boot manager settings
+
+## Future additions:
+- `grub/` - GRUB bootloader configurations
+- `plymouth/` - Boot splash themes
+- `kernel/` - Kernel parameter configurations
+- `systemd-boot/` - systemd-boot configurations

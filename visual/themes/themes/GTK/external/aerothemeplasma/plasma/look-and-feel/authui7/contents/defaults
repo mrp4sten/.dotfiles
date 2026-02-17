@@ -1,0 +1,21 @@
+[kdeglobals][General]
+ColorScheme=Aero
+
+[kdeglobals][Icons]
+Theme=Windows 7 Aero
+
+[kdeglobals][KDE]
+widgetStyle=kvantum
+
+[kwinrc][WindowSwitcher]
+LayoutName=thumbnail_seven
+
+[plasmarc][Theme]
+name=Seven-Black
+
+[kwinrc][org.kde.kdecoration2]
+library=org.smod.smod
+theme=SMOD
+
+[KSplash]
+Theme=authui7

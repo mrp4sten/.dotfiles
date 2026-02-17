@@ -1,0 +1,13 @@
+# Python Configuration
+
+This directory will contain Python-related configurations such as:
+- Python project templates
+- Virtual environment configurations
+- Pip configuration
+- Python linting and formatting configs
+
+## Future additions:
+- `pip.conf` - Pip configuration
+- `pyproject.toml` - Python project templates
+- `flake8/` - Flake8 configurations
+- `black/` - Black formatter settings

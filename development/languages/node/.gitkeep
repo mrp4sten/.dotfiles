@@ -1,0 +1,13 @@
+# Node.js Configuration
+
+This directory will contain Node.js and npm-related configurations such as:
+- npm configuration files
+- Node.js project templates
+- ESLint and Prettier configs
+- Package.json templates
+
+## Future additions:
+- `.npmrc` - npm configuration
+- `eslint/` - ESLint configurations
+- `prettier/` - Prettier configurations
+- `templates/` - Project boilerplates

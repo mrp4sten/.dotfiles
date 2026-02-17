@@ -1,0 +1,13 @@
+# System Services Configuration
+
+This directory will contain system service configurations such as:
+- Systemd service files
+- Cron jobs
+- System monitoring configs
+- Service management scripts
+
+## Future additions:
+- `systemd/` - Systemd service files
+- `cron/` - Cron job configurations
+- `monitoring/` - System monitoring configs
+- `backup/` - Backup service configurations

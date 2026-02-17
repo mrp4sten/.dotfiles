@@ -1,0 +1,12 @@
+# Git Configuration
+
+This directory will contain Git-related configurations such as:
+- Global .gitconfig settings
+- Git hooks
+- Git aliases and custom commands
+- Git templates
+
+## Future additions:
+- `.gitconfig` - Global Git configuration
+- `hooks/` - Custom Git hooks
+- `templates/` - Git repository templates

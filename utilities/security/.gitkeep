@@ -1,0 +1,13 @@
+# Security Utilities
+
+This directory will contain security-related configurations such as:
+- GPG configurations
+- SSH settings
+- Password manager configs (pass)
+- Security tools settings
+
+## Future additions:
+- `gpg/` - GPG configuration files
+- `ssh/` - SSH client configurations
+- `pass/` - Password store settings
+- `age/` - Age encryption tool configs

@@ -1,0 +1,13 @@
+# Java Configuration
+
+This directory will contain Java-related configurations such as:
+- Maven settings
+- Gradle configurations
+- Java IDE settings
+- Spring Boot templates
+
+## Future additions:
+- `maven/` - Maven settings and templates
+- `gradle/` - Gradle configurations
+- `spring/` - Spring Boot project templates
+- `checkstyle/` - Java code style configurations

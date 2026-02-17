@@ -1,0 +1,12 @@
+# Docker Configuration
+
+This directory will contain Docker-related configurations such as:
+- Docker daemon configuration
+- Docker Compose templates
+- Dockerfile templates
+- Docker development utilities
+
+## Future additions:
+- `daemon.json` - Docker daemon configuration
+- `compose-templates/` - Reusable Docker Compose files
+- `dockerfiles/` - Common Dockerfile templates
