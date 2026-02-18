@@ -19,7 +19,7 @@
 ### zsh installation
 
 ```shell
-sudo dnf install zsh
+sudo nala install zsh
 sudo chsh -s /bin/zsh $USER
 ```
 
@@ -67,7 +67,13 @@ sudo mv asdf /bin
 curl -s "https://get.sdkman.io" | bash
 ```
 
-###### fzf
+#### pyenv
+
+```shell
+sudo nala install pyenv
+```
+
+##### fzf
 
 ```shell
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -77,7 +83,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ###### bat
 
 ```shell
-sudo dnf install bat
+# Download the .deb file from release here: https://github.com/sharkdp/bat
+sudo nala install *.deb
 ```
 
 catpucchin theme
@@ -94,7 +101,7 @@ bat cache --build
 ###### lsd
 
 ```shell
-sudo dnf install lsd
+sudo nala install lsd
 ```
 
 ### powerlevel10k installation
@@ -125,33 +132,16 @@ cp ~/.dotfiles/core/shell/zsh/starship.toml ~/.config/
 
 Set `eval "$(starship init zsh)"` on `~/.zshrc`
 
-#### ranger
+#### Yazi
 
-```shell
-sudo dnf install ranger
-```
-
-##### ranger_devicons
-
-```shell
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
-echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
-```
-
-##### ranger img preview
-
-```shell
-# Dependencies
-echo "set preview_images true" >> $HOME/.config/ranger/rc.conf
-echo "set preview_images_method kitty" >> $HOME/.config/ranger/rc.conf
-```
+Download from release <https://github.com/sxyazi/yazi> and install .deb file
 
 ##### pass
 
 I like `pass` is a simple terminal password manager and this is a little manual to your config
 
 ```shell
-sudo dnf install pass
+sudo nala install pass
 
 gpg --gen-key
 gpg --edit-key [example_gpg_id]

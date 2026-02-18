@@ -10,7 +10,7 @@
 #### tmux installation
 
 ```shell
-sudo dnf install tmux
+sudo nala install tmux
 ```
 
 #### tpm installation
@@ -28,6 +28,7 @@ ln -s -f .config/tmux/.tmux.conf ~/
 ```
 
 #### Load plugins and settings
+
 ```shell
 cd ~/
 tmux

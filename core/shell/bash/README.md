@@ -22,14 +22,15 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/mast
 ### exa
 
 ```shell
-sudo dnf install cargo # if you dont have installed cargo
+sudo nala install cargo # if you dont have installed cargo
 cargo install exa
 ```
 
 ### bat
 
 ```shell
-sudo dnf install bat
+# Download the .deb file from release here: https://github.com/sharkdp/bat
+sudo nala install *.deb
 ```
 
 ### fzf

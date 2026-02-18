@@ -1,3 +1,8 @@
+# Ghostty shell integration
+if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+    builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi
+
 # Path from oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES_PATH=$HOME/.dotfiles
@@ -37,7 +42,6 @@ plugins=(
     kube-ps1
     svcat
     minikube
-    zsh_codex
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -33,7 +33,7 @@ fc-cache -fv
 ## Installation
 
 ```shell
-sudo dnf install kitty
+sudo nala install kitty
 ```
 
 ### Kitty Config
