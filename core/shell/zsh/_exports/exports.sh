@@ -1,4 +1,6 @@
 #!/bin/bash
+# author: mrp4sten
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export KUBE_PS1_ENABLED=off
@@ -11,5 +13,3 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
-# codex
-export ZSH_CODEX_PYTHON="$HOME/miniconda3/bin/python"

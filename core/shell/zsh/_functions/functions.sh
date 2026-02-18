@@ -1,5 +1,5 @@
 #!/bin/bash
-#author: mrp4sten
+# author: mrp4sten
 
 # Clean everything (packages and metadata), and update the metadata
 clean() {

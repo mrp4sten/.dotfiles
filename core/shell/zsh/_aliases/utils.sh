@@ -1,4 +1,5 @@
 #!/bin/bash
+# author: mrp4sten
 
 # lsd
 alias ls='lsd --group-dirs=first'
@@ -18,7 +19,7 @@ else
 fi
 
 # update packages
-alias update="sudo dnf update && sudo dnf upgrade"
+alias update="sudo nala update && sudo nala upgrade"
 
 # fastfetch
 alias fastfetchsm='fastfetch --config ~/.config/fastfetch/mavor-sm.jsonc'

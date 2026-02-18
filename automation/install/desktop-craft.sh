@@ -1,5 +1,5 @@
 #!/bin/bash
-# author: Mauricio Pasten (mrp4sten)
+# author: mrp4sten
 
 DESKTOP_NAME=$(gum input --placeholder "Enter name desktop entry file")
 DISYPLAY_NAME=$(gum input --placeholder "Enter display for application")
