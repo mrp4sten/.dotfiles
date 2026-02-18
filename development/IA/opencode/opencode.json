@@ -41,6 +41,5 @@
   },
   "plugin": [
     "opencode-anthropic-auth"
-  ],
-  "theme": "lucent-orgn"
+  ]
 }
