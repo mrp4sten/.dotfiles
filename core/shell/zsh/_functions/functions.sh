@@ -48,8 +48,9 @@ config_craft() {
   bash $CONFIG_CRAFT
 }
 
-# Create a desktop entry file on Linuz OS
+# Create a desktop entry file on Linux OS
+# Usage: desktop_craft [--appimage | --manual]
 desktop_craft() {
-  DESKTOP_CRAFT=~/.dotfiles/automation/install/desktop-craft.sh
-  bash $DESKTOP_CRAFT
+  local DESKTOP_CRAFT=~/.dotfiles/automation/install/desktop-craft.sh
+  bash "${DESKTOP_CRAFT}" "$@"
 }
