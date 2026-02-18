@@ -17,3 +17,5 @@ eval "$(pyenv init - zsh)"
 export PATH="$HOME/.atuin/bin:$PATH"
 eval "$(atuin init zsh)"
 
+# Opencode
+export PATH="$HOME/.opencode/bin:$PATH"
