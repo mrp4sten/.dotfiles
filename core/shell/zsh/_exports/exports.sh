@@ -19,3 +19,11 @@ eval "$(atuin init zsh)"
 
 # Opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# Load sdkman
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
