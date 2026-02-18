@@ -2,8 +2,22 @@
   "[css]": {
     "editor.defaultFormatter": "stylelint.vscode-stylelint"
   },
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
+    "editor.quickSuggestions": {
+      "comments": false,
+      "other": true,
+      "strings": true
+    },
+    "editor.tabSize": 2
+  },
   "[ftl]": {
     "editor.defaultFormatter": "AntonLilleby.xp-freemarker-formatter"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
@@ -41,6 +55,7 @@
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
+  "claudeCode.preferredLocation": "panel",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
     "source.fixAll.pylance": "always",
@@ -71,23 +86,22 @@
   "editor.tabSize": 2,
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "always",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "http.systemCertificatesNode": true,
   "java.compile.nullAnalysis.mode": "automatic",
   "java.configuration.runtimes": [
     {
       "name": "JavaSE-1.8",
-      "path": "~/.sdkman/candidates/java/8.0.462-tem"
+      "path": "~/.sdkman/candidates/java/8.0.422-tem"
     },
     {
       "name": "JavaSE-11",
-      "path": "~/.sdkman/candidates/java/11.0.28-tem"
+      "path": "~/.sdkman/candidates/java/11.0.24-tem"
     },
     {
       "name": "JavaSE-17",
-      "path": "~/.sdkman/candidates/java/17.0.16-tem"
-    },
-    {
-      "name": "JavaSE-21",
-      "path": "~/.sdkman/candidates/java/21.0.8-tem"
+      "path": "~/.sdkman/candidates/java/17.0.12-tem"
     }
   ],
   "java.configuration.updateBuildConfiguration": "interactive",
@@ -98,14 +112,14 @@
     "vmArgs": [
       "-ea",
       "-Xmx1G"
-    ],
+    ]
   },
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "markdownlint.config": {
     "MD033": false // Allow inline HTML
   },
-  "maven.executable.path": "~/.sdkman/candidates/maven/current/bin/mvn",
+  "maven.executable.path": "~/.sdkman/candidates/maven/3.9.9/bin/mvn",
   "maven.terminal.customEnv": [
     {
       "environmentVariable": "JAVA_HOME",
@@ -114,10 +128,15 @@
   ],
   "prettier.endOfLine": "auto",
   "prettier.singleQuote": true,
-  "python.createEnvironment.trigger": "off",
   "redhat.telemetry.enabled": true,
   "security.workspace.trust.enabled": true,
   "security.workspace.trust.untrustedFiles": "newWindow",
+  "sonarlint.automaticAnalysis": false,
+  "sonarlint.rules": {
+    "secrets:S6702": {
+      "level": "off"
+    }
+  },
   "terminal.integrated.automationProfile.linux": null,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.linux": "zsh",
@@ -127,31 +146,10 @@
   "window.customTitleBarVisibility": "auto",
   "window.menuBarVisibility": "toggle",
   "workbench.activityBar.location": "default",
-  "workbench.colorTheme": "Andromeda Italic",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.editor.showTabs": "multiple",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "none",
-  "workbench.tree.indent": 20,
-  "[dockercompose]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.autoIndent": "advanced",
-    "editor.quickSuggestions": {
-      "other": true,
-      "comments": false,
-      "strings": true
-    },
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-  "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-  "sonarlint.focusOnNewCode": true,
-  "sonarlint.rules": {
-    "secrets:S6702": {
-      "level": "off"
-    }
-  },
-  "sonarlint.automaticAnalysis": true
+  "workbench.tree.indent": 20
 }
