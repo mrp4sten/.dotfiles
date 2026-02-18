@@ -9,7 +9,7 @@
 
 ```bash
 # Python 3 + pip
-sudo nala install python3 python3-pip python3-venv
+sudo nala install python3 python3-pip python3-venv pipx
 
 # pipenv — virtualenv + pip in one, tracks Pipfile
 pip install --user pipenv
