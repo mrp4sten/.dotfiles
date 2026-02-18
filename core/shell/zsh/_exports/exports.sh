@@ -13,3 +13,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
+# Atuin
+export PATH="$HOME/.atuin/bin:$PATH"
+eval "$(atuin init zsh)"
+

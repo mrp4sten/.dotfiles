@@ -104,6 +104,16 @@ bat cache --build
 sudo nala install lsd
 ```
 
+###### atuin
+
+```shell
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+# This is already on .zshrc file, but JUST FYI this is how enable it in zsh
+# echo 'eval "$(atuin init zsh)"' >> ~/.zshrc 
+```
+
+> Visit project here: <https://github.com/atuinsh/atuin>
+
 ### powerlevel10k installation
 
 ```shell

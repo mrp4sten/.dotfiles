@@ -22,7 +22,6 @@ plugins=(
     fzf
     sudo
     jsontools
-    asdf
     gcloud
     docker
     docker-compose
@@ -42,6 +41,10 @@ plugins=(
     kube-ps1
     svcat
     minikube
+		z
+		ubuntu
+		copyfile
+		copypath
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -61,3 +64,4 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
