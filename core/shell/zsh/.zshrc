@@ -65,3 +65,5 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# ghcup-env 
+[ -f "/home/mrp4sten/.ghcup/env" ] && . "/home/mrp4sten/.ghcup/env"

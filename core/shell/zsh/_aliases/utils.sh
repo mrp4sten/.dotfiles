@@ -25,3 +25,28 @@ alias update="sudo nala update && sudo nala upgrade"
 alias fastfetchsm='fastfetch --config ~/.config/fastfetch/mavor-sm.jsonc'
 alias fastfetchmd='fastfetch --config ~/.config/fastfetch/mavor-md.jsonc'
 alias fastfetchlg='fastfetch --config ~/.config/fastfetch/mavor-lg.jsonc'
+
+# lazydocker
+alias lzd='lazydocker'
+
+# containers
+alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dpsa='docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dex='docker exec -it'
+alias dlog='docker logs -f'
+alias dlogp='docker logs --tail=100 2>&1 | bat --paging=never -l log'
+
+# Compose
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias dcb='docker compose up -d --build'
+alias dcl='docker compose logs -f'
+alias dcp='docker compose pull'
+alias dcr='docker compose restart'
+
+# Cleanup
+alias dprune='docker system prune -f'
+alias dprunea='docker system prune -a --volumes -f'
+
+# Stats
+alias dstats='docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}"'
