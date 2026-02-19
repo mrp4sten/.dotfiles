@@ -20,12 +20,14 @@ cd ~/
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-#### Setting my custom config
+#### Link config
 
 ```bash
-cp -r ~/.dotfiles/core/multiplexer/tmux ~/.config
-ln -s -f .config/tmux/.tmux.conf ~/
+ln -sf ~/.dotfiles/core/multiplexer/tmux ~/.config/tmux
+ln -sf ~/.config/tmux/.tmux.conf ~/
 ```
+
+> Or just run `bash ~/.dotfiles/automation/install/install.sh` to set up everything at once.
 
 #### Load plugins and settings
 

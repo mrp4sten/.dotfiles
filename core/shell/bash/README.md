@@ -49,10 +49,11 @@ tar -xf asdf-v0.18.0-linux-386.tar.gz
 sudo mv asdf /bin
 ```
 
-## bash settings
+## Link config files
 
 ```shell
-cd ~/
-cp ~/.dotfiles/core/shell/bash/.bashrc ~/
-cp ~/.dotfiles/core/shell/bash/.git-prompt.sh ~/
+ln -sf ~/.dotfiles/core/shell/bash/.bashrc ~/
+ln -sf ~/.dotfiles/core/shell/bash/.git-prompt.sh ~/
 ```
+
+> Or just run `bash ~/.dotfiles/automation/install/install.sh` to set up everything at once.

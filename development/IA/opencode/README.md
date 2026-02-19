@@ -58,40 +58,23 @@ opencode auth login
 
 ## Configuration
 
-### Copy `opencode.json`
+### Link config directory
 
 opencode reads its config from `~/.config/opencode/opencode.json` (global) or from
 `opencode.json` at the root of a project (local, takes precedence).
 
-**Global config (applies everywhere):**
+**Global config (symlink the whole directory):**
 
 ```bash
-mkdir -p ~/.config/opencode
-cp ~/.dotfiles/development/IA/opencode/opencode.json ~/.config/opencode/opencode.json
+ln -sf ~/.dotfiles/development/IA/opencode ~/.config/opencode
 ```
+
+> Or just run `bash ~/.dotfiles/automation/install/install.sh` to set up everything at once.
 
 **Per-project config:**
 
 ```bash
 cp ~/.dotfiles/development/IA/opencode/opencode.json ~/your-project/opencode.json
-```
-
-### Copy skills
-
-Skills are markdown files that teach opencode domain-specific patterns. They live under a
-`skill/` directory alongside `opencode.json`.
-
-**Global skills:**
-
-```bash
-mkdir -p ~/.config/opencode/skill
-cp -r ~/.dotfiles/development/IA/opencode/skill/. ~/.config/opencode/skill/
-```
-
-**Per-project skills:**
-
-```bash
-cp -r ~/.dotfiles/development/IA/opencode/skill ./skill
 ```
 
 ---

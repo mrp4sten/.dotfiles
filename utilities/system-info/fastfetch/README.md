@@ -2,8 +2,10 @@
 
 > See more about fastfetch here: https://github.com/fastfetch-cli/fastfetch
 
-Copy the config files: 
+## Link config
 
 ```shell
-cp -r ~/.dotfiles/utilities/system-info/fastfetch ~/.config
+ln -sf ~/.dotfiles/utilities/system-info/fastfetch ~/.config/fastfetch
 ```
+
+> Or just run `bash ~/.dotfiles/automation/install/install.sh` to set up everything at once.

@@ -173,10 +173,10 @@ gpg --output public.pgp --armor --export [example_gpg_id]
 gpg --output private.pgp --armor --export-secret-key [example_gpg_id]
 ```
 
-### Copy file settings
+### Link config files
 
 ```shell
-cd ~/
-cp ~/.dotfiles/core/shell/zsh/.zshrc ~/
-cp ~/.dotfiles/core/shell/zsh/.p10k.zsh ~/
+ln -sf ~/.dotfiles/core/shell/zsh/starship.toml ~/.config/starship.toml
 ```
+
+> Or just run `bash ~/.dotfiles/automation/install/install.sh` to set up everything at once.

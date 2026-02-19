@@ -26,14 +26,15 @@ sudo pacman -S lazygit
 go install github.com/jesseduffield/lazygit@latest
 ```
 
-## Copy Config
+## Link Config
 
 Lazygit config lives at `~/.config/lazygit/config.yml` on Linux.
 
 ```shell
-mkdir -p ~/.config/lazygit
-cp ~/.dotfiles/development/git/lazygit/config.yml ~/.config/lazygit/config.yml
+ln -sf ~/.dotfiles/development/git/lazygit ~/.config/lazygit
 ```
+
+> Or just run `bash ~/.dotfiles/automation/install/install.sh` to set up everything at once.
 
 ## Config Highlights
 

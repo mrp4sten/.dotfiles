@@ -39,6 +39,7 @@ sudo nala install kitty
 ### Kitty Config
 
 ```shell
-cd ~/
-cp -r ~/.dotfiles/core/terminal/kitty ~/.config
+ln -sf ~/.dotfiles/core/terminal/kitty ~/.config/kitty
 ```
+
+> Or just run `bash ~/.dotfiles/automation/install/install.sh` to set up everything at once.

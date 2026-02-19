@@ -23,3 +23,11 @@ sudo wget https://dtinth.github.io/comic-mono-font/ComicMono-Bold.ttf
 
 fc-cache -fv
 ```
+
+## Link config
+
+```shell
+ln -sf ~/.dotfiles/development/vscode/vscode/settings.json ~/.config/Code/User/settings.json
+```
+
+> Or just run `bash ~/.dotfiles/automation/install/install.sh` to set up everything at once.
