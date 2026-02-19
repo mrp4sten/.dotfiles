@@ -289,3 +289,343 @@ Instead, every time you start a new project:
 - Use `pyenv` to pin Python versions per project (`.python-version` file).
 - Use `poetry` or `uv` for new projects instead of bare `pip` + `requirements.txt`.
 - `ruff` + `mypy` + `pytest` is a solid base for any serious project.
+
+---
+
+## 12. Neovim (LazyVim) — Python + Django Setup
+
+> This section assumes you're using the LazyVim-based Neovim config at `~/.dotfiles/core/editor/nvim/`.
+> All plugin specs go into `lua/plugins/` as individual files.
+
+---
+
+### 12.1 LazyVim Extras — Enable via `:LazyExtras`
+
+LazyVim ships first-class extras for Python. Enable them inside Neovim:
+
+```
+:LazyExtras
+```
+
+Enable these:
+- `lang.python` — pyright LSP + ruff + debugpy + venv selector, all pre-wired
+
+That single extra gives you:
+- **pyright** — LSP (hover, go-to-def, type checking)
+- **ruff-lsp** — linting + formatting via ruff
+- **debugpy** — Python debugger (DAP)
+- **nvim-dap-python** — DAP adapter configured for Python
+- **venv-selector.nvim** — auto-detects and switches `.venv` per project
+
+> Alternatively, add it to your `lazyvim.json` under `"extras"`:
+>
+> ```json
+> {
+>   "extras": [
+>     "lang.python"
+>   ]
+> }
+> ```
+
+---
+
+### 12.2 Mason — Install LSP servers and tools
+
+Inside Neovim run `:Mason` and install:
+
+| Tool | Role |
+|---|---|
+| `pyright` | LSP — type checking, IntelliSense |
+| `ruff` | Linter + formatter (replaces flake8, isort, black) |
+| `debugpy` | Python DAP debugger |
+| `mypy` | Static type checker (optional, pyright covers most of this) |
+| `djlint` | Django template linter + formatter |
+
+Or install via Mason CLI (`:MasonInstall <name>`):
+
+```
+:MasonInstall pyright ruff debugpy djlint
+```
+
+---
+
+### 12.3 Plugin — venv-selector.nvim
+
+Auto-detects your virtual environment per project. Critical for correct LSP behavior.
+
+Create `lua/plugins/python.lua`:
+
+```lua
+-- lua/plugins/python.lua
+return {
+  -- Virtual environment selector
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-telescope/telescope.nvim",
+    },
+    branch = "regexp",
+    opts = {
+      settings = {
+        search = {
+          -- auto-find venvs in project root and ~/.virtualenvs
+          venvs_path = vim.fn.expand("~/"),
+        },
+      },
+    },
+    keys = {
+      { "<leader>cv", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv" },
+      { "<leader>cV", "<cmd>VenvSelectCached<cr>", desc = "Select Cached VirtualEnv" },
+    },
+  },
+}
+```
+
+> After selecting a venv with `<leader>cv`, pyright auto-restarts with the correct interpreter.
+> Works perfectly with `poetry`, `uv venv`, and plain `python -m venv .venv`.
+
+---
+
+### 12.4 Plugin — Django templates (syntax + filetype)
+
+LazyVim's treesitter doesn't cover Django templates out of the box. Add this:
+
+Create or add to `lua/plugins/python.lua`:
+
+```lua
+-- Add inside the return {} table in lua/plugins/python.lua
+{
+  -- Django template syntax highlighting
+  "Glench/Vim-Jinja2-Syntax",
+  ft = { "html", "jinja", "htmldjango" },
+},
+
+-- Treesitter: add htmldjango grammar
+{
+  "nvim-treesitter/nvim-treesitter",
+  opts = function(_, opts)
+    opts.ensure_installed = opts.ensure_installed or {}
+    vim.list_extend(opts.ensure_installed, {
+      "python",
+      "htmldjango",
+      "html",
+      "toml",        -- pyproject.toml
+    })
+    return opts
+  end,
+},
+```
+
+---
+
+### 12.5 Filetype detection — Django templates
+
+Add to `lua/config/autocmds.lua` so Neovim correctly identifies Django templates:
+
+```lua
+-- lua/config/autocmds.lua
+vim.filetype.add({
+  pattern = {
+    -- Treat *.html inside templates/ dirs as htmldjango
+    [".*templates/.*%.html"] = "htmldjango",
+    [".*templates/.*%.txt"] = "htmldjango",
+  },
+})
+```
+
+> Without this, Neovim treats your Django templates as plain HTML — you lose
+> `{% %}` / `{{ }}` syntax highlighting and djlint formatting.
+
+---
+
+### 12.6 LSP — pyright tuned for Django projects
+
+Add to `lua/plugins/python.lua` to tune pyright for Django's dynamic patterns:
+
+```lua
+{
+  "neovim/nvim-lspconfig",
+  opts = {
+    servers = {
+      pyright = {
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "basic",       -- "off" | "basic" | "strict"
+              autoImportCompletions = true,
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = "workspace",
+            },
+          },
+        },
+      },
+    },
+  },
+},
+```
+
+> `typeCheckingMode = "basic"` is the sweet spot for Django — strict mode will
+> yell about Django's metaclass magic and you'll spend more time silencing errors
+> than writing code.
+
+---
+
+### 12.7 Formatter — ruff as the single formatter
+
+If you enabled `lang.python` via LazyExtras, ruff is already wired in. To make it
+the explicit default formatter for Python:
+
+```lua
+-- Add to lua/plugins/python.lua
+{
+  "stevearc/conform.nvim",
+  opts = function(_, opts)
+    opts.formatters_by_ft = opts.formatters_by_ft or {}
+    opts.formatters_by_ft.python = { "ruff_format" }
+    opts.formatters_by_ft.htmldjango = { "djlint" }
+    return opts
+  end,
+},
+```
+
+---
+
+### 12.8 Debugging — DAP for Django
+
+`debugpy` + `nvim-dap` let you set breakpoints and step through Django code inside Neovim.
+If `lang.python` extra is enabled, DAP is mostly pre-configured. Just add a launch config.
+
+Create `.vscode/launch.json` in your Django project root (nvim-dap reads this):
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Django",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/manage.py",
+      "args": ["runserver", "--noreload"],
+      "django": true,
+      "justMyCode": true
+    }
+  ]
+}
+```
+
+Then inside Neovim:
+- `<leader>db` — toggle breakpoint
+- `<leader>dc` — start / continue debugger
+- `<leader>du` — open DAP UI
+
+---
+
+### 12.9 Complete `lua/plugins/python.lua`
+
+Full consolidated file — drop this into your config:
+
+```lua
+-- lua/plugins/python.lua
+-- Python + Django setup for LazyVim
+-- Assumes lang.python extra is enabled via :LazyExtras
+
+return {
+  -- Virtual environment selector
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-telescope/telescope.nvim",
+    },
+    branch = "regexp",
+    opts = {
+      settings = {
+        search = {
+          venvs_path = vim.fn.expand("~/"),
+        },
+      },
+    },
+    keys = {
+      { "<leader>cv", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv" },
+      { "<leader>cV", "<cmd>VenvSelectCached<cr>", desc = "Select Cached VirtualEnv" },
+    },
+  },
+
+  -- Django template syntax
+  {
+    "Glench/Vim-Jinja2-Syntax",
+    ft = { "html", "jinja", "htmldjango" },
+  },
+
+  -- Treesitter grammars
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, {
+        "python",
+        "htmldjango",
+        "html",
+        "toml",
+      })
+      return opts
+    end,
+  },
+
+  -- pyright tuned for Django
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                typeCheckingMode = "basic",
+                autoImportCompletions = true,
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  -- ruff as formatter, djlint for templates
+  {
+    "stevearc/conform.nvim",
+    opts = function(_, opts)
+      opts.formatters_by_ft = opts.formatters_by_ft or {}
+      opts.formatters_by_ft.python = { "ruff_format" }
+      opts.formatters_by_ft.htmldjango = { "djlint" }
+      return opts
+    end,
+  },
+}
+```
+
+---
+
+### 12.10 Summary — what you get
+
+| Feature | Tool |
+|---|---|
+| LSP (IntelliSense, go-to-def, hover) | `pyright` via Mason |
+| Linting | `ruff` (replaces flake8, isort, pyupgrade) |
+| Formatting — Python | `ruff_format` via conform.nvim |
+| Formatting — Django templates | `djlint` via conform.nvim |
+| Syntax highlight — Python | treesitter `python` grammar |
+| Syntax highlight — Django templates | treesitter `htmldjango` + Vim-Jinja2-Syntax |
+| Virtual env switching | `venv-selector.nvim` (`<leader>cv`) |
+| Debugging | `debugpy` + `nvim-dap` (`<leader>db`, `<leader>dc`) |
+| DAP UI | `nvim-dap-ui` (included in `lang.python` extra) |
+
+> **Quick start:** Enable `lang.python` via `:LazyExtras`, drop `lua/plugins/python.lua`
+> into your config, run `:MasonInstall pyright ruff debugpy djlint`, and add the
+> filetype autocmd. That's it.

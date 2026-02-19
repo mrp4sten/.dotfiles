@@ -19,11 +19,19 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "[groovy]": {
+    "editor.formatOnSave": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[java]": {
-    "editor.defaultFormatter": "redhat.java"
+    "editor.defaultFormatter": "redhat.java",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
   },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
@@ -92,25 +100,32 @@
   "git.openRepositoryInParentFolders": "always",
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "gradle.java.home": "~/.sdkman/candidates/java/current",
   "http.systemCertificatesNode": true,
   "java.compile.nullAnalysis.mode": "automatic",
   "java.configuration.runtimes": [
     {
       "name": "JavaSE-1.8",
-      "path": "~/.sdkman/candidates/java/8.0.422-tem"
-    },
-    {
-      "name": "JavaSE-11",
-      "path": "~/.sdkman/candidates/java/11.0.24-tem"
+      "path": "~/.sdkman/candidates/java/8.0.482-tem"
     },
     {
       "name": "JavaSE-17",
-      "path": "~/.sdkman/candidates/java/17.0.12-tem"
+      "path": "~/.sdkman/candidates/java/17.0.18-tem"
+    },
+    {
+      "name": "JavaSE-21",
+      "path": "~/.sdkman/candidates/java/21.0.10-tem"
+    },
+    {
+      "default": true,
+      "name": "JavaSE-25",
+      "path": "~/.sdkman/candidates/java/25.0.2-tem"
     }
   ],
   "java.configuration.updateBuildConfiguration": "interactive",
   "java.debug.settings.onBuildFailureProceed": true,
   "java.import.gradle.home": "~/.sdkman/candidates/gradle/8.11.1",
+  "java.jdt.ls.java.home": "${env:HOME}/.sdkman/candidates/java/current",
   // Testing
   "java.test.config": {
     "vmArgs": [

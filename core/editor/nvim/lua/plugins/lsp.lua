@@ -15,6 +15,10 @@ return {
         "regex",
         "vim",
         "yaml",
+        -- JVM stack (Groovy / Grails / Java)
+        "groovy",
+        "java",
+        "xml",
       },
     },
   },

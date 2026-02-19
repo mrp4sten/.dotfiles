@@ -50,3 +50,24 @@ alias dprunea='docker system prune -a --volumes -f'
 
 # Stats
 alias dstats='docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}"'
+
+# SDKMAN!
+alias sdkl='sdk list'
+alias sdku='sdk use'
+alias sdki='sdk install'
+alias sdkc='sdk current'
+alias sdkenv='sdk env'
+
+# Grails
+alias gr='grails run-app'
+alias gs='grails shell'
+alias gt='grails test-app'
+alias gw='./gradlew'
+alias gwb='./gradlew build'
+alias gwt='./gradlew test'
+alias gwc='./gradlew clean'
+alias gwbr='./gradlew bootRun'
+alias gwbd='./gradlew build -x test'
+
+# Quick Groovy REPL
+alias gsh='groovysh'
