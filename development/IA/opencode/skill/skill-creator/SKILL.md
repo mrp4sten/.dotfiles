@@ -5,8 +5,10 @@ description: >
   Trigger: When user asks to create a new skill, add agent instructions, or document patterns for AI.
 license: Apache-2.0
 metadata:
-  author: gentleman-programming
+  author: mrp4sten
   version: "1.0"
+  scope: [root]
+  auto_invoke: "Creating new skills"
 allowed-tools: Read, Edit, Write, Glob, Grep, Bash, WebFetch, WebSearch, Task
 ---
 
@@ -49,8 +51,10 @@ description: >
   Trigger: {When the AI should load this skill}.
 license: Apache-2.0
 metadata:
-  author: gentleman-programming
+  author: mrp4sten
   version: "1.0"
+  scope: [root]
+  auto_invoke: "Creating new skills"
 ---
 
 ## When to Use
@@ -84,8 +88,8 @@ metadata:
 | Type | Pattern | Examples |
 |------|---------|----------|
 | Generic skill | `{technology}` | `pytest`, `playwright`, `typescript` |
-| Prowler-specific | `prowler-{component}` | `prowler-api`, `prowler-ui`, `prowler-sdk-check` |
-| Testing skill | `prowler-test-{component}` | `prowler-test-sdk`, `prowler-test-api` |
+| Project-specific | `{project}-{component}` | `myapp-api`, `myapp-ui` |
+| Testing skill | `test-{component}` | `test-sdk`, `test-api` |
 | Workflow skill | `{action}-{target}` | `skill-creator`, `jira-task` |
 
 ---
@@ -104,12 +108,12 @@ Link to external guides?    → references/ (with local path)
 
 ---
 
-## Decision: Prowler-Specific vs Generic
+## Decision: Project-Specific vs Generic
 
 ```
-Patterns apply to ANY project?     → Generic skill (e.g., pytest, typescript)
-Patterns are Prowler-specific?     → prowler-{name} skill
-Generic skill needs Prowler info?  → Add references/ pointing to Prowler docs
+Patterns apply to ANY project?      → Generic skill (e.g., pytest, typescript)
+Patterns are project-specific?      → {project}-{name} skill
+Generic skill needs project info?   → Add references/ pointing to project docs
 ```
 
 ---
@@ -120,9 +124,11 @@ Generic skill needs Prowler info?  → Add references/ pointing to Prowler docs
 |-------|----------|-------------|
 | `name` | Yes | Skill identifier (lowercase, hyphens) |
 | `description` | Yes | What + Trigger in one block |
-| `license` | Yes | Always `Apache-2.0` for Prowler |
-| `metadata.author` | Yes | `gentleman-programming` |
+| `license` | Yes | `Apache-2.0` or `MIT` |
+| `metadata.author` | Yes | Your username (e.g., `mrp4sten`) |
 | `metadata.version` | Yes | Semantic version as string |
+| `metadata.scope` | Yes | Where skill applies (`root`, `ui`, `api`, etc.) |
+| `metadata.auto_invoke` | Yes | When to auto-load (e.g., "Creating APIs") |
 
 ---
 

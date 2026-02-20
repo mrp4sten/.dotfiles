@@ -5,8 +5,11 @@ description: >
   Trigger: {When the AI should load this skill - be specific}.
 license: Apache-2.0
 metadata:
-  author: gentleman-programming
+  author: mrp4sten
   version: "1.0"
+  scope: [root]
+  auto_invoke: "{Action phrase that triggers this skill}"
+allowed-tools: Read, Edit, Write, Bash
 ---
 
 ## When to Use
