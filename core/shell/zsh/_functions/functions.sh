@@ -54,3 +54,17 @@ desktop_craft() {
   local DESKTOP_CRAFT=~/.dotfiles/automation/install/desktop-craft.sh
   bash "${DESKTOP_CRAFT}" "$@"
 }
+
+# Setup AI skills in a project
+# Usage: skills_setup [--path /path/to/project] [--all | --claude | --gemini | --codex | --copilot]
+skills_setup() {
+  local SKILLS_SETUP=~/.dotfiles/development/IA/opencode/skill/setup.sh
+  bash "${SKILLS_SETUP}" "$@"
+}
+
+# Sync skill metadata to AGENTS.md Auto-invoke sections
+# Usage: skills_sync [--path /path/to/project] [--dry-run] [--scope root|ui|api|sdk|mcp_server]
+skills_sync() {
+  local SKILLS_SYNC=~/.dotfiles/development/IA/opencode/skill/sync.sh
+  bash "${SKILLS_SYNC}" "$@"
+}
