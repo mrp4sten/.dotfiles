@@ -67,3 +67,6 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # ghcup-env 
 [ -f "/home/mrp4sten/.ghcup/env" ] && . "/home/mrp4sten/.ghcup/env"
+
+# Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
