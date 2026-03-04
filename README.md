@@ -48,7 +48,9 @@ That's it. Two scripts, done.
 │       └── kitty/                 # Kitty terminal config + color schemes
 ├── development/
 │   ├── git/lazygit/               # Lazygit config
-│   ├── IA/opencode/               # opencode AI assistant config + skills
+│   ├── IA/
+│   │   ├── agents-teams-lite/     # Agent orchestration framework (git submodule)
+│   │   └── opencode/              # opencode AI assistant config
 │   ├── languages/{java,node,python}/  # Language tooling guides
 │   └── vscode/                    # VSCode settings.json
 ├── docs/                          # Documentation
@@ -80,7 +82,7 @@ What each flag installs:
 |---|---|
 | `--core` | zsh, oh-my-zsh + plugins, oh-my-bash, starship |
 | `--langs` | nvm + Node LTS, pyenv + build deps, sdkman + Java 21 |
-| `--devtools` | lazygit, fzf, atuin, lsd, bat + catppuccin themes, eza, gum, yazi, fastfetch, opencode |
+| `--devtools` | lazygit, fzf, atuin, lsd, bat + catppuccin themes, eza, gum, yazi, fastfetch, opencode, Homebrew, engram |
 | `--apps` | Neovim AppImage, stylua, kitty, tmux + TPM, Nerd Fonts (Hack, Cascadia, Fantasque, Martian) |
 
 ### `install.sh` — Link configs
@@ -186,9 +188,15 @@ Detailed setup guides:
 
 See [`development/git/lazygit/README.md`](development/git/lazygit/README.md)
 
-### opencode (AI assistant)
+### AI Tools
 
-Custom agent config + skills. See [`development/IA/opencode/README.md`](development/IA/opencode/README.md)
+AI-powered development tools and agent orchestration:
+
+- **opencode** — AI coding assistant in the terminal
+- **Agent Teams Lite** — Agent orchestration framework
+- **Engram** — Persistent memory for AI agents
+
+See [`development/IA/README.md`](development/IA/README.md) for full setup and usage.
 
 ### VSCode
 
@@ -251,6 +259,7 @@ nmcli con up "Wired connection 1"
 - `tmux` — terminal multiplexer
 - `ncdu` — disk usage analyzer
 - `opencode` — AI coding assistant in the terminal
+- `engram` — Persistent memory for AI agents
 
 ---
 

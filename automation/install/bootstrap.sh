@@ -46,7 +46,7 @@ parse_args() {
         echo ""
         echo "  --core       Shell (zsh/bash), oh-my-zsh, oh-my-bash, starship, nala"
         echo "  --langs      Language runtimes: nvm (Node), pyenv (Python), sdkman (Java)"
-        echo "  --devtools   CLI dev tools: lazygit, fzf, atuin, lsd, bat, eza, yazi, gum"
+        echo "  --devtools   CLI dev tools: lazygit, fzf, atuin, lsd, bat, eza, yazi, gum, opencode, Homebrew, engram"
         echo "  --apps       Terminal apps: Neovim AppImage, kitty, ghostty, pass"
         echo ""
         echo "  No flags = install everything"
@@ -445,6 +445,35 @@ install_devtools() {
     fi
   else
     log_warn "Node not found — skipping opencode-anthropic-auth (install --langs first)"
+  fi
+
+  # ── Homebrew ──────────────────────────────
+  if is_installed brew; then
+    log_skip "Homebrew"
+  else
+    log_step "Installing Homebrew"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    # Add Homebrew to PATH for current session
+    if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
+    
+    log_ok "Homebrew installed"
+    log_warn "Add Homebrew to PATH: eval \"\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\""
+  fi
+
+  # ── Engram ────────────────────────────────
+  if is_installed engram; then
+    log_skip "Engram"
+  else
+    if is_installed brew; then
+      log_step "Installing Engram via Homebrew"
+      brew install gentleman-programming/tap/engram
+      log_ok "Engram installed"
+    else
+      log_warn "Homebrew not found — skipping Engram (install Homebrew first)"
+    fi
   fi
 }
 

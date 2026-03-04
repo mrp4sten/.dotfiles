@@ -7,3 +7,6 @@
 [submodule "themes/GTK/external/aerothemeplasma"]
 	path = themes/GTK/external/aerothemeplasma
 	url = https://gitgud.io/wackyideas/aerothemeplasma.git
+[submodule "development/IA/agents-teams-lite"]
+	path = development/IA/agents-teams-lite
+	url = git@github.com:Gentleman-Programming/agent-teams-lite.git

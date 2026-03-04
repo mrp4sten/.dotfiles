@@ -164,85 +164,16 @@ To switch agents inside a session, use the opencode UI agent selector.
 
 ---
 
-## Available Skills
-
-Skills are loaded automatically when their trigger keywords appear in the conversation.
-
-| Skill | Description |
-|---|---|
-| `ai-sdk-5` | Vercel AI SDK v5 patterns |
-| `chained-pr` | Creating stacked / chained pull requests |
-| `django-drf` | Django REST Framework best practices |
-| `jira-epic` | Writing Jira epics |
-| `jira-task` | Writing Jira tasks |
-| `nextjs-15` | Next.js 15 patterns |
-| `notion-adr` | Writing Architecture Decision Records in Notion |
-| `notion-prd` | Writing Product Requirements Documents in Notion |
-| `notion-product-brain` | Notion product brain structure |
-| `notion-rfc` | Writing RFCs in Notion |
-| `notion-to-jira` | Converting Notion docs to Jira issues |
-| `playwright` | Playwright E2E testing patterns |
-| `pr-review` | Pull request review guidelines |
-| `pytest` | pytest testing patterns |
-| `react-19` | React 19 patterns and best practices |
-| `sdd-apply` | Spec-Driven Development — apply phase |
-| `sdd-archive` | Spec-Driven Development — archive phase |
-| `sdd-design` | Spec-Driven Development — design phase |
-| `sdd-explore` | Spec-Driven Development — explore phase |
-| `sdd-init` | Spec-Driven Development — init phase |
-| `sdd-propose` | Spec-Driven Development — propose phase |
-| `sdd-spec` | Spec-Driven Development — spec phase |
-| `sdd-tasks` | Spec-Driven Development — tasks phase |
-| `sdd-verify` | Spec-Driven Development — verify phase |
-| `skill-creator` | Creating new AI agent skills |
-| `tailwind-4` | Tailwind CSS v4 patterns |
-| `transcript-processor` | Processing and formatting transcripts |
-| `typescript` | TypeScript strict patterns and best practices |
-| `vitest` | Vitest unit testing patterns |
-| `zod-4` | Zod v4 schema validation patterns |
-| `zustand-5` | Zustand v5 state management patterns |
-
----
-
 ## Directory structure
 
 ```shell
 opencode/
 ├── opencode.json       # Main config (agents, MCP, permissions, theme)
-├── README.md           # This file
-└── skill/              # AI agent skills (auto-loaded by trigger keywords)
-    ├── ai-sdk-5/
-    ├── chained-pr/
-    ├── django-drf/
-    ├── jira-epic/
-    ├── jira-task/
-    ├── nextjs-15/
-    ├── notion-adr/
-    ├── notion-prd/
-    ├── notion-product-brain/
-    ├── notion-rfc/
-    ├── notion-to-jira/
-    ├── playwright/
-    ├── pr-review/
-    ├── pytest/
-    ├── react-19/
-    ├── sdd-apply/
-    ├── sdd-archive/
-    ├── sdd-design/
-    ├── sdd-explore/
-    ├── sdd-init/
-    ├── sdd-propose/
-    ├── sdd-spec/
-    ├── sdd-tasks/
-    ├── sdd-verify/
-    ├── skill-creator/
-    ├── tailwind-4/
-    ├── transcript-processor/
-    ├── typescript/
-    ├── vitest/
-    ├── zod-4/
-    └── zustand-5/
+└── README.md           # This file
 ```
+
+> **Note:** Skills and agent orchestration are now managed via **Agent Teams Lite**.
+> See [`../agents-teams-lite/README.md`](../agents-teams-lite/README.md) for details.
 
 ---
 
