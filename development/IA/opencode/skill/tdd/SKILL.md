@@ -1,14 +1,14 @@
 ---
 name: tdd
 description: >
-  Test-Driven Development workflow for ALL Prowler components (UI, SDK, API).
+  Test-Driven Development workflow for any project (UI, Backend, API).
   Trigger: ALWAYS when implementing features, fixing bugs, or refactoring - regardless of component.
   This is a MANDATORY workflow, not optional.
 license: Apache-2.0
 metadata:
-  author: prowler-cloud
-  version: "2.0"
-  scope: [root, ui, api, prowler]
+  author: mrp4sten
+  version: "3.0"
+  scope: [root]
   auto_invoke:
     - "Implementing feature"
     - "Fixing bug"

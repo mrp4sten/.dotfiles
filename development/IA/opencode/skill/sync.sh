@@ -192,38 +192,91 @@ select_project_interactive() {
     TARGET_PROJECT="$(cd "$TARGET_PROJECT" && pwd)"
 }
 
-# Map scope to AGENTS.md path (auto-detect project structure)
+# Discover all AGENTS.md and SUBAGENT files in the target project
+# Returns an associative array: scope -> file_path
+# 
+# Supported patterns:
+#   AGENTS.md (root)           -> scope: root
+#   SUBAGENT-{name}.md (root)  -> scope: {name}
+#   {dir}/SUBAGENT.md          -> scope: {dir}
+#   {dir}/AGENTS.md            -> scope: {dir}
+#
+# Example results:
+#   root       -> /path/to/project/AGENTS.md
+#   shell      -> /path/to/project/core/shell/SUBAGENT.md
+#   automation -> /path/to/project/automation/SUBAGENT.md
+#   ui         -> /path/to/project/ui/AGENTS.md
+discover_agent_files() {
+    declare -gA AGENT_FILES
+    
+    # Find root AGENTS.md
+    if [ -f "$TARGET_PROJECT/AGENTS.md" ]; then
+        AGENT_FILES["root"]="$TARGET_PROJECT/AGENTS.md"
+    fi
+    
+    # Find all SUBAGENT-*.md files in root (with explicit name suffix)
+    while IFS= read -r subagent_file; do
+        # Only process files in project root, not subdirectories
+        local file_dir
+        file_dir=$(dirname "$subagent_file")
+        [ "$file_dir" != "$TARGET_PROJECT" ] && continue
+        
+        local filename
+        filename=$(basename "$subagent_file")
+        
+        # Extract scope from SUBAGENT-{scope}.md
+        if [[ "$filename" =~ ^SUBAGENT-(.+)\.md$ ]]; then
+            local scope="${BASH_REMATCH[1]}"
+            AGENT_FILES["$scope"]="$subagent_file"
+        fi
+    done < <(find "$TARGET_PROJECT" -type f -name "SUBAGENT-*.md" 2>/dev/null)
+    
+    # Find all SUBAGENT.md files in subdirectories (no suffix)
+    while IFS= read -r subagent_file; do
+        # Skip root SUBAGENT.md if it exists
+        [ "$subagent_file" = "$TARGET_PROJECT/SUBAGENT.md" ] && continue
+        
+        # Get relative path from project root
+        local rel_path="${subagent_file#$TARGET_PROJECT/}"
+        local parent_dir
+        parent_dir=$(dirname "$rel_path")
+        
+        # Use directory path as scope (e.g., "core/shell" or "automation")
+        # Remove leading/trailing slashes
+        parent_dir="${parent_dir#/}"
+        parent_dir="${parent_dir%/}"
+        
+        # Convert path to scope name (replace / with -)
+        local scope="${parent_dir//\//-}"
+        
+        AGENT_FILES["$scope"]="$subagent_file"
+    done < <(find "$TARGET_PROJECT" -mindepth 2 -type f -name "SUBAGENT.md" 2>/dev/null)
+    
+    # Find component-level AGENTS.md files (ui, api, sdk, etc.)
+    while IFS= read -r agents_file; do
+        # Skip root AGENTS.md (already handled)
+        [ "$agents_file" = "$TARGET_PROJECT/AGENTS.md" ] && continue
+        
+        # Get relative path from project root
+        local rel_path="${agents_file#$TARGET_PROJECT/}"
+        local parent_dir
+        parent_dir=$(dirname "$rel_path")
+        
+        # Use directory name as scope
+        parent_dir="${parent_dir#/}"
+        parent_dir="${parent_dir%/}"
+        
+        # Convert path to scope name (replace / with -)
+        local scope="${parent_dir//\//-}"
+        
+        AGENT_FILES["$scope"]="$agents_file"
+    done < <(find "$TARGET_PROJECT" -mindepth 2 -type f -name "AGENTS.md" 2>/dev/null)
+}
+
+# Map scope to AGENTS.md path (uses discovered files)
 get_agents_path() {
     local scope="$1"
-    local candidate=""
-    
-    case "$scope" in
-        root)
-            candidate="$TARGET_PROJECT/AGENTS.md"
-            ;;
-        ui)
-            candidate="$TARGET_PROJECT/ui/AGENTS.md"
-            ;;
-        api)
-            candidate="$TARGET_PROJECT/api/AGENTS.md"
-            ;;
-        sdk)
-            # Try prowler/ first, fallback to sdk/
-            if [ -f "$TARGET_PROJECT/prowler/AGENTS.md" ]; then
-                candidate="$TARGET_PROJECT/prowler/AGENTS.md"
-            elif [ -f "$TARGET_PROJECT/sdk/AGENTS.md" ]; then
-                candidate="$TARGET_PROJECT/sdk/AGENTS.md"
-            fi
-            ;;
-        mcp_server)
-            candidate="$TARGET_PROJECT/mcp_server/AGENTS.md"
-            ;;
-    esac
-    
-    # Only return if file exists
-    if [ -n "$candidate" ] && [ -f "$candidate" ]; then
-        echo "$candidate"
-    fi
+    echo "${AGENT_FILES[$scope]:-}"
 }
 
 # Extract YAML frontmatter field using awk
@@ -306,6 +359,52 @@ extract_metadata() {
     ' "$file"
 }
 
+# Generate Available Skills section (all skills with description + URL)
+generate_available_skills_section() {
+    local section="## Available Skills
+
+Use these skills for detailed patterns on-demand:
+
+| Skill | Description | URL |
+|-------|-------------|-----|"
+
+    local rows=()
+    
+    # Collect all skills
+    while IFS= read -r skill_file; do
+        [ -f "$skill_file" ] || continue
+        
+        local skill_name
+        local skill_desc
+        local skill_path
+        
+        skill_name=$(extract_field "$skill_file" "name")
+        skill_desc=$(extract_field "$skill_file" "description")
+        
+        # Make path relative to dotfiles
+        skill_path=$(echo "$skill_file" | sed "s|$HOME|~|")
+        
+        [ -z "$skill_name" ] && continue
+        [ -z "$skill_desc" ] && skill_desc="No description"
+        
+        # Truncate long descriptions
+        if [ ${#skill_desc} -gt 80 ]; then
+            skill_desc="${skill_desc:0:77}..."
+        fi
+        
+        rows+=("$skill_name	$skill_desc	$skill_path")
+    done < <(find "$SKILLS_DIR" -mindepth 2 -maxdepth 2 -name SKILL.md -print 2>/dev/null | sort)
+    
+    # Sort rows by skill name
+    while IFS=$'\t' read -r skill_name skill_desc skill_path; do
+        [ -z "$skill_name" ] && continue
+        section="$section
+| \`$skill_name\` | $skill_desc | [SKILL.md]($skill_path) |"
+    done < <(printf "%s\n" "${rows[@]}" | LC_ALL=C sort -t $'\t' -k1,1)
+    
+    echo "$section"
+}
+
 # =============================================================================
 # PARSE ARGUMENTS
 # =============================================================================
@@ -362,6 +461,20 @@ fi
 echo -e "${CYAN}Target project: $TARGET_PROJECT${NC}"
 echo ""
 
+# Discover all agent files in the target project
+discover_agent_files
+
+if [ ${#AGENT_FILES[@]} -eq 0 ]; then
+    echo -e "${RED}No AGENTS.md or SUBAGENT-*.md files found in $TARGET_PROJECT${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}Discovered ${#AGENT_FILES[@]} agent file(s):${NC}"
+for scope in "${!AGENT_FILES[@]}"; do
+    echo -e "  ${BLUE}$scope${NC} -> ${AGENT_FILES[$scope]}"
+done
+echo ""
+
 # Collect skills by scope
 declare -A SCOPE_SKILLS
 
@@ -392,6 +505,81 @@ while IFS= read -r skill_file; do
     done
 done < <(find "$SKILLS_DIR" -mindepth 2 -maxdepth 2 -name SKILL.md -print 2>/dev/null | sort)
 
+# =============================================================================
+# STEP 1: Insert/Update "Available Skills" section in root AGENTS.md ONLY
+# =============================================================================
+
+if [ -n "${AGENT_FILES[root]}" ]; then
+    root_agents="${AGENT_FILES[root]}"
+    
+    echo -e "${BLUE}Step 1: Updating Available Skills in root AGENTS.md${NC}"
+    echo -e "${BLUE}Processing: root -> $(basename "$root_agents")${NC}"
+    
+    available_skills_section=$(generate_available_skills_section)
+    
+    if $DRY_RUN; then
+        echo -e "${YELLOW}[DRY RUN] Would update $root_agents with Available Skills section${NC}"
+        echo "$available_skills_section"
+        echo ""
+    else
+        section_file=$(mktemp)
+        echo "$available_skills_section" > "$section_file"
+        
+        if grep -q "^## Available Skills" "$root_agents"; then
+            # Replace existing section (up to next ## heading or ---)
+            awk '
+                /^## Available Skills/ {
+                    while ((getline line < "'"$section_file"'") > 0) print line
+                    close("'"$section_file"'")
+                    skip = 1
+                    next
+                }
+                skip && /^(---|## )/ {
+                    skip = 0
+                    print ""
+                }
+                !skip { print }
+            ' "$root_agents" > "$root_agents.tmp"
+            mv "$root_agents.tmp" "$root_agents"
+            echo -e "${GREEN}  ✓ Updated Available Skills section${NC}"
+        else
+            # Insert at the beginning after YAML frontmatter (if present) or at top
+            awk '
+                BEGIN { inserted = 0 }
+                /^---$/ && NR == 1 { in_frontmatter = 1; print; next }
+                /^---$/ && in_frontmatter { 
+                    print
+                    print ""
+                    while ((getline line < "'"$section_file"'") > 0) print line
+                    close("'"$section_file"'")
+                    print ""
+                    inserted = 1
+                    next
+                }
+                NR == 1 && !inserted {
+                    while ((getline line < "'"$section_file"'") > 0) print line
+                    close("'"$section_file"'")
+                    print ""
+                    inserted = 1
+                }
+                { print }
+            ' "$root_agents" > "$root_agents.tmp"
+            mv "$root_agents.tmp" "$root_agents"
+            echo -e "${GREEN}  ✓ Inserted Available Skills section${NC}"
+        fi
+        
+        rm -f "$section_file"
+    fi
+    
+    echo ""
+fi
+
+# =============================================================================
+# STEP 2: Insert/Update "Auto-invoke Skills" section in ALL discovered files
+# =============================================================================
+
+echo -e "${BLUE}Step 2: Updating Auto-invoke Skills sections${NC}"
+
 # Generate Auto-invoke section for each scope
 scopes_sorted=()
 while IFS= read -r scope; do
@@ -403,12 +591,12 @@ synced_count=0
 for scope in "${scopes_sorted[@]}"; do
     agents_path=$(get_agents_path "$scope")
 
+    # Skip scopes that don't exist in this project (silent)
     if [ -z "$agents_path" ]; then
-        echo -e "${YELLOW}Warning: No AGENTS.md found for scope '$scope' in $TARGET_PROJECT${NC}"
         continue
     fi
 
-    echo -e "${BLUE}Processing: $scope -> $(basename "$(dirname "$agents_path")")/AGENTS.md${NC}"
+    echo -e "${BLUE}Processing: $scope -> $(basename "$agents_path")${NC}"
 
     # Build the Auto-invoke table
     auto_invoke_section="### Auto-invoke Skills
@@ -466,8 +654,47 @@ When performing these actions, ALWAYS invoke the corresponding skill FIRST:
             mv "$agents_path.tmp" "$agents_path"
             echo -e "${GREEN}  ✓ Updated Auto-invoke section${NC}"
         else
-            # Insert after Skills Reference blockquote
+            # Insert after Available Skills section or any ## heading
+            # Strategy:
+            # 1. If ## Available Skills exists, insert right after the FULL table
+            # 2. Otherwise, insert after any >.*SKILL.md pattern (old format)
+            # 3. Otherwise, insert at the beginning
             awk '
+                BEGIN { inserted = 0; in_table = 0 }
+                
+                # Detect Available Skills section start
+                /^## Available Skills/ { 
+                    in_available_skills = 1
+                    print
+                    next
+                }
+                
+                # Detect table start (header separator line)
+                in_available_skills && /^\|[-:| ]+\|$/ {
+                    in_table = 1
+                    print
+                    next
+                }
+                
+                # After table ends (first blank line after table rows)
+                in_available_skills && in_table && /^$/ && !inserted {
+                    print
+                    while ((getline line < "'"$section_file"'") > 0) print line
+                    close("'"$section_file"'")
+                    print ""
+                    inserted = 1
+                    in_available_skills = 0
+                    in_table = 0
+                    next
+                }
+                
+                # Stop tracking if we hit another ## heading without inserting
+                /^## / && in_available_skills && !inserted {
+                    in_available_skills = 0
+                    in_table = 0
+                }
+                
+                # Fallback: after blockquote pattern (old format)
                 /^>.*SKILL\.md\)$/ && !inserted {
                     print
                     getline
@@ -480,6 +707,7 @@ When performing these actions, ALWAYS invoke the corresponding skill FIRST:
                         next
                     }
                 }
+                
                 { print }
             ' "$agents_path" > "$agents_path.tmp"
             mv "$agents_path.tmp" "$agents_path"

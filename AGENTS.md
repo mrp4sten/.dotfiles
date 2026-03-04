@@ -1,6 +1,92 @@
-# AGENTS.md — Dotfiles Repository Guide
+## Available Skills
 
-This file provides guidance for agentic coding agents working in this repository.
+Use these skills for detailed patterns on-demand:
+
+| Skill | Description | URL |
+|-------|-------------|-----|
+| `ai-sdk-5` | Vercel AI SDK 5 patterns. Trigger: When building AI chat features - breaking ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/ai-sdk-5/SKILL.md) |
+| `chained-pr` | Creates GitHub PRs following the Chained PRs workflow pattern. Trigger: When ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/chained-pr/SKILL.md) |
+| `clean-code` | Clean Code principles for readable, maintainable software. Trigger: When writ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/clean-code/SKILL.md) |
+| `conventional-commits` | Conventional Commits specification and Keep a Changelog best practices. Trigg... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/conventional-commits/SKILL.md) |
+| `django-drf` | Django REST Framework patterns. Trigger: When building REST APIs with Django ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/django-drf/SKILL.md) |
+| `grails-5` | Grails 5 framework patterns and best practices. Trigger: When working with Gr... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/grails-5/SKILL.md) |
+| `grails-tdd` | Test-Driven Development workflow for Grails applications with Spock. Trigger:... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/grails-tdd/SKILL.md) |
+| `nextjs-15` | Next.js 15 App Router patterns. Trigger: When working with Next.js - routing,... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/nextjs-15/SKILL.md) |
+| `playwright` | Playwright E2E testing patterns. Trigger: When writing E2E tests - Page Objec... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/playwright/SKILL.md) |
+| `pr-review` | Reviews GitHub PRs and leaves human, direct comments. Trigger: When user asks... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/pr-review/SKILL.md) |
+| `pytest` | Pytest testing patterns for Python. Trigger: When writing Python tests - fixt... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/pytest/SKILL.md) |
+| `react-19` | React 19 patterns with React Compiler. Trigger: When writing React components... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/react-19/SKILL.md) |
+| `sdd-apply` | Implement tasks from the change, writing actual code following the specs and ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-apply/SKILL.md) |
+| `sdd-archive` | Sync delta specs to main specs and archive a completed change. Trigger: When ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-archive/SKILL.md) |
+| `sdd-design` | Create technical design document with architecture decisions and approach. Tr... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-design/SKILL.md) |
+| `sdd-explore` | Explore and investigate ideas before committing to a change. Trigger: When th... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-explore/SKILL.md) |
+| `sdd-init` | Bootstrap the openspec/ directory structure for Spec-Driven Development in an... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-init/SKILL.md) |
+| `sdd-propose` | Create a change proposal with intent, scope, and approach. Trigger: When the ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-propose/SKILL.md) |
+| `sdd-spec` | Write specifications with requirements and scenarios (delta specs for changes... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-spec/SKILL.md) |
+| `sdd-tasks` | Break down a change into an implementation task checklist. Trigger: When the ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-tasks/SKILL.md) |
+| `sdd-verify` | Validate that implementation matches specs, design, and tasks. Trigger: When ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/sdd-verify/SKILL.md) |
+| `security-first` | Security-first development practices (Shift-Left Security). Trigger: When han... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/security-first/SKILL.md) |
+| `skill-creator` | Creates new AI agent skills following the Agent Skills spec. Trigger: When us... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/skill-creator/SKILL.md) |
+| `skill-sync` | Syncs skill metadata to AGENTS.md Auto-invoke sections. Trigger: When updatin... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/skill-sync/SKILL.md) |
+| `solid` | SOLID principles for object-oriented design. Trigger: When designing classes,... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/solid/SKILL.md) |
+| `spock` | Spock testing framework for Groovy and Java applications. Trigger: When writi... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/spock/SKILL.md) |
+| `tailwind-4` | Tailwind CSS 4 patterns and best practices. Trigger: When styling with Tailwi... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/tailwind-4/SKILL.md) |
+| `tdd` | Test-Driven Development workflow for any project (UI, Backend, API). Trigger:... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/tdd/SKILL.md) |
+| `transcript-processor` | Processes meeting transcripts and generates structured output based on type. ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/transcript-processor/SKILL.md) |
+| `typescript` | TypeScript strict patterns and best practices. Trigger: When writing TypeScri... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/typescript/SKILL.md) |
+| `vitest` | Vitest testing patterns with React Testing Library. Trigger: When writing uni... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/vitest/SKILL.md) |
+| `zod-4` | Zod 4 schema validation patterns. Trigger: When using Zod for validation - br... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/zod-4/SKILL.md) |
+| `zustand-5` | Zustand 5 state management patterns. Trigger: When managing React state with ... | [SKILL.md](~/.dotfiles/development/IA/opencode/skill/zustand-5/SKILL.md) |
+
+### Auto-invoke Skills
+
+When performing these actions, ALWAYS invoke the corresponding skill FIRST:
+
+| Action | Skill |
+|--------|-------|
+| After creating/modifying a skill | `skill-sync` |
+| Building AI chat features with Vercel AI SDK | `ai-sdk-5` |
+| Building Django REST Framework APIs | `django-drf` |
+| Code review | `clean-code` |
+| Creating Grails controllers or services | `grails-5` |
+| Creating git commits | `conventional-commits` |
+| Creating new skills | `skill-creator` |
+| Creating test specifications | `spock` |
+| Creating validation schemas with Zod | `zod-4` |
+| Designing APIs or endpoints | `security-first` |
+| Designing GORM domain classes | `grails-5` |
+| Designing classes or interfaces | `solid` |
+| Fixing bug | `tdd` |
+| Fixing bugs in Grails applications | `grails-tdd` |
+| Handling user input or authentication | `security-first` |
+| Implementing feature | `tdd` |
+| Implementing features in Grails | `grails-tdd` |
+| Managing state with Zustand | `zustand-5` |
+| Mocking dependencies with Spock | `spock` |
+| Modifying component | `tdd` |
+| Preparing releases | `conventional-commits` |
+| Refactoring Grails code | `grails-tdd` |
+| Refactoring code | `tdd` |
+| Refactoring existing code | `clean-code` |
+| Refactoring object-oriented code | `solid` |
+| Regenerate AGENTS.md Auto-invoke tables (sync.sh) | `skill-sync` |
+| Reviewing GitHub Pull Requests | `pr-review` |
+| Reviewing class architecture | `solid` |
+| Storing sensitive data | `security-first` |
+| Styling with Tailwind CSS | `tailwind-4` |
+| Troubleshoot why a skill is missing from AGENTS.md auto-invoke | `skill-sync` |
+| Updating CHANGELOG.md | `conventional-commits` |
+| Working on task | `tdd` |
+| Working with Grails 5 applications | `grails-5` |
+| Working with Next.js App Router | `nextjs-15` |
+| Working with external dependencies | `security-first` |
+| Writing E2E tests with Playwright | `playwright` |
+| Writing Python tests with pytest | `pytest` |
+| Writing React components | `react-19` |
+| Writing Spock tests | `spock` |
+| Writing TypeScript code | `typescript` |
+| Writing new code | `clean-code` |
+| Writing unit tests with Vitest | `vitest` |
 
 ## Repository Overview
 

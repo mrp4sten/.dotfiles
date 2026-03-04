@@ -6,7 +6,9 @@ description: >
 license: Apache-2.0
 metadata:
   author: prowler-cloud
-  version: "1.0"
+  version: "1.1"
+  scope: [root]
+  auto_invoke: "Writing unit tests with Vitest"
 ---
 
 ## Test Structure (REQUIRED)

@@ -3,8 +3,7 @@
 
 # Clean everything (packages and metadata), and update the metadata
 clean() {
-  sudo dnf clean all
-  sudo dnf makecache
+  sudo nala autoclean && sudo nala autoremove
 }
 
 # Clean the old kernels installed in Fedora43
@@ -17,15 +16,15 @@ clean_kernels() {
   while IFS= read -r k; do
     kernels+=("$k")
   done < <(
-    rpm -q kernel-core \
-    | sed 's/^kernel-core-//' \
-    | sort -V -r
+    rpm -q kernel-core |
+      sed 's/^kernel-core-//' |
+      sort -V -r
   )
 
   local count=0
   for k in "${kernels[@]}"; do
     ((count++))
-    if (( count <= keep )); then
+    if ((count <= keep)); then
       continue
     fi
     if [[ "$k" == "$current" ]]; then
@@ -39,8 +38,6 @@ clean_kernels() {
       "kernel-modules-extra-$k"
   done
 }
-
-
 
 # Create config developer files (.gitignore, .prettierrc, .htmlhintrc, .stylelintrc, webpack.config.js, etc.)
 config_craft() {

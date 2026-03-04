@@ -6,7 +6,9 @@ description: >
 license: Apache-2.0
 metadata:
   author: gentleman-programming
-  version: "1.1"
+  version: "1.2"
+  scope: [root]
+  auto_invoke: "Writing E2E tests with Playwright"
 ---
 
 ## MCP Workflow (MANDATORY If Available)
