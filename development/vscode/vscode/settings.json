@@ -162,6 +162,7 @@
       "level": "off"
     }
   },
+  "terminal.fontLigatures": true,
   "terminal.integrated.automationProfile.linux": null,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.linux": "zsh",
@@ -170,6 +171,7 @@
   "terminal.integrated.persistentSessionScrollback": 10000,
   "window.customTitleBarVisibility": "auto",
   "window.menuBarVisibility": "toggle",
+  "window.zoomLevel": 3,
   "workbench.activityBar.location": "default",
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.editor.showTabs": "multiple",
