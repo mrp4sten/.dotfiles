@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # author: mrp4sten
 #
 # bootstrap.sh — Full dev environment installer
@@ -7,12 +7,12 @@
 # Safe to re-run: each installer checks if the tool already exists before acting.
 #
 # Usage:
-#   bash bootstrap.sh              # Install everything
-#   bash bootstrap.sh --core       # Shell + terminal tools only
-#   bash bootstrap.sh --langs      # Language runtimes only (nvm, pyenv, sdkman)
-#   bash bootstrap.sh --devtools   # Dev CLI tools (lazygit, fzf, atuin, etc.)
-#   bash bootstrap.sh --apps       # Terminal apps (nvim, kitty, ghostty)
-#   bash bootstrap.sh --help       # Show this help
+#   bootstrap.sh              # Install everything
+#   bootstrap.sh --core       # Shell + terminal tools only
+#   bootstrap.sh --langs      # Language runtimes only (nvm, pyenv, sdkman)
+#   bootstrap.sh --devtools   # Dev CLI tools (lazygit, fzf, atuin, etc.)
+#   bootstrap.sh --apps       # Terminal apps (nvim, kitty, ghostty)
+#   bootstrap.sh --help       # Show this help
 
 set -euo pipefail
 
@@ -98,8 +98,13 @@ nala_install() {
 
   if [[ ${#to_install[@]} -gt 0 ]]; then
     log_step "Installing via nala: ${to_install[*]}"
-    sudo nala install -y "${to_install[@]}"
-    log_ok "Installed: ${to_install[*]}"
+    # Try nala, fallback to apt if sudo not available without TTY
+    if sudo -n nala install -y "${to_install[@]}" 2>/dev/null; then
+      log_ok "Installed: ${to_install[*]}"
+    else
+      log_warn "sudo requires password — skipping: ${to_install[*]}"
+      log_info "  Install manually: sudo apt install ${to_install[*]}"
+    fi
   fi
 }
 
@@ -394,15 +399,11 @@ install_devtools() {
     local yazi_version
     yazi_version="$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" \
       | grep -Po '"tag_name": "v\K[^"]*')"
+    # yazi now ships as .deb for Linux
     curl -Lo /tmp/yazi.deb \
-      "https://github.com/sxyazi/yazi/releases/download/v${yazi_version}/yazi-x86_64-unknown-linux-gnu.tar.gz"
-    # yazi ships as tarball, not deb
+      "https://github.com/sxyazi/yazi/releases/download/v${yazi_version}/yazi-x86_64-unknown-linux-gnu.deb"
+    sudo nala install -y /tmp/yazi.deb
     rm /tmp/yazi.deb
-    curl -Lo /tmp/yazi.tar.gz \
-      "https://github.com/sxyazi/yazi/releases/download/v${yazi_version}/yazi-x86_64-unknown-linux-gnu.tar.gz"
-    tar xf /tmp/yazi.tar.gz -C /tmp
-    sudo install "/tmp/yazi-x86_64-unknown-linux-gnu/yazi" /usr/local/bin/yazi
-    rm -rf /tmp/yazi.tar.gz "/tmp/yazi-x86_64-unknown-linux-gnu"
     log_ok "yazi ${yazi_version} installed"
   fi
 
@@ -440,6 +441,16 @@ install_devtools() {
       log_skip "opencode-anthropic-auth (npm global)"
     else
       log_step "Installing opencode-anthropic-auth"
+      # Try nvm first, fallback to user-configured npm if nvm not available
+      export NVM_DIR="${HOME}/.nvm"
+      # shellcheck disable=SC1091
+      if [[ -s "${NVM_DIR}/nvm.sh" ]]; then
+        source "${NVM_DIR}/nvm.sh"
+      else
+        # Configure npm to install in user directory instead of system
+        npm config set prefix "${HOME}/.npm-global"
+        export PATH="${HOME}/.npm-global/bin:${PATH}"
+      fi
       npm install -g opencode-anthropic-auth
       log_ok "opencode-anthropic-auth installed"
     fi
@@ -480,18 +491,21 @@ install_devtools() {
 install_apps() {
   log_section "Terminal Apps"
 
-  # ── Nerd Fonts ────────────────────────────
-  local font_dir="/usr/share/fonts"
+  # ── Nerd Fonts (user-space, no sudo needed) ─
+  local font_dir="${HOME}/.local/share/fonts"
   log_section "Nerd Fonts"
+
+  # Create font directory if needed
+  mkdir -p "${font_dir}"
 
   if fc-list | grep -qi "Hack Nerd Font"; then
     log_skip "Hack Nerd Font"
   else
     log_step "Installing Hack Nerd Font"
-    sudo wget -qP "${font_dir}" \
+    wget -qP "${font_dir}" \
       "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip"
-    sudo unzip -qo "${font_dir}/Hack.zip" -d "${font_dir}"
-    sudo rm "${font_dir}/Hack.zip"
+    unzip -qo "${font_dir}/Hack.zip" -d "${font_dir}"
+    rm "${font_dir}/Hack.zip"
     log_ok "Hack Nerd Font installed"
   fi
 
@@ -499,10 +513,10 @@ install_apps() {
     log_skip "CascadiaCode Nerd Font"
   else
     log_step "Installing CascadiaCode Nerd Font"
-    sudo wget -qP "${font_dir}" \
+    wget -qP "${font_dir}" \
       "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.zip"
-    sudo unzip -qo "${font_dir}/CascadiaCode.zip" -d "${font_dir}"
-    sudo rm "${font_dir}/CascadiaCode.zip"
+    unzip -qo "${font_dir}/CascadiaCode.zip" -d "${font_dir}"
+    rm "${font_dir}/CascadiaCode.zip"
     log_ok "CascadiaCode Nerd Font installed"
   fi
 
@@ -510,10 +524,10 @@ install_apps() {
     log_skip "FantasqueSansMono Nerd Font"
   else
     log_step "Installing FantasqueSansMono Nerd Font"
-    sudo wget -qP "${font_dir}" \
+    wget -qP "${font_dir}" \
       "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FantasqueSansMono.zip"
-    sudo unzip -qo "${font_dir}/FantasqueSansMono.zip" -d "${font_dir}"
-    sudo rm "${font_dir}/FantasqueSansMono.zip"
+    unzip -qo "${font_dir}/FantasqueSansMono.zip" -d "${font_dir}"
+    rm "${font_dir}/FantasqueSansMono.zip"
     log_ok "FantasqueSansMono Nerd Font installed"
   fi
 
@@ -521,10 +535,10 @@ install_apps() {
     log_skip "MartianMono Nerd Font"
   else
     log_step "Installing MartianMono Nerd Font"
-    sudo wget -qP "${font_dir}" \
+    wget -qP "${font_dir}" \
       "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/MartianMono.zip"
-    sudo unzip -qo "${font_dir}/MartianMono.zip" -d "${font_dir}"
-    sudo rm "${font_dir}/MartianMono.zip"
+    unzip -qo "${font_dir}/MartianMono.zip" -d "${font_dir}"
+    rm "${font_dir}/MartianMono.zip"
     log_ok "MartianMono Nerd Font installed"
   fi
 
@@ -554,8 +568,12 @@ install_apps() {
   else
     if is_installed cargo; then
       log_step "Installing stylua via cargo"
-      cargo install stylua
-      log_ok "stylua installed"
+      if cargo install stylua 2>/dev/null; then
+        log_ok "stylua installed"
+      else
+        log_warn "stylua install failed (Rust version mismatch). Update Rust with: rustup update"
+        log_info "  Or install manually: cargo install stylua"
+      fi
     else
       log_warn "cargo not found — skipping stylua. Install Rust first or install manually."
       log_info "  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
