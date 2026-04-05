@@ -58,3 +58,9 @@ alias tree='exa -T'
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Claude Code aliases
+alias lenny="claude --agent lenny"
+alias gentleman="claude --agent gentleman"
+alias cl="claude"
+

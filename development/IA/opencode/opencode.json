@@ -72,7 +72,8 @@
     }
   },
   "plugin": [
-    "opencode-anthropic-auth"
+    "opencode-anthropic-auth",
+    "opencode-claude-auth"
   ],
   "provider": {
     "ollama": {

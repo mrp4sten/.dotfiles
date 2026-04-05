@@ -70,3 +70,9 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Claude Code aliases
+alias lenny="claude --agent lenny"
+alias gentleman="claude --agent gentleman"
+alias cl="claude"
+
