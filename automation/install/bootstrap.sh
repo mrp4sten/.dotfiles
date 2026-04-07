@@ -317,7 +317,10 @@ install_langs() {
   # Source nvm so we can use it right now
   export NVM_DIR="${HOME}/.nvm"
   # shellcheck disable=SC1091
+  # set +u: nvm.sh uses unbound variables internally
+  set +u
   [[ -s "${NVM_DIR}/nvm.sh" ]] && source "${NVM_DIR}/nvm.sh"
+  set -u
 
   if is_installed node; then
     log_skip "node ($(node -v))"
@@ -386,7 +389,10 @@ install_langs() {
   # Source sdkman to use it in this script
   export SDKMAN_DIR="${HOME}/.sdkman"
   # shellcheck disable=SC1091
+  # set +u: sdkman-init.sh uses unbound variables internally (SDKMAN_CANDIDATES_API)
+  set +u
   [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+  set -u
 
   if is_installed java; then
     log_skip "java ($(java -version 2>&1 | head -1))"
@@ -596,9 +602,13 @@ install_devtools() {
       # Try nvm first, fallback to user-configured npm if nvm not available
       export NVM_DIR="${HOME}/.nvm"
       # shellcheck disable=SC1091
+      # set +u: nvm.sh uses unbound variables internally
+      set +u
       if [[ -s "${NVM_DIR}/nvm.sh" ]]; then
         source "${NVM_DIR}/nvm.sh"
-      else
+      fi
+      set -u
+      if [[ ! -s "${NVM_DIR}/nvm.sh" ]]; then
         # Configure npm to install in user directory instead of system
         npm config set prefix "${HOME}/.npm-global"
         export PATH="${HOME}/.npm-global/bin:${PATH}"
