@@ -1,9 +1,9 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 # author: mrp4sten
 #
 # bootstrap.sh — Full dev environment installer
 #
-# Installs all tools referenced across this dotfiles repo.
+# Supports: Debian/Ubuntu (apt/nala), Arch Linux (pacman + paru/yay AUR)
 # Safe to re-run: each installer checks if the tool already exists before acting.
 #
 # Usage:
@@ -44,12 +44,14 @@ parse_args() {
         echo ""
         echo "  Usage: bash bootstrap.sh [--core] [--langs] [--devtools] [--apps]"
         echo ""
-        echo "  --core       Shell (zsh/bash), oh-my-zsh, oh-my-bash, starship, nala"
+        echo "  --core       Shell (zsh/bash), oh-my-zsh, oh-my-bash, starship"
         echo "  --langs      Language runtimes: nvm (Node), pyenv (Python), sdkman (Java)"
         echo "  --devtools   CLI dev tools: lazygit, fzf, atuin, lsd, bat, eza, yazi, gum, opencode, Homebrew, engram"
-        echo "  --apps       Terminal apps: Neovim AppImage, kitty, ghostty, pass"
+        echo "  --apps       Terminal apps: Neovim AppImage, kitty, ghostty, pass, tmux"
         echo ""
         echo "  No flags = install everything"
+        echo ""
+        echo "  Distros supported: Debian/Ubuntu (nala/apt), Arch Linux (pacman + paru/yay)"
         echo ""
         exit 0
         ;;
@@ -83,22 +85,67 @@ is_installed() {
   command -v "$1" &>/dev/null
 }
 
-# nala_install <pkg> [<pkg> ...]  — skips if all already installed
+# ─────────────────────────────────────────────
+#  Distro Detection
+# ─────────────────────────────────────────────
+
+DISTRO=""
+AUR_HELPER=""
+
+detect_distro() {
+  if [[ -f /etc/arch-release ]]; then
+    DISTRO="arch"
+  elif [[ -f /etc/debian_version ]] || grep -qi "ubuntu\|debian" /etc/os-release 2>/dev/null; then
+    DISTRO="debian"
+  else
+    local distro_name
+    distro_name="$(grep '^NAME=' /etc/os-release 2>/dev/null | cut -d= -f2 | tr -d '"')"
+    log_warn "Unsupported distro: ${distro_name:-unknown}"
+    log_info "  Supported: Debian/Ubuntu, Arch Linux"
+    exit 1
+  fi
+  log_info "Detected distro: ${DISTRO}"
+}
+
+detect_aur_helper() {
+  if [[ "${DISTRO}" != "arch" ]]; then
+    return
+  fi
+
+  if is_installed paru; then
+    AUR_HELPER="paru"
+  elif is_installed yay; then
+    AUR_HELPER="yay"
+  else
+    AUR_HELPER=""
+    log_warn "No AUR helper found (paru or yay). AUR packages may require manual installation."
+    log_info "  Install paru: https://aur.archlinux.org/packages/paru"
+    log_info "  Or yay:       https://aur.archlinux.org/packages/yay"
+    return
+  fi
+
+  log_info "AUR helper: ${AUR_HELPER}"
+}
+
+# ─────────────────────────────────────────────
+#  Package Managers
+# ─────────────────────────────────────────────
+
+# nala_install <pkg> [<pkg> ...] — Debian/Ubuntu only
 nala_install() {
   local pkgs=("$@")
   local to_install=()
 
   for pkg in "${pkgs[@]}"; do
-    if ! dpkg -s "${pkg}" &>/dev/null 2>&1; then
-      to_install+=("${pkg}")
-    else
+    if dpkg -s "${pkg}" &>/dev/null 2>&1; then
       log_skip "${pkg} (apt)"
+    else
+      to_install+=("${pkg}")
     fi
   done
 
   if [[ ${#to_install[@]} -gt 0 ]]; then
     log_step "Installing via nala: ${to_install[*]}"
-    # Try nala, fallback to apt if sudo not available without TTY
     if sudo -n nala install -y "${to_install[@]}" 2>/dev/null; then
       log_ok "Installed: ${to_install[*]}"
     else
@@ -108,11 +155,71 @@ nala_install() {
   fi
 }
 
+# pacman_install <pkg> [<pkg> ...] — Arch Linux only (official repos)
+pacman_install() {
+  local pkgs=("$@")
+  local to_install=()
+
+  for pkg in "${pkgs[@]}"; do
+    if pacman -Q "${pkg}" &>/dev/null 2>&1; then
+      log_skip "${pkg} (pacman)"
+    else
+      to_install+=("${pkg}")
+    fi
+  done
+
+  if [[ ${#to_install[@]} -gt 0 ]]; then
+    log_step "Installing via pacman: ${to_install[*]}"
+    if sudo pacman -S --noconfirm --needed "${to_install[@]}"; then
+      log_ok "Installed: ${to_install[*]}"
+    else
+      log_warn "pacman install failed: ${to_install[*]}"
+      log_info "  Install manually: sudo pacman -S ${to_install[*]}"
+    fi
+  fi
+}
+
+# aur_install <pkg> [<pkg> ...] — Arch Linux only (AUR via paru/yay)
+aur_install() {
+  local pkgs=("$@")
+
+  if [[ -z "${AUR_HELPER}" ]]; then
+    log_warn "No AUR helper available — skipping: ${pkgs[*]}"
+    log_info "  Install manually with paru or yay: ${pkgs[*]}"
+    return
+  fi
+
+  local to_install=()
+  for pkg in "${pkgs[@]}"; do
+    if pacman -Q "${pkg}" &>/dev/null 2>&1; then
+      log_skip "${pkg} (AUR)"
+    else
+      to_install+=("${pkg}")
+    fi
+  done
+
+  if [[ ${#to_install[@]} -gt 0 ]]; then
+    log_step "Installing via ${AUR_HELPER} (AUR): ${to_install[*]}"
+    if "${AUR_HELPER}" -S --noconfirm --needed "${to_install[@]}"; then
+      log_ok "Installed: ${to_install[*]}"
+    else
+      log_warn "${AUR_HELPER} install failed: ${to_install[*]}"
+      log_info "  Install manually: ${AUR_HELPER} -S ${to_install[*]}"
+    fi
+  fi
+}
+
 # ─────────────────────────────────────────────
 #  Sections
 # ─────────────────────────────────────────────
 
 install_nala() {
+  if [[ "${DISTRO}" == "arch" ]]; then
+    log_section "Package Manager"
+    log_info "Arch Linux — using pacman${AUR_HELPER:+ + ${AUR_HELPER} (AUR)}"
+    return
+  fi
+
   log_section "nala (apt wrapper)"
   if is_installed nala; then
     log_skip "nala"
@@ -128,13 +235,11 @@ install_core() {
   log_section "Core — Shell & Prompt"
 
   # ── Base packages ──────────────────────────
-  nala_install \
-    zsh \
-    curl \
-    wget \
-    git \
-    unzip \
-    build-essential
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install zsh curl wget git unzip base-devel
+  else
+    nala_install zsh curl wget git unzip build-essential
+  fi
 
   # ── oh-my-zsh ─────────────────────────────
   if [[ -d "${HOME}/.oh-my-zsh" ]]; then
@@ -228,19 +333,34 @@ install_langs() {
     log_skip "pyenv"
   else
     log_step "Installing pyenv build dependencies"
-    nala_install \
-      libssl-dev \
-      zlib1g-dev \
-      libbz2-dev \
-      libreadline-dev \
-      libsqlite3-dev \
-      libncursesw5-dev \
-      xz-utils \
-      tk-dev \
-      libxml2-dev \
-      libxmlsec1-dev \
-      libffi-dev \
-      liblzma-dev
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install \
+        openssl \
+        zlib \
+        bzip2 \
+        readline \
+        sqlite \
+        ncurses \
+        xz \
+        tk \
+        libxml2 \
+        libxmlsec \
+        libffi
+    else
+      nala_install \
+        libssl-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        libncursesw5-dev \
+        xz-utils \
+        tk-dev \
+        libxml2-dev \
+        libxmlsec1-dev \
+        libffi-dev \
+        liblzma-dev
+    fi
 
     log_step "Installing pyenv"
     curl https://pyenv.run | bash
@@ -303,16 +423,20 @@ install_devtools() {
   if is_installed lazygit; then
     log_skip "lazygit"
   else
-    log_step "Installing lazygit"
-    local lazygit_version
-    lazygit_version="$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" \
-      | grep -Po '"tag_name": "v\K[^"]*')"
-    curl -Lo /tmp/lazygit.tar.gz \
-      "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_version}/lazygit_${lazygit_version}_Linux_x86_64.tar.gz"
-    tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
-    sudo install /tmp/lazygit /usr/local/bin
-    rm /tmp/lazygit /tmp/lazygit.tar.gz
-    log_ok "lazygit ${lazygit_version} installed"
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install lazygit
+    else
+      log_step "Installing lazygit"
+      local lazygit_version
+      lazygit_version="$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" \
+        | grep -Po '"tag_name": "v\K[^"]*')"
+      curl -Lo /tmp/lazygit.tar.gz \
+        "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_version}/lazygit_${lazygit_version}_Linux_x86_64.tar.gz"
+      tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
+      sudo install /tmp/lazygit /usr/local/bin
+      rm /tmp/lazygit /tmp/lazygit.tar.gz
+      log_ok "lazygit ${lazygit_version} installed"
+    fi
   fi
 
   # ── lsd (modern ls) ───────────────────────
@@ -320,7 +444,11 @@ install_devtools() {
     log_skip "lsd"
   else
     log_step "Installing lsd"
-    nala_install lsd
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install lsd
+    else
+      nala_install lsd
+    fi
   fi
 
   # ── bat / batcat ──────────────────────────
@@ -328,14 +456,19 @@ install_devtools() {
     log_skip "bat"
   else
     log_step "Installing bat"
-    local bat_version
-    bat_version="$(curl -s "https://api.github.com/repos/sharkdp/bat/releases/latest" \
-      | grep -Po '"tag_name": "v\K[^"]*')"
-    curl -Lo /tmp/bat.deb \
-      "https://github.com/sharkdp/bat/releases/download/v${bat_version}/bat_${bat_version}_amd64.deb"
-    sudo nala install -y /tmp/bat.deb
-    rm /tmp/bat.deb
-    log_ok "bat ${bat_version} installed"
+    if [[ "${DISTRO}" == "arch" ]]; then
+      # On Arch the binary is 'bat' (no batcat alias needed)
+      pacman_install bat
+    else
+      local bat_version
+      bat_version="$(curl -s "https://api.github.com/repos/sharkdp/bat/releases/latest" \
+        | grep -Po '"tag_name": "v\K[^"]*')"
+      curl -Lo /tmp/bat.deb \
+        "https://github.com/sharkdp/bat/releases/download/v${bat_version}/bat_${bat_version}_amd64.deb"
+      sudo nala install -y /tmp/bat.deb
+      rm /tmp/bat.deb
+      log_ok "bat ${bat_version} installed"
+    fi
   fi
 
   # bat — catppuccin themes
@@ -360,19 +493,23 @@ install_devtools() {
     log_skip "eza"
   else
     log_step "Installing eza"
-    # eza is in Ubuntu 23.10+; for older distros use cargo
-    if sudo nala install -y eza 2>/dev/null; then
-      log_ok "eza installed via nala"
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install eza
     else
-      log_step "eza not in apt — installing via cargo"
-      if ! is_installed cargo; then
-        log_step "Installing Rust/cargo first"
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
-        # shellcheck disable=SC1091
-        source "${HOME}/.cargo/env"
+      # eza is in Ubuntu 23.10+; for older distros use cargo
+      if sudo nala install -y eza 2>/dev/null; then
+        log_ok "eza installed via nala"
+      else
+        log_step "eza not in apt — installing via cargo"
+        if ! is_installed cargo; then
+          log_step "Installing Rust/cargo first"
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+          # shellcheck disable=SC1091
+          source "${HOME}/.cargo/env"
+        fi
+        cargo install eza
+        log_ok "eza installed via cargo"
       fi
-      cargo install eza
-      log_ok "eza installed via cargo"
     fi
   fi
 
@@ -381,14 +518,18 @@ install_devtools() {
     log_skip "gum"
   else
     log_step "Installing gum"
-    local gum_version
-    gum_version="$(curl -s "https://api.github.com/repos/charmbracelet/gum/releases/latest" \
-      | grep -Po '"tag_name": "v\K[^"]*')"
-    curl -Lo /tmp/gum.deb \
-      "https://github.com/charmbracelet/gum/releases/download/v${gum_version}/gum_${gum_version}_amd64.deb"
-    sudo nala install -y /tmp/gum.deb
-    rm /tmp/gum.deb
-    log_ok "gum ${gum_version} installed"
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install gum
+    else
+      local gum_version
+      gum_version="$(curl -s "https://api.github.com/repos/charmbracelet/gum/releases/latest" \
+        | grep -Po '"tag_name": "v\K[^"]*')"
+      curl -Lo /tmp/gum.deb \
+        "https://github.com/charmbracelet/gum/releases/download/v${gum_version}/gum_${gum_version}_amd64.deb"
+      sudo nala install -y /tmp/gum.deb
+      rm /tmp/gum.deb
+      log_ok "gum ${gum_version} installed"
+    fi
   fi
 
   # ── yazi (terminal file manager) ──────────
@@ -396,15 +537,18 @@ install_devtools() {
     log_skip "yazi"
   else
     log_step "Installing yazi"
-    local yazi_version
-    yazi_version="$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" \
-      | grep -Po '"tag_name": "v\K[^"]*')"
-    # yazi now ships as .deb for Linux
-    curl -Lo /tmp/yazi.deb \
-      "https://github.com/sxyazi/yazi/releases/download/v${yazi_version}/yazi-x86_64-unknown-linux-gnu.deb"
-    sudo nala install -y /tmp/yazi.deb
-    rm /tmp/yazi.deb
-    log_ok "yazi ${yazi_version} installed"
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install yazi
+    else
+      local yazi_version
+      yazi_version="$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" \
+        | grep -Po '"tag_name": "v\K[^"]*')"
+      curl -Lo /tmp/yazi.deb \
+        "https://github.com/sxyazi/yazi/releases/download/v${yazi_version}/yazi-x86_64-unknown-linux-gnu.deb"
+      sudo nala install -y /tmp/yazi.deb
+      rm /tmp/yazi.deb
+      log_ok "yazi ${yazi_version} installed"
+    fi
   fi
 
   # ── fastfetch ─────────────────────────────
@@ -412,18 +556,26 @@ install_devtools() {
     log_skip "fastfetch"
   else
     log_step "Installing fastfetch"
-    local ff_version
-    ff_version="$(curl -s "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest" \
-      | grep -Po '"tag_name": "\K[^"]*')"
-    curl -Lo /tmp/fastfetch.deb \
-      "https://github.com/fastfetch-cli/fastfetch/releases/download/${ff_version}/fastfetch-linux-amd64.deb"
-    sudo nala install -y /tmp/fastfetch.deb
-    rm /tmp/fastfetch.deb
-    log_ok "fastfetch ${ff_version} installed"
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install fastfetch
+    else
+      local ff_version
+      ff_version="$(curl -s "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest" \
+        | grep -Po '"tag_name": "\K[^"]*')"
+      curl -Lo /tmp/fastfetch.deb \
+        "https://github.com/fastfetch-cli/fastfetch/releases/download/${ff_version}/fastfetch-linux-amd64.deb"
+      sudo nala install -y /tmp/fastfetch.deb
+      rm /tmp/fastfetch.deb
+      log_ok "fastfetch ${ff_version} installed"
+    fi
   fi
 
   # ── pass + gpg (password manager) ─────────
-  nala_install gnupg pass
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install gnupg pass
+  else
+    nala_install gnupg pass
+  fi
 
   # ── opencode ──────────────────────────────
   if is_installed opencode; then
@@ -464,12 +616,12 @@ install_devtools() {
   else
     log_step "Installing Homebrew"
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    
+
     # Add Homebrew to PATH for current session
     if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
       eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
-    
+
     log_ok "Homebrew installed"
     log_warn "Add Homebrew to PATH: eval \"\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\""
   fi
@@ -586,7 +738,11 @@ install_apps() {
     log_skip "kitty"
   else
     log_step "Installing kitty"
-    nala_install kitty
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install kitty
+    else
+      nala_install kitty
+    fi
   fi
 
   # ── ghostty ───────────────────────────────
@@ -594,8 +750,13 @@ install_apps() {
   if is_installed ghostty; then
     log_skip "ghostty"
   else
-    log_warn "Ghostty requires manual install on Debian/Ubuntu."
-    log_info "  Follow: https://github.com/dariogriffo/ghostty-debian"
+    if [[ "${DISTRO}" == "arch" ]]; then
+      log_step "Installing ghostty via AUR"
+      aur_install ghostty
+    else
+      log_warn "Ghostty requires manual install on Debian/Ubuntu."
+      log_info "  Follow: https://github.com/dariogriffo/ghostty-debian"
+    fi
   fi
 
   # ── tmux + TPM ────────────────────────────
@@ -604,7 +765,11 @@ install_apps() {
     log_skip "tmux"
   else
     log_step "Installing tmux"
-    nala_install tmux
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install tmux
+    else
+      nala_install tmux
+    fi
   fi
 
   if [[ -d "${HOME}/.tmux/plugins/tpm" ]]; then
@@ -627,6 +792,9 @@ main() {
   echo ""
   echo "  Dotfiles Bootstrap Installer"
   echo "  user: ${USER}   home: ${HOME}"
+
+  detect_distro
+  detect_aur_helper
 
   install_nala
 
