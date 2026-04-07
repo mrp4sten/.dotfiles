@@ -7,19 +7,25 @@ alias l='ls -l --group-dirs=first'
 alias la='ls -a --group-dirs=first'
 alias lla='ls -la --group-dirs=first'
 alias lt='ls --tree --group-dirs=first'
-alias vi='$HOME/.local/bin/nvim-linux-x86_64.appimage'
+alias vi='nvim'
 
-# bat
-if which bat &>/dev/null; then
-  alias cat='/bin/bat --paging=never --theme="gruvbox-dark"'
-  alias less='/bin/bat --theme="gruvbox-dark"'
-else
-  alias cat='/bin/batcat --paging=never --theme="gruvbox-dark"'
-  alias less'/bin/batcat --theme="gruvbox-dark"'
+# bat — works on both Arch (bat) and Debian/Ubuntu (batcat)
+if command -v bat &>/dev/null; then
+  alias cat='bat --paging=never --theme="gruvbox-dark"'
+  alias less='bat --theme="gruvbox-dark"'
+elif command -v batcat &>/dev/null; then
+  alias cat='batcat --paging=never --theme="gruvbox-dark"'
+  alias less='batcat --theme="gruvbox-dark"'
 fi
 
-# update packages
-alias update="sudo nala update && sudo nala upgrade"
+# update packages — distro-aware
+if command -v pacman &>/dev/null; then
+  alias update="sudo pacman -Syu"
+elif command -v nala &>/dev/null; then
+  alias update="sudo nala update && sudo nala upgrade"
+else
+  alias update="sudo apt update && sudo apt upgrade"
+fi
 
 # fastfetch
 alias fastfetchsm='fastfetch --config ~/.config/fastfetch/mavor-sm.jsonc'

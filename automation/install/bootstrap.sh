@@ -702,19 +702,36 @@ install_apps() {
   fc-cache -fv &>/dev/null
   log_ok "Font cache rebuilt"
 
-  # ── Neovim (AppImage) ─────────────────────
+  # ── Neovim ────────────────────────────────
   log_section "Neovim"
-  local nvim_bin="${HOME}/.local/bin/nvim-linux-x86_64.appimage"
-  if [[ -f "${nvim_bin}" ]]; then
-    log_skip "Neovim AppImage"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    # On Arch, neovim is in the official repos and always up-to-date
+    pacman_install neovim
+    # Ensure nvim is available as vi for alias compatibility
+    if is_installed nvim && [[ ! -f "${HOME}/.local/bin/vi" ]]; then
+      mkdir -p "${HOME}/.local/bin"
+      ln -sf "$(command -v nvim)" "${HOME}/.local/bin/vi"
+      log_ok "Symlinked nvim → ~/.local/bin/vi"
+    fi
   else
-    log_step "Downloading latest Neovim AppImage"
+    # On Debian/Ubuntu use the AppImage (apt repos ship outdated versions)
+    local nvim_appimage="${HOME}/.local/bin/nvim-linux-x86_64.appimage"
+    local nvim_link="${HOME}/.local/bin/nvim"
     mkdir -p "${HOME}/.local/bin"
-    curl -Lo "${nvim_bin}" \
-      "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage"
-    chmod +x "${nvim_bin}"
-    log_ok "Neovim AppImage installed at ${nvim_bin}"
-    log_info "Aliased as 'vi' in your shell (see aliases/utils.sh)"
+    if [[ -f "${nvim_appimage}" ]]; then
+      log_skip "Neovim AppImage"
+    else
+      log_step "Downloading latest Neovim AppImage"
+      curl -Lo "${nvim_appimage}" \
+        "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage"
+      chmod +x "${nvim_appimage}"
+      log_ok "Neovim AppImage installed at ${nvim_appimage}"
+    fi
+    # Create nvim symlink so 'nvim' works from PATH
+    if [[ ! -L "${nvim_link}" ]]; then
+      ln -sf "${nvim_appimage}" "${nvim_link}"
+      log_ok "Symlinked nvim AppImage → ~/.local/bin/nvim"
+    fi
   fi
 
   # ── stylua (Lua formatter for nvim config) ─
