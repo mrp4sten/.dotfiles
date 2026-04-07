@@ -386,13 +386,11 @@ install_langs() {
   fi
 
   # ── Java LTS via sdkman ───────────────────
-  # Source sdkman to use it in this script
+  # set +u: sdkman scripts use unbound positional params ($3) and vars internally
+  set +u
   export SDKMAN_DIR="${HOME}/.sdkman"
   # shellcheck disable=SC1091
-  # set +u: sdkman-init.sh uses unbound variables internally (SDKMAN_CANDIDATES_API)
-  set +u
   [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-  set -u
 
   if is_installed java; then
     log_skip "java ($(java -version 2>&1 | head -1))"
@@ -401,6 +399,7 @@ install_langs() {
     sdk install java 21-tem
     log_ok "Java 21 (Temurin) installed"
   fi
+  set -u
 }
 
 install_devtools() {
