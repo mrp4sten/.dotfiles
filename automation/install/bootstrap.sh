@@ -592,31 +592,25 @@ install_devtools() {
     log_warn "Run: opencode auth login — to authenticate"
   fi
 
-  # opencode npm plugin
-  if is_installed node; then
+  # opencode npm plugin — ensure nvm is sourced before any npm call
+  export NVM_DIR="${HOME}/.nvm"
+  # shellcheck disable=SC1091
+  # set +u: nvm.sh uses unbound variables internally
+  set +u
+  [[ -s "${NVM_DIR}/nvm.sh" ]] && source "${NVM_DIR}/nvm.sh"
+  set -u
+
+  if is_installed npm; then
     if npm list -g opencode-anthropic-auth &>/dev/null 2>&1; then
       log_skip "opencode-anthropic-auth (npm global)"
     else
       log_step "Installing opencode-anthropic-auth"
-      # Try nvm first, fallback to user-configured npm if nvm not available
-      export NVM_DIR="${HOME}/.nvm"
-      # shellcheck disable=SC1091
-      # set +u: nvm.sh uses unbound variables internally
-      set +u
-      if [[ -s "${NVM_DIR}/nvm.sh" ]]; then
-        source "${NVM_DIR}/nvm.sh"
-      fi
-      set -u
-      if [[ ! -s "${NVM_DIR}/nvm.sh" ]]; then
-        # Configure npm to install in user directory instead of system
-        npm config set prefix "${HOME}/.npm-global"
-        export PATH="${HOME}/.npm-global/bin:${PATH}"
-      fi
       npm install -g opencode-anthropic-auth
       log_ok "opencode-anthropic-auth installed"
     fi
   else
-    log_warn "Node not found — skipping opencode-anthropic-auth (install --langs first)"
+    log_warn "npm not found — skipping opencode-anthropic-auth"
+    log_info "  Install Node.js first: bash bootstrap.sh --langs"
   fi
 
   # ── Homebrew ──────────────────────────────
