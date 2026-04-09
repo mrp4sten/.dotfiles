@@ -54,7 +54,7 @@ backup_and_remove() {
     link_dest="$(readlink -f "${target}" 2>/dev/null || true)"
     if [[ "${link_dest}" == "${DOTFILES_DIR}"* ]]; then
       log_skip "Already linked → ${target}"
-      return 1  # signal: skip, already correct
+      return 1 # signal: skip, already correct
     fi
     log_warn "Removing stale symlink: ${target}"
     rm "${target}"
@@ -94,62 +94,68 @@ main() {
   # ── Core: Editor ──────────────────────────
   log_section "Editor — Neovim"
   symlink "${DOTFILES_DIR}/core/editor/nvim" \
-          "${CONFIG_DIR}/nvim"
+    "${CONFIG_DIR}/nvim"
 
   # ── Core: Multiplexer ─────────────────────
   log_section "Multiplexer — tmux"
   symlink "${DOTFILES_DIR}/core/multiplexer/tmux" \
-          "${CONFIG_DIR}/tmux"
+    "${CONFIG_DIR}/tmux"
   # tmux also needs ~/.tmux.conf → .config/tmux/.tmux.conf
   symlink "${CONFIG_DIR}/tmux/.tmux.conf" \
-          "${HOME}/.tmux.conf"
+    "${HOME}/.tmux.conf"
 
   # ── Core: Terminal emulators ──────────────
   log_section "Terminal — Kitty"
   symlink "${DOTFILES_DIR}/core/terminal/kitty" \
-          "${CONFIG_DIR}/kitty"
+    "${CONFIG_DIR}/kitty"
 
   log_section "Terminal — Ghostty"
   # Ghostty only has one config file, not a whole dir managed by us
   mkdir -p "${CONFIG_DIR}/ghostty"
   symlink "${DOTFILES_DIR}/core/terminal/ghostty/config" \
-          "${CONFIG_DIR}/ghostty/config"
+    "${CONFIG_DIR}/ghostty/config"
 
   # ── Core: Shell — Zsh ─────────────────────
   log_section "Shell — Zsh"
   symlink "${DOTFILES_DIR}/core/shell/zsh/.zshrc" \
-          "${HOME}/.zshrc"
+    "${HOME}/.zshrc"
+  symlink "${DOTFILES_DIR}/core/shell/zsh/.profile" \
+    "${HOME}/.profile"
+  symlink "${DOTFILES_DIR}/core/shell/zsh/.zprofile" \
+    "${HOME}/.zprofile"
+  symlink "${DOTFILES_DIR}/core/shell/zsh/.zshenv" \
+    "${HOME}/.zshenv"
   symlink "${DOTFILES_DIR}/core/shell/zsh/.p10k.zsh" \
-          "${HOME}/.p10k.zsh"
+    "${HOME}/.p10k.zsh"
   symlink "${DOTFILES_DIR}/core/shell/zsh/starship.toml" \
-          "${CONFIG_DIR}/starship.toml"
+    "${CONFIG_DIR}/starship.toml"
 
   # ── Core: Shell — Bash ────────────────────
   log_section "Shell — Bash"
   symlink "${DOTFILES_DIR}/core/shell/bash/.bashrc" \
-          "${HOME}/.bashrc"
+    "${HOME}/.bashrc"
   symlink "${DOTFILES_DIR}/core/shell/bash/.git-prompt.sh" \
-          "${HOME}/.git-prompt.sh"
+    "${HOME}/.git-prompt.sh"
 
   # ── Development: Git tools ────────────────
   log_section "Development — Lazygit"
   symlink "${DOTFILES_DIR}/development/git/lazygit" \
-          "${CONFIG_DIR}/lazygit"
+    "${CONFIG_DIR}/lazygit"
 
   # ── Development: VS Code ──────────────────
   log_section "Development — VS Code"
   symlink "${DOTFILES_DIR}/development/vscode/vscode/settings.json" \
-          "${CONFIG_DIR}/Code/User/settings.json"
+    "${CONFIG_DIR}/Code/User/settings.json"
 
   # ── Development: AI — opencode ────────────
   log_section "Development — opencode"
   symlink "${DOTFILES_DIR}/development/IA/opencode" \
-          "${CONFIG_DIR}/opencode"
+    "${CONFIG_DIR}/opencode"
 
   # ── Utilities: fastfetch ──────────────────
   log_section "Utilities — fastfetch"
   symlink "${DOTFILES_DIR}/utilities/system-info/fastfetch" \
-          "${CONFIG_DIR}/fastfetch"
+    "${CONFIG_DIR}/fastfetch"
 
   # ── Done ──────────────────────────────────
   echo ""
