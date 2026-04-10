@@ -1,0 +1,16 @@
+
+
+/**
+ * Author: mrp4sten (mauricio.pasten@proton.me)
+ * Date: 2026-04-09
+ *
+ * **/
+
+* {
+    background:     #1d2021;
+    background-alt: #282828;
+    foreground:     #fbf1c7;
+    selected:       #fe8019;
+    active:         #3c3836;
+    urgent:         #fb4934;
+}

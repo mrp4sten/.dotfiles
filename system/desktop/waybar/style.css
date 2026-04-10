@@ -1,0 +1,254 @@
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 17px;
+}
+
+window#waybar {
+  background-color: rgba(29, 32, 33, 0.5);
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  border-top: 8px transparent;
+  border-radius: 8px;
+  transition-duration: 0.5s;
+  margin: 16px 16px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces button {
+  padding: 0px 6px 0px 2px;
+  color: #a89984;
+  background-color: transparent;
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each workspace name */
+  border: none;
+  border-radius: 0;
+}
+
+#workspaces button.focused {
+  color: #3c3833;
+}
+
+#workspaces button.active {
+  color: #fe8019;
+}
+
+#workspaces button.urgent {
+  background-color: #fabd2f;
+}
+
+#window {
+  /* border-radius: 20px; */
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
+  color: #83a598;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd,
+#bluetooth {
+  padding: 0 10px;
+  color: #e5e5e5;
+  /* color: #bf616a; */
+  border-radius: 9.5px;
+  background-color: #32302f;
+}
+
+#window,
+#workspaces {
+  margin: 0 6px;
+  border-radius: 7.8px;
+  background-color: #32302f;
+}
+
+#cpu {
+  color: #fb958b;
+  background-color: #32302f;
+}
+
+#memory {
+  color: #dbb705;
+  background-color: #32302f;
+}
+
+#custom-power-menu {
+  background-color: #32302f;
+  border-radius: 7.5px;
+  padding: 0 5px 0 0;
+  margin: 0 10px 0 5px;
+}
+
+#custom-launcher {
+  background-color: #32302f;
+  border-radius: 7.5px;
+  padding: 0px 10px 0px 1px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#pulseaudio {
+  color: #ebdbb2;
+}
+
+#backlight {
+  /* color: #EBCB8B; */
+  color: #fbf1c7;
+}
+
+#clock {
+  color: #fb4934;
+  /* background-color: #14141e; */
+}
+
+#battery {
+  color: #98971a;
+  /* background-color: #90b1b1; */
+}
+
+#battery.charging,
+#battery.full,
+#battery.plugged {
+  color: #98971a;
+  /* background-color: #26a65b; */
+}
+
+@keyframes blink {
+  to {
+    background-color: rgba(30, 34, 42, 0.5);
+    color: #abb2bf;
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #cc241d;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#disk {
+  background-color: #d65d0e;
+}
+
+#bluetooth {
+  color: #83a598;
+}
+
+#bluetooth.disconnected {
+  color: #83a598;
+}
+
+#network {
+  color: #458588;
+}
+
+#network.disconnected {
+  color: #cc241d;
+}
+
+#custom-media {
+  background-color: #b8bb26;
+  color: #98971a;
+  min-width: 100px;
+}
+
+#custom-media.custom-vlc {
+  background-color: #fabd2f;
+}
+
+#temperature {
+  background-color: #fabd2f;
+}
+
+#temperature.critical {
+  background-color: #cc241d;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #fb4934;
+}
+
+#idle_inhibitor {
+  background-color: #1d2021;
+}
+
+#idle_inhibitor.activated {
+  background-color: #fbf1c7;
+  color: #1d2021;
+}
+
+#mpd {
+  color: #b8bb26;
+}
+
+#mpd.disconnected {
+  color: #cc241d;
+}
+
+#mpd.stopped {
+  color: #83a598;
+}
+
+#mpd.paused {
+  color: #98971a;
+}
+
+#language {
+  background: #98971a;
+  color: #b16286;
+  padding: 0 5px;
+  margin: 0 5px;
+  min-width: 16px;
+}
+
+#keyboard-state {
+  background: #b8bb26;
+  color: #1d2021;
+  padding: 0 0px;
+  margin: 0 5px;
+  min-width: 16px;
+}
+
+#keyboard-state > label {
+  padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+  background: rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,55 @@
+sudo pacman -Sy hyprland
+sudo pacman -Sy kitty (verify if it's installed or not yet)
+
+NVIDIA
+Make a validation if the Computer has nvidia gpu, if yes:
+paru -Sy nvidia-dkms nvidia-utils
+Configure environment variables to Hyperland config: 
+env = LIBVA_DRIVER_NAME,nvidia
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+If not skip this steps
+
+Install for themes:
+sudo pacman -Sy nwg-look
+
+Install launcher:
+sudo pacman -Sy hyprlauncher
+
+Install waybar and hyprpaper:
+paru -Sy waybar
+paru -Sy hyprpaper
+
+Install rofi:
+paru -Sy rofi
+
+Install pavucontrol:
+paru -Sy pavycontrol
+
+Client for Discord:
+paru -Sy webcord
+
+For lock
+paru -Sy swaylock-effects
+
+For files:
+paru -Sy dolphin
+
+For screenshots:
+paru -Sy grim slurp
+mkdir -p ~/Pictures/Screenshots
+
+For detect binds: 
+paru -Sy wev
+
+For Screen sharing:
+paru -Sy pipewire wireplumber xdg-desktop-portal-hyprland
+
+Install: git@github.com:hyprwm/hyprcursor.git
+
+Install for themes and cursors
+paru -Sy ocs-url
+
+Install SDDM for display manager
+paru -Sy sddm
+sudo systemctl disable gdm.service 
+sudo systemctl enable sddm.service
