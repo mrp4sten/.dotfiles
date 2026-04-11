@@ -157,6 +157,21 @@ main() {
   symlink "${DOTFILES_DIR}/utilities/system-info/fastfetch" \
     "${CONFIG_DIR}/fastfetch"
 
+  # ── Desktop: Hyprland ─────────────────────
+  log_section "Desktop — Hyprland"
+  symlink "${DOTFILES_DIR}/system/desktop/hypr" \
+    "${CONFIG_DIR}/hypr"
+
+  # ── Desktop: Waybar ───────────────────────
+  log_section "Desktop — Waybar"
+  symlink "${DOTFILES_DIR}/system/desktop/waybar" \
+    "${CONFIG_DIR}/waybar"
+
+  # ── Desktop: Rofi ─────────────────────────
+  log_section "Desktop — Rofi"
+  symlink "${DOTFILES_DIR}/system/desktop/rofi" \
+    "${CONFIG_DIR}/rofi"
+
   # ── Done ──────────────────────────────────
   echo ""
   echo "  All done!"

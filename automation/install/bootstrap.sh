@@ -12,6 +12,7 @@
 #   bootstrap.sh --langs      # Language runtimes only (nvm, pyenv, sdkman)
 #   bootstrap.sh --devtools   # Dev CLI tools (lazygit, fzf, atuin, etc.)
 #   bootstrap.sh --apps       # Terminal apps (nvim, kitty, ghostty)
+#   bootstrap.sh --desktop    # Hyprland desktop environment (Arch only / Ubuntu experimental)
 #   bootstrap.sh --help       # Show this help
 
 set -euo pipefail
@@ -24,6 +25,7 @@ INSTALL_CORE=false
 INSTALL_LANGS=false
 INSTALL_DEVTOOLS=false
 INSTALL_APPS=false
+INSTALL_DESKTOP=false
 
 parse_args() {
   if [[ $# -eq 0 ]]; then
@@ -40,16 +42,20 @@ parse_args() {
       --langs)    INSTALL_LANGS=true ;;
       --devtools) INSTALL_DEVTOOLS=true ;;
       --apps)     INSTALL_APPS=true ;;
+      --desktop)  INSTALL_DESKTOP=true ;;
       --help|-h)
         echo ""
-        echo "  Usage: bash bootstrap.sh [--core] [--langs] [--devtools] [--apps]"
+        echo "  Usage: bash bootstrap.sh [--core] [--langs] [--devtools] [--apps] [--desktop]"
         echo ""
         echo "  --core       Shell (zsh/bash), oh-my-zsh, oh-my-bash, starship"
         echo "  --langs      Language runtimes: nvm (Node), pyenv (Python), sdkman (Java)"
         echo "  --devtools   CLI dev tools: lazygit, fzf, atuin, lsd, bat, eza, yazi, gum, opencode, Homebrew, engram"
         echo "  --apps       Terminal apps: Neovim AppImage, kitty, ghostty, pass, tmux"
+        echo "  --desktop    Hyprland DE: hyprland, waybar, rofi, hyprpaper, swaylock-effects,"
+        echo "               grim, slurp, pipewire, xdg-desktop-portal-hyprland, nwg-look,"
+        echo "               pavucontrol, dolphin, sddm — Arch native; Ubuntu experimental"
         echo ""
-        echo "  No flags = install everything"
+        echo "  No flags = install everything (except --desktop, always opt-in)"
         echo ""
         echo "  Distros supported: Debian/Ubuntu (nala/apt), Arch Linux (pacman + paru/yay)"
         echo ""
@@ -802,6 +808,212 @@ install_apps() {
   fi
 }
 
+install_desktop() {
+  log_section "Desktop Environment — Hyprland"
+
+  if [[ "${DISTRO}" == "debian" ]]; then
+    log_warn "Hyprland on Debian/Ubuntu requires manual compilation or third-party repos."
+    log_info "  Reference: https://wiki.hyprland.org/Getting-Started/Installation/"
+    log_info "  Continuing with best-effort apt installs for available packages..."
+    log_info ""
+  fi
+
+  # ── Hyprland ──────────────────────────────
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install hyprland
+  else
+    log_warn "Hyprland is not in standard Ubuntu/Debian repos — skipping pacman install."
+    log_info "  Build from source: https://wiki.hyprland.org/Getting-Started/Installation/"
+  fi
+
+  # ── Kitty (default terminal for Hyprland) ─
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install kitty
+  else
+    nala_install kitty
+  fi
+
+  # ── NVIDIA detection & config hint ────────
+  log_section "GPU Detection"
+  if lspci 2>/dev/null | grep -qi "nvidia"; then
+    log_info "NVIDIA GPU detected."
+    if [[ "${DISTRO}" == "arch" ]]; then
+      log_step "Installing nvidia-dkms and nvidia-utils"
+      aur_install nvidia-dkms nvidia-utils
+    else
+      log_warn "Install NVIDIA drivers manually for your Ubuntu/Debian version."
+      log_info "  https://wiki.ubuntu.com/NvidiaMultimediaDrivers"
+    fi
+    log_info ""
+    log_warn "Add these env vars to your Hyprland config (environment_variables.conf):"
+    log_info "  env = LIBVA_DRIVER_NAME,nvidia"
+    log_info "  env = __GLX_VENDOR_LIBRARY_NAME,nvidia"
+    log_info "  env = NVD_BACKEND,direct"
+    log_info "  env = ELECTRON_OZONE_PLATFORM_HINT,auto"
+  else
+    log_info "No NVIDIA GPU detected — skipping NVIDIA driver install."
+  fi
+
+  # ── Waybar ────────────────────────────────
+  log_section "Waybar"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    aur_install waybar
+  else
+    nala_install waybar
+  fi
+
+  # ── Hyprpaper (wallpaper daemon) ──────────
+  log_section "Hyprpaper"
+  if is_installed hyprpaper; then
+    log_skip "hyprpaper"
+  else
+    if [[ "${DISTRO}" == "arch" ]]; then
+      aur_install hyprpaper
+    else
+      log_warn "hyprpaper is Arch-specific. On Ubuntu, consider feh or swaybg."
+      log_info "  sudo apt install swaybg"
+    fi
+  fi
+
+  # ── Rofi (app launcher) ───────────────────
+  log_section "Rofi"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    aur_install rofi-wayland
+  else
+    nala_install rofi
+  fi
+
+  # ── swaylock-effects (lock screen) ────────
+  log_section "swaylock-effects"
+  if is_installed swaylock; then
+    log_skip "swaylock"
+  else
+    if [[ "${DISTRO}" == "arch" ]]; then
+      aur_install swaylock-effects
+    else
+      nala_install swaylock
+      log_warn "swaylock-effects (with blur) is AUR-only. Using standard swaylock on Ubuntu."
+    fi
+  fi
+
+  # ── nwg-look (GTK theme manager for Wayland) ─
+  log_section "nwg-look"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install nwg-look
+  else
+    log_warn "nwg-look is Arch-specific. On Ubuntu, use lxappearance instead."
+    nala_install lxappearance
+  fi
+
+  # ── Screenshot tools: grim + slurp ────────
+  log_section "Screenshot — grim + slurp"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install grim slurp
+  else
+    nala_install grim slurp
+  fi
+
+  # Create Screenshots directory
+  if [[ ! -d "${HOME}/Pictures/Screenshots" ]]; then
+    mkdir -p "${HOME}/Pictures/Screenshots"
+    log_ok "Created ~/Pictures/Screenshots"
+  else
+    log_skip "~/Pictures/Screenshots already exists"
+  fi
+
+  # ── Audio: pipewire + wireplumber ─────────
+  log_section "Audio — PipeWire"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install pipewire wireplumber pipewire-alsa pipewire-pulse
+  else
+    nala_install pipewire wireplumber pipewire-alsa pipewire-pulse gstreamer1.0-pipewire
+  fi
+
+  # ── Screen sharing: xdg-desktop-portal ────
+  log_section "Screen Sharing — xdg-desktop-portal-hyprland"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    aur_install xdg-desktop-portal-hyprland
+    pacman_install xdg-desktop-portal-gtk
+  else
+    nala_install xdg-desktop-portal-wlr xdg-desktop-portal-gtk
+    log_warn "xdg-desktop-portal-hyprland is AUR-only. Using xdg-desktop-portal-wlr on Ubuntu."
+  fi
+
+  # ── pavucontrol (audio volume GUI) ────────
+  log_section "pavucontrol"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install pavucontrol
+  else
+    nala_install pavucontrol
+  fi
+
+  # ── Dolphin (file manager) ────────────────
+  log_section "Dolphin — File Manager"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install dolphin
+  else
+    nala_install dolphin
+  fi
+
+  # ── SDDM (display manager) ────────────────
+  log_section "SDDM — Display Manager"
+  if is_installed sddm; then
+    log_skip "sddm"
+  else
+    if [[ "${DISTRO}" == "arch" ]]; then
+      pacman_install sddm
+    else
+      nala_install sddm
+    fi
+  fi
+
+  if systemctl is-enabled sddm &>/dev/null 2>&1; then
+    log_skip "sddm already enabled in systemd"
+  else
+    log_step "Enabling SDDM and disabling other display managers"
+    # Disable common DMs if they exist
+    for dm in gdm gdm3 lightdm; do
+      if systemctl is-enabled "${dm}" &>/dev/null 2>&1; then
+        log_info "Disabling ${dm}..."
+        sudo systemctl disable "${dm}.service" 2>/dev/null || true
+      fi
+    done
+    sudo systemctl enable sddm.service
+    log_ok "SDDM enabled"
+    log_warn "A reboot is required to switch display managers."
+  fi
+
+  # ── Notification daemon: dunst ────────────
+  log_section "Notification Daemon — dunst"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install dunst
+  else
+    nala_install dunst
+  fi
+
+  # ── wev (Wayland event debug tool) ────────
+  log_section "wev — Wayland event viewer"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install wev
+  else
+    log_warn "wev is Arch-specific. On Ubuntu, use wev from source or omit."
+    log_info "  https://git.sr.ht/~sircmpwn/wev"
+  fi
+
+  # ── Polkit agent (GUI privilege escalation) ─
+  log_section "Polkit Agent — hyprpolkitagent"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    aur_install hyprpolkitagent
+  else
+    nala_install policykit-1-gnome
+    log_warn "Using gnome-polkit on Ubuntu instead of hyprpolkitagent."
+  fi
+
+  log_section "Desktop — Done"
+  log_info "Don't forget to run: bash ~/.dotfiles/automation/install/install.sh"
+  log_info "to symlink your hypr, waybar and rofi configs."
+}
+
 # ─────────────────────────────────────────────
 #  Entry point
 # ─────────────────────────────────────────────
@@ -822,6 +1034,7 @@ main() {
   if [[ "${INSTALL_LANGS}" == true ]];    then install_langs;    fi
   if [[ "${INSTALL_DEVTOOLS}" == true ]]; then install_devtools; fi
   if [[ "${INSTALL_APPS}" == true ]];     then install_apps;     fi
+  if [[ "${INSTALL_DESKTOP}" == true ]];  then install_desktop;  fi
 
   echo ""
   echo "══════════════════════════════════════════"
@@ -833,6 +1046,9 @@ main() {
   echo "   3. Open tmux and press <prefix>+I to install plugins"
   echo "   4. Open nvim — plugins install automatically on first launch"
   echo "   5. Run :Mason inside nvim to install LSP servers"
+  if [[ "${INSTALL_DESKTOP}" == true ]]; then
+  echo "   6. Reboot to switch to SDDM / Hyprland"
+  fi
   echo "══════════════════════════════════════════"
   echo ""
 }
