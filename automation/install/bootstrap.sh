@@ -51,9 +51,9 @@ parse_args() {
         echo "  --langs      Language runtimes: nvm (Node), pyenv (Python), sdkman (Java)"
         echo "  --devtools   CLI dev tools: lazygit, fzf, atuin, lsd, bat, eza, yazi, gum, opencode, Homebrew, engram"
         echo "  --apps       Terminal apps: Neovim AppImage, kitty, ghostty, pass, tmux"
-        echo "  --desktop    Hyprland DE: hyprland, waybar, rofi, hyprpaper, swaylock-effects,"
+        echo "  --desktop    Hyprland DE: hyprland, waybar, rofi, hyprpaper, hyprlock, hypridle,"
         echo "               grim, slurp, pipewire, xdg-desktop-portal-hyprland, nwg-look,"
-        echo "               pavucontrol, dolphin, sddm — Arch native; Ubuntu experimental"
+        echo "               pavucontrol, dolphin, dunst — Arch native; Ubuntu experimental"
         echo ""
         echo "  No flags = install everything (except --desktop, always opt-in)"
         echo ""
@@ -883,16 +883,29 @@ install_desktop() {
     nala_install rofi
   fi
 
-  # ── swaylock-effects (lock screen) ────────
-  log_section "swaylock-effects"
-  if is_installed swaylock; then
-    log_skip "swaylock"
+  # ── hyprlock (lock screen) ────────────────
+  log_section "hyprlock"
+  if is_installed hyprlock; then
+    log_skip "hyprlock"
   else
     if [[ "${DISTRO}" == "arch" ]]; then
-      aur_install swaylock-effects
+      aur_install hyprlock
     else
-      nala_install swaylock
-      log_warn "swaylock-effects (with blur) is AUR-only. Using standard swaylock on Ubuntu."
+      log_warn "hyprlock is Hyprland-native (AUR). On Ubuntu, install from source."
+      log_info "  https://github.com/hyprwm/hyprlock"
+    fi
+  fi
+
+  # ── hypridle (idle daemon) ────────────────
+  log_section "hypridle"
+  if is_installed hypridle; then
+    log_skip "hypridle"
+  else
+    if [[ "${DISTRO}" == "arch" ]]; then
+      aur_install hypridle
+    else
+      log_warn "hypridle is Hyprland-native (AUR). On Ubuntu, install from source."
+      log_info "  https://github.com/hyprwm/hypridle"
     fi
   fi
 
@@ -953,34 +966,6 @@ install_desktop() {
     pacman_install dolphin
   else
     nala_install dolphin
-  fi
-
-  # ── SDDM (display manager) ────────────────
-  log_section "SDDM — Display Manager"
-  if is_installed sddm; then
-    log_skip "sddm"
-  else
-    if [[ "${DISTRO}" == "arch" ]]; then
-      pacman_install sddm
-    else
-      nala_install sddm
-    fi
-  fi
-
-  if systemctl is-enabled sddm &>/dev/null 2>&1; then
-    log_skip "sddm already enabled in systemd"
-  else
-    log_step "Enabling SDDM and disabling other display managers"
-    # Disable common DMs if they exist
-    for dm in gdm gdm3 lightdm; do
-      if systemctl is-enabled "${dm}" &>/dev/null 2>&1; then
-        log_info "Disabling ${dm}..."
-        sudo systemctl disable "${dm}.service" 2>/dev/null || true
-      fi
-    done
-    sudo systemctl enable sddm.service
-    log_ok "SDDM enabled"
-    log_warn "A reboot is required to switch display managers."
   fi
 
   # ── Notification daemon: dunst ────────────
