@@ -105,7 +105,7 @@
   "network": {
     "format-disconnected": "404  ",
     "format-ethernet": "󰈀 wired",
-    "format-wifi": "直 {signalStrength}%",
+    "format-wifi": "󰖩 {signalStrength}%",
     "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh"
   },
   "pulseaudio": {
