@@ -968,6 +968,14 @@ install_desktop() {
     nala_install dolphin
   fi
 
+  # ── Fonts: noto + hack nerd ───────────────
+  log_section "Fonts — Noto + Hack Nerd"
+  if [[ "${DISTRO}" == "arch" ]]; then
+    pacman_install noto-fonts noto-fonts-emoji noto-fonts-cjk ttfHackNerdFont
+  else
+    nala_install fonts-noto fonts-noto-emoji
+  fi
+
   # ── Notification daemon: dunst ────────────
   log_section "Notification Daemon — dunst"
   if [[ "${DISTRO}" == "arch" ]]; then
