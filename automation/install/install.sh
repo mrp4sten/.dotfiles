@@ -172,6 +172,11 @@ main() {
   symlink "${DOTFILES_DIR}/system/desktop/rofi" \
     "${CONFIG_DIR}/rofi"
 
+  # ── Desktop: Dunst ─────────────────────────
+  log_section "Desktop — Dunst"
+  symlink "${DOTFILES_DIR}/system/desktop/dunst" \
+    "${CONFIG_DIR}/dunst"
+
   # ── Done ──────────────────────────────────
   echo ""
   echo "  All done!"
