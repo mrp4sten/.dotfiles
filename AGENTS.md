@@ -107,7 +107,7 @@ development environment. Configs are organized by domain rather than by symlink 
 ├── development/       # Language tooling, Git config, VSCode settings
 │   ├── languages/{java,node,python}/
 │   └── vscode/        # VSCode settings.json
-|   └── IA/{opencode,claude,codex}/ # Config for LLMs
+|   └── IA/{opencode}/ # Config for LLMs
 ├── docs/              # Documentation
 ├── system/            # Boot, desktop, service configs
 ├── utilities/         # fastfetch, file management, security, text processing

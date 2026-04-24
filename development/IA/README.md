@@ -12,8 +12,7 @@ This directory contains configuration and tools for AI-assisted development:
 IA/
 ├── agents-teams-lite/    # Agent orchestration framework (git submodule)
 ├── opencode/             # OpenCode AI assistant config
-├── claude-code/          # Claude Code (official Anthropic CLI) config
-└── README.md             # This file
+└── README.md           # This file
 ```
 
 ---
@@ -85,11 +84,11 @@ ORCHESTRATOR:
   → EXPLORER      → Analyzes codebase
   → PROPOSER      → Creates proposal artifact
   → SPEC WRITER   → Creates spec artifact
-  → DESIGNER      → Creates design artifact
-  → TASK PLANNER  → Creates task breakdown
-  → IMPLEMENTER   → Writes code
-  → VERIFIER      → Validates implementation
-  → ARCHIVER      → Archives change
+  → DESIGNER     → Creates design artifact
+  → TASK PLANNER → Creates task breakdown
+  → IMPLEMENTER  → Writes code
+  → VERIFIER     → Validates implementation
+  → ARCHIVER     → Archives change
 ```
 
 **Usage:**
@@ -102,70 +101,39 @@ See [`agents-teams-lite/README.md`](agents-teams-lite/README.md) for full docume
 
 ### OpenCode
 
-[OpenCode](https://opencode.ai) is a third-party AI-powered terminal coding assistant.
-
-See [`opencode/README.md`](opencode/README.md) for installation and configuration.
-
----
-
-### Claude Code
-
-[Claude Code](https://claude.ai/code) is the **official** Anthropic CLI for Claude AI. It provides native integration with Claude's API, MCP support, skills, custom agents, and persistent memory.
-
-**Key Features:**
-- Official Anthropic tool (not third-party)
-- Native Claude API integration
-- MCP (Model Context Protocol) support
-- Custom agent personalities (Lenny, Gentleman)
-- 33+ shared skills from OpenCode
-- Persistent memory via Engram
-- Project-aware context
+[OpenCode](https://opencode.ai) is an AI-powered terminal coding assistant.
 
 **Installation:**
 
 ```bash
-# Run the automated installer
-bash ~/.dotfiles/development/IA/claude-code/install.sh
+curl -fsSL https://opencode.ai/install | bash
+ln -sf ~/.dotfiles/development/IA/opencode ~/.config/opencode
 ```
 
-Or manually:
+**Key Features:**
 
-```bash
-# 1. Install Claude Code
-curl -fsSL https://claude.ai/install.sh | bash
-
-# 2. Authenticate
-claude auth login
-
-# 3. Link skills
-ln -sf ~/.dotfiles/development/IA/claude-code/skills ~/.claude/skills
-
-# 4. Link global config
-ln -sf ~/.dotfiles/development/IA/claude-code/CLAUDE.md ~/CLAUDE.md
-```
+- Terminal-based AI coding assistant
+- Skills system for common patterns
+- Custom agents and workflows
+- MCP support
+- Persistent memory via Engram
+- Project-aware context
 
 **Usage:**
 
 ```bash
-# Start with Lenny agent (sarcastic CTO)
-claude --agent lenny
-# or
-lenny
-
-# Start with Gentleman agent (warm mentor)
-claude --agent gentleman
-# or
-gentleman
-
-# Load a skill
-claude
-/skill tdd
+# Start a session
+opencode
 
 # Continue last session
-claude --continue
+opencode --continue
+
+# Load a skill
+opencode
+/skill tdd
 ```
 
-See [`claude-code/README.md`](claude-code/README.md) for full documentation.
+See [`opencode/README.md`](opencode/README.md) for full documentation.
 
 ---
 
@@ -182,12 +150,7 @@ See [`claude-code/README.md`](claude-code/README.md) for full documentation.
    git submodule update --init --recursive
    ```
 
-3. **Install Claude Code (recommended):**
-   ```bash
-   bash ~/.dotfiles/development/IA/claude-code/install.sh
-   ```
-
-   Or install OpenCode (alternative):
+3. **Install OpenCode:**
    ```bash
    curl -fsSL https://opencode.ai/install | bash
    ln -sf ~/.dotfiles/development/IA/opencode ~/.config/opencode
@@ -199,14 +162,8 @@ See [`claude-code/README.md`](claude-code/README.md) for full documentation.
 
 All tools work together:
 
-- **Claude Code** (or **OpenCode**) provides the AI coding assistant interface
+- **OpenCode** provides the AI coding assistant interface
 - **Agent Teams Lite** provides the structured workflow and orchestration
 - **Engram** provides persistent memory across sessions
 
 Together they form a powerful, structured AI development environment that maintains context, follows best practices, and produces consistent, well-documented code.
-
-**Recommended Stack:**
-- **Primary:** Claude Code + Agent Teams Lite + Engram
-- **Alternative:** OpenCode + Agent Teams Lite + Engram
-
-Both Claude Code and OpenCode share the same skills, agents, and Engram memory. Claude Code is recommended for its official support and native Claude integration.
