@@ -10,3 +10,9 @@
 [submodule "development/IA/agents-teams-lite"]
 	path = development/IA/agents-teams-lite
 	url = git@github.com:Gentleman-Programming/agent-teams-lite.git
+[submodule "development/IA/everything-claude-code"]
+	path = development/IA/everything-claude-code
+	url = git@github.com:affaan-m/everything-claude-code.git
+[submodule "development/IA/engram"]
+	path = development/IA/engram
+	url = git@github.com:Gentleman-Programming/engram.git
