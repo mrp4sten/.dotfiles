@@ -99,6 +99,13 @@ DISTRO=""
 AUR_HELPER=""
 
 detect_distro() {
+  case "${OSTYPE:-}" in
+    msys*|cygwin*|win32*)
+      log_warn "Windows detected. This script is for Linux only."
+      log_info "  Use: pwsh -File automation\\install\\windows\\bootstrap.ps1"
+      exit 2
+      ;;
+  esac
   if [[ -f /etc/arch-release ]]; then
     DISTRO="arch"
   elif [[ -f /etc/debian_version ]] || grep -qi "ubuntu\|debian" /etc/os-release 2>/dev/null; then

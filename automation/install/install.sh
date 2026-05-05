@@ -8,6 +8,15 @@
 
 set -euo pipefail
 
+# Guard: Windows detected (running via Git Bash / MSYS2)
+case "${OSTYPE:-}" in
+  msys*|cygwin*|win32*)
+    echo "  [WARN]  Windows detected. This script is for Linux only."
+    echo "  [INFO]  Use: pwsh -File automation\\install\\windows\\install.ps1"
+    exit 2
+    ;;
+esac
+
 DOTFILES_DIR="${HOME}/.dotfiles"
 CONFIG_DIR="${HOME}/.config"
 BACKUP_DIR="${HOME}/.dotfiles-backup/$(date +%Y%m%d_%H%M%S)"

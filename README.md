@@ -26,6 +26,27 @@ exec zsh
 
 That's it. Two scripts, done.
 
+### Windows
+
+```powershell
+# Prerequisites (one-time) — see docs/windows-setup.md
+# Enable Developer Mode + Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# 1. Clone
+git clone https://github.com/mrp4sten/.dotfiles.git $HOME\.dotfiles
+cd $HOME\.dotfiles
+git submodule update --init --recursive
+
+# 2. Install tools
+pwsh -ExecutionPolicy Bypass -File automation\install\windows\bootstrap.ps1
+
+# 3. Link configs
+pwsh -File automation\install\windows\install.ps1
+
+# 4. Reload shell
+. $PROFILE
+```
+
 ---
 
 ## Repository Structure
@@ -265,7 +286,7 @@ nmcli con up "Wired connection 1"
 
 ## Notes
 
-- Primary distro: **Ubuntu** (this branch)
+- Supported platforms: **Arch Linux**, **Ubuntu/Debian**, **Windows** (native PowerShell)
 - Configs are deployed via **symlinks**, not copies — edit in the repo, changes apply instantly
 - See [`AGENTS.md`](AGENTS.md) for coding conventions and script style guidelines
 - Git submodules live in `visual/` — run `git submodule update --init --recursive` after cloning

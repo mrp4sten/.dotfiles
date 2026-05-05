@@ -3,3 +3,9 @@
 
 # opencode plugins (auto-downloaded)
 development/IA/opencode/plugins/
+
+# Windows noise
+*.lnk
+Thumbs.db
+desktop.ini
+*.backup.*
